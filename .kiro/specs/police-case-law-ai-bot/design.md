@@ -218,7 +218,7 @@ fixture에 저장된 기대 상태와 계산 상태가 다르면 판례 데이�
 - `[50,80)`: `중간 유사도 — 직접 적용 전 사실관계 재검토 필요`
 - `[0,50)`: `낮은 유사도 — 결론 근거로 사용 금지`
 - 높은 유사도이고 `couldChangeConclusion=true`인 사실 차이가 있으면 점수보다 먼저 경고 영역에 배치한다.
-- 사용자 사실, 판례 사실, 결론 영향 중 fixture 값이 없는 필드는 각각 `확인 필요`로 표시한다. 유사도는 적법성, 결론, 죄명, 재판 결과를 바꾸지 않는다.
+- 사용자 사실, 판례 사실, 결론 영향 중 fixture 값이 없는 필드는 각각 `확인 필요`로 표시한다. 유사도는 적법성, 결론, 해당 심급 인정 죄명, 해당 심급 재판 결과를 바꾸지 않는다.
 
 #### 4.7 선택 영역 재검토
 
@@ -289,7 +289,7 @@ flowchart TD
 
 #### 5.4 결과 목록과 상세
 
-- 목록 카드는 사건번호, 법원명, 심급, 선고일, 시나리오, 유사도, 적법성, 법령 상태, 죄명, 실제 결과를 표시한다.
+- 목록 카드는 사건번호, 법원명, 심급, 선고일, 시나리오, 유사도, 적법성, 법령 상태, 해당 심급 인정 죄명, 해당 심급 재판 결과를 표시한다. 추가로 각 목록 카드에는 `상급심 정보 요약`과 `확정 여부`를 함께 표시한다(요구사항 12.15~12.17). 상급심 정보가 정보_없음이면 목록 카드의 상급심 요약을 정보_없음으로 표시하고, 확정 여부가 정보_없음이면 해당 목록 카드의 확정·미확정 배지를 0건으로 유지한다.
 - 법조문 목록은 법령명, 조·항·호, 시행일을 표시한다.
 - 사실 차이 경고는 높은 유사도 점수보다 앞에 올 수 있다.
 - 상세 화면은 `요약`, `개인 책임 위험`, `핵심 사실 차이`, `법령 상태`, `상급심`, `전문` 섹션으로 구분한다.
@@ -300,7 +300,7 @@ flowchart TD
 - 3줄: 사건 개요 → 법원 결론 → 현장 경찰 핵심 포인트의 정확히 3개 의미 줄.
 - 10줄: 필수 8개 항목을 포함하는 정확히 10개 의미 줄. 중복되는 추가 두 줄의 항목명도 fixture에 명시한다.
 - 상세: 같은 필수 항목을 섹션으로 제공하며 줄 수 제한은 없다.
-- 단계 변경 시 결론, 적법성, 죄명, 결과는 동일한 canonical case projection에서 읽어 일관성을 보장한다.
+- 단계 변경 시 결론, 적법성, 해당 심급 인정 죄명, 해당 심급 재판 결과는 동일한 canonical case projection에서 읽어 일관성을 보장한다.
 - 법률 용어의 최초 현장 표현 설명에는 원래 법률 용어를 함께 표시한다.
 
 #### 5.6 선택 영역 재검토
@@ -715,8 +715,8 @@ interface CaseRecord {
   appliedStatutes: readonly AppliedStatuteRef[];
   expectedLawBasisStatus: LawBasisStatus;
   summaries: SummaryBundle;
-  finalRecognizedCharge: string | null;
-  actualOutcome: string | null;
+  instanceRecognizedCharge: string | null;
+  instanceOutcome: string | null;
   liability: PersonalLiabilityRisk;
   appellate: AppellateInformation;
   finality: "확정" | "미확정" | "정보_없음";
@@ -827,15 +827,15 @@ type SummarySectionKey =
   | "판례 쟁점"
   | "법원 결론"
   | "적용 법조문"
-  | "최종 인정 죄명"
-  | "실제 재판 결과"
+  | "해당 심급 인정 죄명"
+  | "해당 심급 재판 결과"
   | "현장 경찰 핵심 포인트";
 
 interface SummaryBundle {
   canonicalConclusion: string;
   canonicalLegalityStatus: LegalityStatus;
-  canonicalFinalCharge: string | null;
-  canonicalActualOutcome: string | null;
+  canonicalInstanceCharge: string | null;
+  canonicalInstanceOutcome: string | null;
   threeLine: readonly [SummaryLine, SummaryLine, SummaryLine];
   tenLine: readonly [
     SummaryLine, SummaryLine, SummaryLine, SummaryLine, SummaryLine,
@@ -1115,7 +1115,7 @@ interface MockRagError {
 - 유사도는 유한 숫자 `[0,100]`, priority/tieOrder는 정수이며 안정 순서가 정의된다.
 - 현행법 판례가 구법 판례보다 먼저 오도록 priority가 배정되어 있다.
 - 3줄 tuple의 key 순서와 10줄 tuple의 길이·필수 항목을 검증한다.
-- 요약의 canonical 결론·적법성·죄명·결과는 판례 canonical 필드와 일치한다.
+- 요약의 canonical 결론·적법성·해당 심급 인정 죄명·해당 심급 재판 결과는 판례 canonical 필드와 일치한다.
 - 위험·행동 배지·법령 상태의 declared/expected 값은 증거 또는 버전에서 다시 계산한 값과 일치한다.
 - response의 모든 claim, citation, direct/reference 구분이 유효하다.
 - 상급심 정보 없음이면 상세 배열이 비고, 확정 정보 없음이면 확정 배지가 파생되지 않는다.
@@ -1262,7 +1262,7 @@ interface MockRagError {
 
 ### Property 14: 요약 단계 전환의 canonical 불변성
 
-**For all** 판례와 모든 요약 단계 전환 시퀀스에 대해, 법원 결론·적법성 상태·최종 인정 죄명·실제 재판 결과는 단계 선택 전후에 동일하고 판례 canonical 필드와 같아야 한다.
+**For all** 판례와 모든 요약 단계 전환 시퀀스에 대해, 법원 결론·적법성 상태·해당 심급 인정 죄명·해당 심급 재판 결과는 단계 선택 전후에 동일하고 판례 canonical 필드와 같아야 한다.
 
 **Validates: Requirements 5.7**
 
@@ -1320,9 +1320,9 @@ interface MockRagError {
 - **오라클**: 독립 tuple comparator와 current-before-old invariant validator.
 - **경계 사례**: 빈/한 건, 모두 동순위, 같은 priority/tieOrder의 비정상 fixture, 비ASCII caseId.
 
-### Property 20: 죄명·재판 결과 누락의 독립 placeholder
+### Property 20: 해당 심급 죄명·재판 결과 누락의 독립 placeholder
 
-**For all** 최종 인정 죄명과 실제 재판 결과의 null/non-null 조합에 대해, 존재하는 값은 그대로 표시하고 누락된 필드만 `확인되지 않음`으로 표시해야 한다.
+**For all** 해당 심급 인정 죄명과 해당 심급 재판 결과의 null/non-null 조합에 대해, 존재하는 값은 그대로 표시하고 누락된 필드만 `확인되지 않음`으로 표시해야 한다.
 
 **Validates: Requirements 7.7**
 
@@ -1352,7 +1352,7 @@ interface MockRagError {
 
 ### Property 23: 유사도 변화에 대한 판례 결론 불변성
 
-**For all** 동일 판례와 두 개의 유효 유사도 preset에 대해, 점수와 경고가 달라져도 적법성 상태·법원 결론·실제 재판 결과는 동일한 canonical 값으로 유지되어야 한다.
+**For all** 동일 판례와 두 개의 유효 유사도 preset에 대해, 점수와 경고가 달라져도 적법성 상태·법원 결론·해당 심급 재판 결과는 동일한 canonical 값으로 유지되어야 한다.
 
 **Validates: Requirements 8.11**
 
@@ -1550,7 +1550,7 @@ interface MockRagError {
 | 미지원 질의 | QueryInterpreter | 지원하지 않는 질의 + 8개 시나리오 | 결과 빈 집합 | 다른 입력으로 가능 |
 | `SIMILARITY_DATA_ERROR` | MockSearchService | 유사도 데이터 오류 + case ID | 해당 판례만 제외 | fixture 수정 전 무의미 |
 | `SOURCE_DATA_ERROR` | DatasetValidator/Evidence | 출처 데이터 오류 | 연결되지 않은 인용·강조 숨김 | 데이터가 복구되면 가능 |
-| `CASE_DATA_INCONSISTENCY` | DatasetValidator/selector | 판례 데이터 불일치 | 충돌한 결론·상태·죄명·결과 숨김 | 데이터가 복구되면 가능 |
+| `CASE_DATA_INCONSISTENCY` | DatasetValidator/selector | 판례 데이터 불일치 | 충돌한 결론·상태·해당 심급 죄명·결과 숨김 | 데이터가 복구되면 가능 |
 | `MOCK_DATA_INSUFFICIENT` | active RAG stage | 해당 단계 목업 데이터 부족 | 후속 단계 미완료, 기존 상태 유지 | 누락이 일시 로드 오류일 때만 가능 |
 | `VOICE_FIXTURE_UNRECOGNIZED` | LocalVoiceDemoPort | 음성 인식 불가 + 수동 입력 안내 | INPUT과 draft 유지 | 수동 입력/다른 fixture 가능 |
 | 로컬 복사 권한 거부 | LocalExportPort | 복사 실패 + 수동 복사 안내 | 선택 가능한 보고서 본문 유지 | 권한 변경 후 가능 |
