@@ -1695,7 +1695,7 @@ PBT와 중복되는 대량 예제를 만들지 않고 다음 대표 사례에 �
 | 9. 선택 재검토 | SelectionReview, SourceViewer | `ReviewableClaim`, `ClaimEvidenceLink`, `SelectionReviewResult` | P25–P28 | drag/context menu, 초점·강조 |
 | 10. 현행 법령 | LawStatusPanel, 정렬 validator | `StatuteVersion`, `AppliedStatuteRef`, `LawBasisStatus` | P7, P19, P29–P31 | 날짜 그룹·기준일 고지 |
 | 11. 타임라인·보고서 | LocalVoiceDemoPort, TimelineEditor, ReportReuse | `VoiceFixture`, `RecognizedEvent`, `ReportDocument` | P32–P36 | 편집 UI, 복사/다운로드 통합 |
-| 12. 전체 심급·상급심 | AppShell, AppealStatusPanel, ResultList | `AppellateInformation`, `finality` | P8, P37 | 범위·심급 문구, 변경 강조 |
+| 12. 전체 판례 범위와 심급·상급심·확정 정보 | AppShell, AppealStatusPanel, ResultList | `AppellateInformation`, `finality` | P8, P37 | 목표/현재 판례 범위 표지, 심급·확정 안내, 상급심 변경 강조 |
 | 13. 추적성·안전 실패 | DatasetValidator, reducer snapshot, 모든 selector | `ValidatedDataset`, `MockRagError`, `ErrorSnapshot` | P1–P2, P9, P38–P40 | mutation, 오류 화면, 빌드 차단 |
 
 ### 인수 기준 coverage 확인
