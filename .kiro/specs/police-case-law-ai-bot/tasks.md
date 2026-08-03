@@ -20,8 +20,8 @@
     - `Result[T, E]` 판별 유니온, `DatasetId`·`QueryId`·`CaseId`·`StatuteVersionId`·`SourceId`·`ClaimId`·`EventId` 식별자 타입, `PoliceScenario`·`TraditionalCaseArea`·`LegalityStatus`·`LawBasisStatus`·`SummaryLevel`·`RagStage`·`StageStatus`·`EvidenceStatus` 열거형을 정의한다
     - _Requirements: 15.1, 15.2, 16.1_
   - [ ] 1.2 목업 데이터셋·표시 정책 데이터 모델과 최소 유효 fixture 작성
-    - `MockDataset` 루트와 `MockDisplayPolicies`, `DisplayPolicyRecord`, `SimilarityWarningPolicyRecord`, `QueryFixture`·`CaseRecord`·`StatuteRecord`·`StatuteVersion`·`SourceRecord`·`ResponseTemplate`·`SelectionReviewFixture`·`VoiceFixture` 데이터 구조를 정의한다
-    - 전체 심급(1심·항소심·상고심) 판례 샘플을 전제로 `CaseRecord.instance` 값 범위를 `"1심" | "항소심" | "상고심"`으로 두고, 8개 직무 시나리오 각각 적법 1건 이상·위법 1건 이상을 포함하며, 안전 고지·유사도 경고·`정보_없음`·`분류_불가`·`확인 필요`·`확인되지 않음`을 표시 정책 레코드 ID로 갖는 최소 유효 JSON/Python fixture를 작성한다
+    - `MockDataset` 루트(전체 심급 주의 리터럴 `instanceCautionNotice` 포함)와 `MockDisplayPolicies`, `DisplayPolicyRecord`, `SimilarityWarningPolicyRecord`, `QueryFixture`·`CaseRecord`·`StatuteRecord`·`StatuteVersion`·`SourceRecord`·`ResponseTemplate`·`SelectionReviewFixture`·`VoiceFixture` 데이터 구조를 정의한다
+    - 전체 심급(1심·항소심·상고심) 판례 샘플을 전제로 `CaseRecord.instance` 값 범위를 `"1심" | "항소심" | "상고심"`으로 두고, 동일 사건의 심급 연결을 `CaseRecord.relatedInstances`(`RelatedInstanceRef` 목록)로 표현하며, 상급심 결정의 원심 대비 관계는 `relationToLowerInstance`(`"유지" | "변경"`) 필드로 두고, 8개 직무 시나리오 각각 적법 1건 이상·위법 1건 이상을 포함하며, 안전 고지·유사도 경고·`정보_없음`·`분류_불가`·`확인 필요`·`확인되지 않음`을 표시 정책 레코드 ID로 갖는 최소 유효 JSON/Python fixture를 작성한다
     - _Requirements: 4.1, 4.9, 16.1, 16.2_
 
 - [ ] 2. 데이터셋 무결성 검증
@@ -150,7 +150,7 @@
     - `classifyLawStatus`로 현행법_기준/구법_기준/법령_상태_판별불가를 보수적으로 판정하고, 법조문 날짜 누락 필드만 `정보_없음`으로 두며, 구법 판례에 `구법 기준` 배지·관련 개정 설명을 연결한다
     - _Requirements: 10.2, 10.3, 10.4, 10.5, 10.6, 10.7, 10.8, 10.10, 10.11_
   - [ ] 11.2 상급심·확정 정보 projection 구현
-    - `AppellateInformation` PRESENT/정보_없음과 결정 상세(사건번호·심급·선고일·결과·원심 관계)를 그대로 projection하고, `finality`가 정보_없음이면 배지를 생성하지 않으며 목업에 없는 값을 추론하지 않는다
+    - `AppellateInformation` PRESENT/정보_없음과 결정 상세(사건번호·심급·선고일·결과·원심 대비 관계 `relationToLowerInstance`(심급 체인상 하급심 대비 `유지`/`변경`))를 그대로 projection하고, `finality`가 정보_없음이면 배지를 생성하지 않으며 목업에 없는 값을 추론하지 않는다
     - _Requirements: 12.5, 12.6, 12.7, 12.8, 12.9, 12.11, 12.12_
   - [ ]* 11.3 법조문 날짜 필드별 보존·정보 없음 속성 테스트
     - **Property 29: 법조문 날짜의 필드별 보존과 정보 없음**
@@ -304,12 +304,12 @@
     - 고정 문구, 전문 최초 접힘, 요약 탭·전문 독립, 빈 상태, 배지 색 외 구분, 두 선택 재검토 작업, 출처 초점 왕복, 상급심 변경 강조, 복사 거부/음성 실패 대안, axe 계열 검사와 키보드/초점/상태 알림 수동 항목을 검증한다
     - _Requirements: 14.5, 14.6, 6.15, 5.10, 3.12_
 
-- [ ] 22. 로컬 네트워크 차단과 통합 배선
-  - [ ] 22.1 로컬 정적 제공·네트워크 차단 배선 구현
-    - fixture·글꼴·아이콘을 배포물에 포함하고 CDN·서비스 워커·원격 분석을 제거하며, `connect-src 'none'` 등 CSP와 외부 실행 호출 없는 클라이언트 코드로 웹_앱_통신·정적 자산 외 호출을 0건으로 유지한다
+- [ ] 22. 외부 origin 차단과 통합 배선
+  - [ ] 22.1 로컬 정적 제공·외부 origin 차단 배선 구현
+    - fixture·글꼴·아이콘을 배포물에 포함하고 CDN·서비스 워커·원격 분석을 제거하며, `default-src 'self'; connect-src 'self'` CSP로 동일 origin 서버 통신은 허용하되 외부 origin 연결을 차단하고, 외부 실행 호출 없는 클라이언트 코드로 웹_앱_통신·정적 자산을 제외한 외부 origin 호출을 0건으로 유지한다
     - _Requirements: 1.5, 1.10, 1.12, 14.1, 14.2_
-  - [ ]* 22.2 오프라인·외부 호출 0건 통합/E2E 테스트
-    - 대표 시연 흐름(질의→단계→결과→상세→출처 왕복, 시나리오 비교, 요약 전환, 선택 재검토, 음성→타임라인→보고서), 상태 왕복, 클립보드/다운로드, 질의 처리 중 fetch/XHR/WebSocket/EventSource/beacon·외부 origin 0건을 계측한다
+  - [ ]* 22.2 외부 origin 호출 0건 통합/E2E 테스트
+    - 대표 시연 흐름(질의→단계→결과→상세→출처 왕복, 시나리오 비교, 요약 전환, 선택 재검토, 음성→타임라인→보고서), 상태 왕복, 클립보드/다운로드를 검증하고, 동일 origin(Python 웹 서버)만 허용한 상태에서 질의 처리 중 외부 origin fetch/XHR/WebSocket/EventSource/beacon 0건을 계측한다(동일 origin 웹 앱 통신·정적 자산 요청은 계측에서 제외한다)
     - _Requirements: 1.5, 1.10, 14.5, 16.10_
 
 - [ ] 23. 최종 체크포인트 - 전체 검증
