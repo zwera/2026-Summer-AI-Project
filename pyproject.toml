@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools==75.6.0", "wheel==0.45.1"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "police-case-law-ai-bot"
+version = "0.1.0"
+description = "경찰 판례·법령 AI 봇 - 목업 RAG 시연 웹 애플리케이션 (Python 기준 구현)"
+readme = "README.md"
+requires-python = ">=3.9,<3.13"
+license = { text = "Proprietary" }
+# 핵심 애플리케이션·도메인 로직과 서버 측 웹 계층은 Python 표준 라이브러리만으로 시작한다.
+# 검색 엔진, 임베딩, 벡터 DB, 외부 판례/법령 API, 원격 음성 인식, 실제 LLM 클라이언트는
+# 어떤 시점에도 런타임 의존성으로 추가하지 않는다.
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "pytest==8.4.2",
+    "hypothesis==6.141.1",
+    "mypy==1.19.1",
+]
+
+[tool.setuptools]
+packages = ["domain", "data", "app", "web", "fixtures"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+
+[tool.mypy]
+python_version = "3.9"
+files = ["domain", "data", "app", "web", "fixtures", "tests"]
+strict = true
+warn_unused_ignores = true
+disallow_untyped_defs = true
+no_implicit_optional = true

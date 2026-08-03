@@ -1,0 +1,3346 @@
+{
+  "pbtResults": {
+    "2.3 직무 시나리오 최소 coverage 속성 테스트": {
+      "status": "passed",
+      "lastRunTimestamp": 1785771651949
+    },
+    "3.4 빈·미대응·미지원 입력 안전 거부 속성 테스트": {
+      "status": "passed",
+      "lastRunTimestamp": 1785777366011
+    },
+    "3.2 결정적 해석·매칭 속성 테스트": {
+      "status": "passed",
+      "lastRunTimestamp": 1785777404215
+    },
+    "3.5 명시 시점 문장 순열 불변성 속성 테스트": {
+      "status": "passed",
+      "lastRunTimestamp": 1785777376578
+    },
+    "3.3 관계 보존·모호성 차단 속성 테스트": {
+      "status": "passed",
+      "lastRunTimestamp": 1785777383123
+    },
+    "8.2 요약 구조 계약 속성 테스트": {
+      "status": "passed",
+      "lastRunTimestamp": 1785777568961
+    },
+    "7.2 시나리오·적법성 완전 partition 속성 테스트": {
+      "status": "passed",
+      "lastRunTimestamp": 1785777602159
+    },
+    "8.3 요약 단계 전환 canonical 불변성 속성 테스트": {
+      "status": "passed",
+      "lastRunTimestamp": 1785777592227
+    },
+    "7.3 시나리오·보조 필터 교집합 속성 테스트": {
+      "status": "passed",
+      "lastRunTimestamp": 1785778455231
+    },
+    "9.3 행동 배지 만장일치·배타 분류 속성 테스트": {
+      "status": "passed",
+      "lastRunTimestamp": 1785777807258
+    },
+    "10.3 유사도 경고 구간·결정적 차이 우선 속성 테스트": {
+      "status": "passed",
+      "lastRunTimestamp": 1785777810709
+    },
+    "8.4 요약 설명·근거 추적성·placeholder 속성 테스트": {
+      "status": "passed",
+      "lastRunTimestamp": 1785777812415
+    },
+    "9.2 개인 책임 위험 총 분류·provenance 속성 테스트": {
+      "status": "passed",
+      "lastRunTimestamp": 1785777813816
+    },
+    "10.2 사실 차이 완전 projection·null 처리 속성 테스트": {
+      "status": "passed",
+      "lastRunTimestamp": 1785777813946
+    },
+    "11.5 구법 판례 표시 완전성 속성 테스트": {
+      "status": "passed",
+      "lastRunTimestamp": 1785778453922
+    },
+    "11.3 법조문 날짜 필드별 보존·정보 없음 속성 테스트": {
+      "status": "passed",
+      "lastRunTimestamp": 1785778478391
+    },
+    "11.4 법령 기준 상태 완전·보수 분류 속성 테스트": {
+      "status": "passed",
+      "lastRunTimestamp": 1785778456312
+    },
+    "11.6 상급심·확정 총 projection·무합성 속성 테스트": {
+      "status": "passed",
+      "lastRunTimestamp": 1785778573085
+    },
+    "10.4 유사도 변화 대비 결론 불변성 속성 테스트": {
+      "status": "passed",
+      "lastRunTimestamp": 1785778448873
+    },
+    "12.2 선택 독립 주장 exact-once·상태 총체성 속성 테스트": {
+      "status": "passed",
+      "lastRunTimestamp": 1785778576415
+    },
+    "12.5 공백 선택 무효성 속성 테스트": {
+      "status": "passed",
+      "lastRunTimestamp": 1785778563190
+    },
+    "12.4 선택 상세 설명 fixture 충실성·fallback 속성 테스트": {
+      "status": "passed",
+      "lastRunTimestamp": 1785778565462
+    },
+    "12.3 주장 근거 분류·결정/참고 출처 partition 속성 테스트": {
+      "status": "passed",
+      "lastRunTimestamp": 1785778566988
+    },
+    "16.2 법률 고지 정책 표면 완전성 속성 테스트": {
+      "status": "passed",
+      "lastRunTimestamp": 1785778737937
+    },
+    "5.4 검색 projection 필드 충실성 속성 테스트": {
+      "status": "passed",
+      "lastRunTimestamp": 1785778769845
+    },
+    "5.5 유사도 preset 보존·격리 속성 테스트": {
+      "status": "passed",
+      "lastRunTimestamp": 1785778718872
+    },
+    "5.3 매칭·전문·법조문 ID exact-once 속성 테스트": {
+      "status": "passed",
+      "lastRunTimestamp": 1785778773767
+    },
+    "5.7 해당 심급 죄명·재판 결과 placeholder 속성 테스트": {
+      "status": "passed",
+      "lastRunTimestamp": 1785778926436
+    },
+    "13.5 타임라인 결정적 정렬·partition·exact-once 속성 테스트": {
+      "status": "passed",
+      "lastRunTimestamp": 1785778976079
+    },
+    "13.4 로컬 음성 fixture lookup·실패 격리 속성 테스트": {
+      "status": "passed",
+      "lastRunTimestamp": 1785778974948
+    },
+    "5.6 검색 우선순위 안정 정렬 속성 테스트": {
+      "status": "passed",
+      "lastRunTimestamp": 1785778934308
+    },
+    "13.7 타임라인 수정 일관 전파 속성 테스트": {
+      "status": "passed",
+      "lastRunTimestamp": 1785779219750
+    },
+    "13.8 보고서 순서 round-trip·필수 고지 속성 테스트": {
+      "status": "passed",
+      "lastRunTimestamp": 1785779256676
+    },
+    "13.6 타임라인 쟁점·출처 유효성 속성 테스트": {
+      "status": "passed",
+      "lastRunTimestamp": 1785779230476
+    },
+    "6.3 인용 완전·고유 직접 출처와 source ID 유일성 속성 테스트": {
+      "status": "passed",
+      "lastRunTimestamp": 1785779379791
+    },
+    "15.5 출처 왕복 사용자 상태 보존 속성 테스트": {
+      "status": "passed",
+      "lastRunTimestamp": 1785779572760
+    },
+    "15.4 RAG 상태 기계 순차성·단일 활성 속성 테스트": {
+      "status": "passed",
+      "lastRunTimestamp": 1785779526436
+    },
+    "15.7 전체 목업 RAG 관찰 결정성 속성 테스트": {
+      "status": "passed",
+      "lastRunTimestamp": 1785779529189
+    },
+    "15.3 표시 값 provenance·무합성 속성 테스트": {
+      "status": "passed",
+      "lastRunTimestamp": 1785779581147
+    },
+    "15.6 데이터 오류 안전 실패·오류 전 상태 보존 속성 테스트": {
+      "status": "passed",
+      "lastRunTimestamp": 1785779566624
+    }
+  },
+  "executionHistory": {
+    "1.1 Python 프로젝트 구조와 도메인 타입·열거형 정의": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767413263
+      },
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767428918
+      },
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785768070353
+      }
+    ],
+    "1.2 목업 데이터셋·표시 정책 데이터 모델과 최소 유효 fixture 작성": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767414013
+      },
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785768075450
+      },
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785769820437
+      }
+    ],
+    "2.1 구조 검증기 구현": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767414095
+      },
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785769845545
+      },
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785770615238
+      }
+    ],
+    "2.2 도메인·교차 참조 불변식 검증과 `ValidatedDataset` 생성": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767414149
+      },
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785770626014
+      },
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785771388356
+      }
+    ],
+    "2.3 직무 시나리오 최소 coverage 속성 테스트": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767414191
+      },
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785771396682
+      },
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785773020527
+      }
+    ],
+    "2.4 검증기 mutation 단위 테스트": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767414235
+      },
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785771397811
+      },
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785773021664
+      }
+    ],
+    "3.1 정규화·질의 해석·관계 보존 구현": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767414284
+      },
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785771399030
+      },
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785773022772
+      }
+    ],
+    "3.2 결정적 해석·매칭 속성 테스트": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767414326
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773093846
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775910098
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777272774
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777287221
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777501859
+      }
+    ],
+    "3.3 관계 보존·모호성 차단 속성 테스트": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767414370
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773093926
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775910803
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777272836
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777287784
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777502298
+      }
+    ],
+    "3.4 빈·미대응·미지원 입력 안전 거부 속성 테스트": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767414416
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773094025
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775910895
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777272907
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777288050
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777502460
+      }
+    ],
+    "3.5 명시 시점 문장 순열 불변성 속성 테스트": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767414461
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773094093
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775911050
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777272979
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777288199
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777503146
+      }
+    ],
+    "4. 체크포인트 - 데이터·해석 계층 검증": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767414524
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773094156
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775911151
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777273411
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778364383
+      },
+      {
+        "executionId": "d63ce272-3596-4884-a264-716c57bce601",
+        "chatSessionId": "sess_e96396ae-3b9e-443a-9194-6377e7b9c39b",
+        "timestamp": 1785779158661
+      },
+      {
+        "executionId": "e4acd6db-44e6-4dca-8b9c-a44694279c72",
+        "chatSessionId": "sess_c11b074d-06ca-4b2d-a0af-71feca56b3e0",
+        "timestamp": 1785782995436
+      },
+      {
+        "executionId": "e4acd6db-44e6-4dca-8b9c-a44694279c72",
+        "chatSessionId": "sess_c11b074d-06ca-4b2d-a0af-71feca56b3e0",
+        "timestamp": 1785783043226
+      }
+    ],
+    "5.1 fixture ID 조회 기반 목업 검색과 결과 projection 구현": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767414570
+      },
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785771400484
+      },
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785773024195
+      }
+    ],
+    "5.2 유사도 preset 보존·격리와 안정 정렬 구현": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767414618
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773094215
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775911257
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785777228468
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777273485
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777288485
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777503209
+      }
+    ],
+    "5.3 매칭·전문·법조문 ID exact-once 속성 테스트": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767414661
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773094273
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775911319
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777273802
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778364458
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778653652
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778834208
+      }
+    ],
+    "5.4 검색 projection 필드 충실성 속성 테스트": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767414702
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773094326
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775911381
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777273863
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778364528
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778657963
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778838770
+      }
+    ],
+    "5.5 유사도 preset 보존·격리 속성 테스트": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767414749
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773094377
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775911446
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777274177
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778364589
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778662972
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778843846
+      }
+    ],
+    "5.6 검색 우선순위 안정 정렬 속성 테스트": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767414804
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773094468
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775911518
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777274243
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778364665
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778850954
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785779092193
+      }
+    ],
+    "5.7 해당 심급 죄명·재판 결과 placeholder 속성 테스트": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767414858
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773094522
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775911581
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777274547
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778364726
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778856268
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785779097082
+      }
+    ],
+    "6.1 응답 template projection과 인용 조립 구현": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767414903
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773094578
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775911646
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785777229578
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777274665
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777513936
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777697179
+      }
+    ],
+    "6.2 `citationsForClaim`과 source/anchor 유효성 검증 구현": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767414947
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773094631
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775911706
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777274949
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778364806
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778861071
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785779102710
+      }
+    ],
+    "6.3 인용 완전·고유 직접 출처와 source ID 유일성 속성 테스트": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767414991
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773094694
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775911770
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777275016
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778364881
+      },
+      {
+        "executionId": "d63ce272-3596-4884-a264-716c57bce601",
+        "chatSessionId": "sess_e96396ae-3b9e-443a-9194-6377e7b9c39b",
+        "timestamp": 1785779158734
+      },
+      {
+        "executionId": "d63ce272-3596-4884-a264-716c57bce601",
+        "chatSessionId": "sess_e96396ae-3b9e-443a-9194-6377e7b9c39b",
+        "timestamp": 1785779302310
+      },
+      {
+        "executionId": "d63ce272-3596-4884-a264-716c57bce601",
+        "chatSessionId": "sess_e96396ae-3b9e-443a-9194-6377e7b9c39b",
+        "timestamp": 1785779457352
+      }
+    ],
+    "7.1 시나리오·적법성 partition과 보조 필터 교집합 구현": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767415036
+      },
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785771401593
+      },
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785773025222
+      }
+    ],
+    "7.2 시나리오·적법성 완전 partition 속성 테스트": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767415083
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773094750
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775911836
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785777231812
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777275312
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777514172
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777697255
+      }
+    ],
+    "7.3 시나리오·보조 필터 교집합 속성 테스트": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767415144
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773094808
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775911901
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777275384
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777514571
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778364955
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778376492
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778491396
+      }
+    ],
+    "8.1 3줄·10줄·상세 요약 projection과 canonical·용어 설명 구현": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767415198
+      },
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785773047490
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773094860
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773116303
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785775068709
+      }
+    ],
+    "8.2 요약 구조 계약 속성 테스트": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767415241
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773094918
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775911957
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777275451
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777515267
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777697309
+      }
+    ],
+    "8.3 요약 단계 전환 canonical 불변성 속성 테스트": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767415282
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773094982
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775912021
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777275526
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777515345
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777697381
+      }
+    ],
+    "8.4 요약 설명·근거 추적성·placeholder 속성 테스트": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767415336
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773095060
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775912102
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777275597
+      },
+      {
+        "executionId": "f7803202-7f81-400b-bc16-981f4b575e6e",
+        "chatSessionId": "sess_7533c7e2-25db-4a9c-9239-bdf95f619c82",
+        "timestamp": 1785777746415
+      },
+      {
+        "executionId": "f7803202-7f81-400b-bc16-981f4b575e6e",
+        "chatSessionId": "sess_7533c7e2-25db-4a9c-9239-bdf95f619c82",
+        "timestamp": 1785777966337
+      }
+    ],
+    "9.1 위험 4축 분류와 단일 행동 배지 판정 구현": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767415381
+      },
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785773048583
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773095116
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773117384
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785775070650
+      }
+    ],
+    "9.2 개인 책임 위험 총 분류·provenance 속성 테스트": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767415425
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773095184
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775912173
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785777232922
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777275661
+      },
+      {
+        "executionId": "f7803202-7f81-400b-bc16-981f4b575e6e",
+        "chatSessionId": "sess_7533c7e2-25db-4a9c-9239-bdf95f619c82",
+        "timestamp": 1785777746847
+      },
+      {
+        "executionId": "f7803202-7f81-400b-bc16-981f4b575e6e",
+        "chatSessionId": "sess_7533c7e2-25db-4a9c-9239-bdf95f619c82",
+        "timestamp": 1785777966587
+      }
+    ],
+    "9.3 행동 배지 만장일치·배타 분류 속성 테스트": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767415469
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773095250
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775912238
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777275719
+      },
+      {
+        "executionId": "f7803202-7f81-400b-bc16-981f4b575e6e",
+        "chatSessionId": "sess_7533c7e2-25db-4a9c-9239-bdf95f619c82",
+        "timestamp": 1785777747644
+      },
+      {
+        "executionId": "f7803202-7f81-400b-bc16-981f4b575e6e",
+        "chatSessionId": "sess_7533c7e2-25db-4a9c-9239-bdf95f619c82",
+        "timestamp": 1785777966966
+      }
+    ],
+    "10.1 유사도 경고 구간·사실 차이 projection·결정적 차이 우선 구현": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767415512
+      },
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785773050031
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773095311
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773119225
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785775069354
+      }
+    ],
+    "10.2 사실 차이 완전 projection·null 처리 속성 테스트": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767415557
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773095366
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775912293
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777275782
+      },
+      {
+        "executionId": "f7803202-7f81-400b-bc16-981f4b575e6e",
+        "chatSessionId": "sess_7533c7e2-25db-4a9c-9239-bdf95f619c82",
+        "timestamp": 1785777747736
+      },
+      {
+        "executionId": "f7803202-7f81-400b-bc16-981f4b575e6e",
+        "chatSessionId": "sess_7533c7e2-25db-4a9c-9239-bdf95f619c82",
+        "timestamp": 1785777967388
+      }
+    ],
+    "10.3 유사도 경고 구간·결정적 차이 우선 속성 테스트": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767415604
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773095433
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775912375
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777275846
+      },
+      {
+        "executionId": "f7803202-7f81-400b-bc16-981f4b575e6e",
+        "chatSessionId": "sess_7533c7e2-25db-4a9c-9239-bdf95f619c82",
+        "timestamp": 1785777747789
+      },
+      {
+        "executionId": "f7803202-7f81-400b-bc16-981f4b575e6e",
+        "chatSessionId": "sess_7533c7e2-25db-4a9c-9239-bdf95f619c82",
+        "timestamp": 1785777976207
+      }
+    ],
+    "10.4 유사도 변화 대비 결론 불변성 속성 테스트": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767415662
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773095491
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775912448
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777275921
+      },
+      {
+        "executionId": "f7803202-7f81-400b-bc16-981f4b575e6e",
+        "chatSessionId": "sess_7533c7e2-25db-4a9c-9239-bdf95f619c82",
+        "timestamp": 1785777984897
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778365040
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778380167
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778496042
+      }
+    ],
+    "11.1 법령 상태 분류와 날짜·구법 표시 구현": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767415722
+      },
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785773051178
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773095548
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773120283
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785775071708
+      }
+    ],
+    "11.2 상급심·확정 정보 projection 구현": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767415770
+      },
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785773052315
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773095630
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773121379
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785775072784
+      }
+    ],
+    "11.3 법조문 날짜 필드별 보존·정보 없음 속성 테스트": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767415814
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773095687
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775912509
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777275975
+      },
+      {
+        "executionId": "f7803202-7f81-400b-bc16-981f4b575e6e",
+        "chatSessionId": "sess_7533c7e2-25db-4a9c-9239-bdf95f619c82",
+        "timestamp": 1785777985072
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778365102
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778384315
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778500349
+      }
+    ],
+    "11.4 법령 기준 상태 완전·보수 분류 속성 테스트": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767415859
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773095748
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775912578
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777276041
+      },
+      {
+        "executionId": "f7803202-7f81-400b-bc16-981f4b575e6e",
+        "chatSessionId": "sess_7533c7e2-25db-4a9c-9239-bdf95f619c82",
+        "timestamp": 1785777985504
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778365168
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778388400
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778504574
+      }
+    ],
+    "11.5 구법 판례 표시 완전성 속성 테스트": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767415909
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773095823
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775912643
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777276099
+      },
+      {
+        "executionId": "f7803202-7f81-400b-bc16-981f4b575e6e",
+        "chatSessionId": "sess_7533c7e2-25db-4a9c-9239-bdf95f619c82",
+        "timestamp": 1785777985699
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778365230
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778392692
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778508535
+      }
+    ],
+    "11.6 상급심·확정 총 projection·무합성 속성 테스트": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767415954
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773095884
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775912707
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777276158
+      },
+      {
+        "executionId": "f7803202-7f81-400b-bc16-981f4b575e6e",
+        "chatSessionId": "sess_7533c7e2-25db-4a9c-9239-bdf95f619c82",
+        "timestamp": 1785777986206
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778365294
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778396494
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778619937
+      }
+    ],
+    "12.1 독립 주장 exact-once 추출과 근거 분류·상세 설명 구현": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767416007
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773095946
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785775080148
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775912769
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775929654
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785777166010
+      }
+    ],
+    "12.2 선택 독립 주장 exact-once·상태 총체성 속성 테스트": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767416050
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773096004
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775912862
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777276212
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778365371
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778400146
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778625541
+      }
+    ],
+    "12.3 주장 근거 분류·결정/참고 출처 partition 속성 테스트": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767416091
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773096065
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775912927
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777276274
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778365436
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778403660
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778629801
+      }
+    ],
+    "12.4 선택 상세 설명 fixture 충실성·fallback 속성 테스트": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767416139
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773096121
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775912991
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777276335
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778365497
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778407341
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778634113
+      }
+    ],
+    "12.5 공백 선택 무효성 속성 테스트": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767416183
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773096191
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775913055
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777276401
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778365564
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778411113
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778638517
+      }
+    ],
+    "13.1 로컬 음성 시연 lookup과 실패 격리 구현": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767416228
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773096268
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785775081202
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775913117
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775930672
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785777166992
+      }
+    ],
+    "13.2 결정적 타임라인 구성·수정 구현": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767416275
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773096318
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785775082292
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775913186
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775931771
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785777175568
+      }
+    ],
+    "13.3 보고서용 사실관계 생성 구현": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767416324
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773096372
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775913255
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785777230677
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777276463
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778365631
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778414624
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778821245
+      }
+    ],
+    "13.4 로컬 음성 fixture lookup·실패 격리 속성 테스트": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767416375
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773096429
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775913313
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777276525
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778365697
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778865800
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785779107887
+      }
+    ],
+    "13.5 타임라인 결정적 정렬·partition·exact-once 속성 테스트": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767416424
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773096487
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775913381
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777276591
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778365756
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778870451
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785779118224
+      }
+    ],
+    "13.6 타임라인 쟁점·출처 유효성 속성 테스트": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767416481
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773096547
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775913462
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777276653
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778365821
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785779129314
+      },
+      {
+        "executionId": "d63ce272-3596-4884-a264-716c57bce601",
+        "chatSessionId": "sess_e96396ae-3b9e-443a-9194-6377e7b9c39b",
+        "timestamp": 1785779158820
+      },
+      {
+        "executionId": "d63ce272-3596-4884-a264-716c57bce601",
+        "chatSessionId": "sess_e96396ae-3b9e-443a-9194-6377e7b9c39b",
+        "timestamp": 1785779168383
+      },
+      {
+        "executionId": "d63ce272-3596-4884-a264-716c57bce601",
+        "chatSessionId": "sess_e96396ae-3b9e-443a-9194-6377e7b9c39b",
+        "timestamp": 1785779293742
+      }
+    ],
+    "13.7 타임라인 수정 일관 전파 속성 테스트": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767416526
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773096604
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775913528
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777276720
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778365882
+      },
+      {
+        "executionId": "d63ce272-3596-4884-a264-716c57bce601",
+        "chatSessionId": "sess_e96396ae-3b9e-443a-9194-6377e7b9c39b",
+        "timestamp": 1785779158897
+      },
+      {
+        "executionId": "d63ce272-3596-4884-a264-716c57bce601",
+        "chatSessionId": "sess_e96396ae-3b9e-443a-9194-6377e7b9c39b",
+        "timestamp": 1785779168796
+      },
+      {
+        "executionId": "d63ce272-3596-4884-a264-716c57bce601",
+        "chatSessionId": "sess_e96396ae-3b9e-443a-9194-6377e7b9c39b",
+        "timestamp": 1785779294137
+      }
+    ],
+    "13.8 보고서 순서 round-trip·필수 고지 속성 테스트": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767416572
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773096660
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775913600
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777276777
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778365947
+      },
+      {
+        "executionId": "d63ce272-3596-4884-a264-716c57bce601",
+        "chatSessionId": "sess_e96396ae-3b9e-443a-9194-6377e7b9c39b",
+        "timestamp": 1785779158986
+      },
+      {
+        "executionId": "d63ce272-3596-4884-a264-716c57bce601",
+        "chatSessionId": "sess_e96396ae-3b9e-443a-9194-6377e7b9c39b",
+        "timestamp": 1785779168956
+      },
+      {
+        "executionId": "d63ce272-3596-4884-a264-716c57bce601",
+        "chatSessionId": "sess_e96396ae-3b9e-443a-9194-6377e7b9c39b",
+        "timestamp": 1785779294466
+      }
+    ],
+    "14. 체크포인트 - 도메인 계층 검증": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767416665
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773096714
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775913656
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777276832
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778366047
+      },
+      {
+        "executionId": "d63ce272-3596-4884-a264-716c57bce601",
+        "chatSessionId": "sess_e96396ae-3b9e-443a-9194-6377e7b9c39b",
+        "timestamp": 1785779159072
+      },
+      {
+        "executionId": "e4acd6db-44e6-4dca-8b9c-a44694279c72",
+        "chatSessionId": "sess_c11b074d-06ca-4b2d-a0af-71feca56b3e0",
+        "timestamp": 1785783048807
+      }
+    ],
+    "15.1 목업 RAG 상태 기계 구현": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767416713
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773096771
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775913713
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777276892
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778366106
+      },
+      {
+        "executionId": "d63ce272-3596-4884-a264-716c57bce601",
+        "chatSessionId": "sess_e96396ae-3b9e-443a-9194-6377e7b9c39b",
+        "timestamp": 1785779159147
+      },
+      {
+        "executionId": "d63ce272-3596-4884-a264-716c57bce601",
+        "chatSessionId": "sess_e96396ae-3b9e-443a-9194-6377e7b9c39b",
+        "timestamp": 1785779169272
+      },
+      {
+        "executionId": "d63ce272-3596-4884-a264-716c57bce601",
+        "chatSessionId": "sess_e96396ae-3b9e-443a-9194-6377e7b9c39b",
+        "timestamp": 1785779294522
+      }
+    ],
+    "15.2 `appReducer`·오류 스냅샷·효과 명령 구현": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767416764
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773096832
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775913779
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777276951
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778366164
+      },
+      {
+        "executionId": "d63ce272-3596-4884-a264-716c57bce601",
+        "chatSessionId": "sess_e96396ae-3b9e-443a-9194-6377e7b9c39b",
+        "timestamp": 1785779159213
+      },
+      {
+        "executionId": "d63ce272-3596-4884-a264-716c57bce601",
+        "chatSessionId": "sess_e96396ae-3b9e-443a-9194-6377e7b9c39b",
+        "timestamp": 1785779302591
+      },
+      {
+        "executionId": "d63ce272-3596-4884-a264-716c57bce601",
+        "chatSessionId": "sess_e96396ae-3b9e-443a-9194-6377e7b9c39b",
+        "timestamp": 1785779457625
+      }
+    ],
+    "15.3 표시 값 provenance·무합성 속성 테스트": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767416811
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773096893
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775913862
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777277048
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778366222
+      },
+      {
+        "executionId": "d63ce272-3596-4884-a264-716c57bce601",
+        "chatSessionId": "sess_e96396ae-3b9e-443a-9194-6377e7b9c39b",
+        "timestamp": 1785779159289
+      },
+      {
+        "executionId": "d63ce272-3596-4884-a264-716c57bce601",
+        "chatSessionId": "sess_e96396ae-3b9e-443a-9194-6377e7b9c39b",
+        "timestamp": 1785779465418
+      },
+      {
+        "executionId": "d63ce272-3596-4884-a264-716c57bce601",
+        "chatSessionId": "sess_e96396ae-3b9e-443a-9194-6377e7b9c39b",
+        "timestamp": 1785779634600
+      }
+    ],
+    "15.4 RAG 상태 기계 순차성·단일 활성 속성 테스트": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767416854
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773096951
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775913931
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777277107
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778366289
+      },
+      {
+        "executionId": "d63ce272-3596-4884-a264-716c57bce601",
+        "chatSessionId": "sess_e96396ae-3b9e-443a-9194-6377e7b9c39b",
+        "timestamp": 1785779159366
+      },
+      {
+        "executionId": "d63ce272-3596-4884-a264-716c57bce601",
+        "chatSessionId": "sess_e96396ae-3b9e-443a-9194-6377e7b9c39b",
+        "timestamp": 1785779465831
+      },
+      {
+        "executionId": "d63ce272-3596-4884-a264-716c57bce601",
+        "chatSessionId": "sess_e96396ae-3b9e-443a-9194-6377e7b9c39b",
+        "timestamp": 1785779634951
+      }
+    ],
+    "15.5 출처 왕복 사용자 상태 보존 속성 테스트": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767416901
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773097010
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775913987
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777277168
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778366353
+      },
+      {
+        "executionId": "d63ce272-3596-4884-a264-716c57bce601",
+        "chatSessionId": "sess_e96396ae-3b9e-443a-9194-6377e7b9c39b",
+        "timestamp": 1785779159428
+      },
+      {
+        "executionId": "d63ce272-3596-4884-a264-716c57bce601",
+        "chatSessionId": "sess_e96396ae-3b9e-443a-9194-6377e7b9c39b",
+        "timestamp": 1785779466235
+      },
+      {
+        "executionId": "d63ce272-3596-4884-a264-716c57bce601",
+        "chatSessionId": "sess_e96396ae-3b9e-443a-9194-6377e7b9c39b",
+        "timestamp": 1785779635251
+      }
+    ],
+    "15.6 데이터 오류 안전 실패·오류 전 상태 보존 속성 테스트": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767416955
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773097065
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775914051
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777277224
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778366420
+      },
+      {
+        "executionId": "d63ce272-3596-4884-a264-716c57bce601",
+        "chatSessionId": "sess_e96396ae-3b9e-443a-9194-6377e7b9c39b",
+        "timestamp": 1785779159490
+      },
+      {
+        "executionId": "d63ce272-3596-4884-a264-716c57bce601",
+        "chatSessionId": "sess_e96396ae-3b9e-443a-9194-6377e7b9c39b",
+        "timestamp": 1785779466410
+      },
+      {
+        "executionId": "d63ce272-3596-4884-a264-716c57bce601",
+        "chatSessionId": "sess_e96396ae-3b9e-443a-9194-6377e7b9c39b",
+        "timestamp": 1785779635625
+      }
+    ],
+    "15.7 전체 목업 RAG 관찰 결정성 속성 테스트": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767416998
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773097119
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775914120
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777277294
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778366487
+      },
+      {
+        "executionId": "d63ce272-3596-4884-a264-716c57bce601",
+        "chatSessionId": "sess_e96396ae-3b9e-443a-9194-6377e7b9c39b",
+        "timestamp": 1785779159553
+      },
+      {
+        "executionId": "d63ce272-3596-4884-a264-716c57bce601",
+        "chatSessionId": "sess_e96396ae-3b9e-443a-9194-6377e7b9c39b",
+        "timestamp": 1785779466764
+      },
+      {
+        "executionId": "d63ce272-3596-4884-a264-716c57bce601",
+        "chatSessionId": "sess_e96396ae-3b9e-443a-9194-6377e7b9c39b",
+        "timestamp": 1785779635960
+      }
+    ],
+    "16.1 `noticeFor` 표면별 고지 요구 정책 구현": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767417042
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773097174
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785775083048
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775914215
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775932639
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785777169411
+      }
+    ],
+    "16.2 법률 고지 정책 표면 완전성 속성 테스트": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767417089
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773097230
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775914272
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777277356
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778366545
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778418916
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778829528
+      }
+    ],
+    "17.1 HTTP 라우팅·요청 검증·응답 생성 구현": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767417138
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773097292
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775914338
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777277415
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778366602
+      },
+      {
+        "executionId": "d63ce272-3596-4884-a264-716c57bce601",
+        "chatSessionId": "sess_e96396ae-3b9e-443a-9194-6377e7b9c39b",
+        "timestamp": 1785779159620
+      },
+      {
+        "executionId": "d63ce272-3596-4884-a264-716c57bce601",
+        "chatSessionId": "sess_e96396ae-3b9e-443a-9194-6377e7b9c39b",
+        "timestamp": 1785779643902
+      },
+      {
+        "executionId": "d63ce272-3596-4884-a264-716c57bce601",
+        "chatSessionId": "sess_e96396ae-3b9e-443a-9194-6377e7b9c39b",
+        "timestamp": 1785779732017
+      }
+    ],
+    "17.2 안전 오류 응답 구현": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767417189
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773097348
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775914397
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777277472
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778366661
+      },
+      {
+        "executionId": "d63ce272-3596-4884-a264-716c57bce601",
+        "chatSessionId": "sess_e96396ae-3b9e-443a-9194-6377e7b9c39b",
+        "timestamp": 1785779159692
+      },
+      {
+        "executionId": "d63ce272-3596-4884-a264-716c57bce601",
+        "chatSessionId": "sess_e96396ae-3b9e-443a-9194-6377e7b9c39b",
+        "timestamp": 1785779740696
+      },
+      {
+        "executionId": "d63ce272-3596-4884-a264-716c57bce601",
+        "chatSessionId": "sess_e96396ae-3b9e-443a-9194-6377e7b9c39b",
+        "timestamp": 1785779851071
+      }
+    ],
+    "17.3 환경별 설정·비밀값 제로·정적 자산 제공 구현": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767417236
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773097406
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775914460
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777277531
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778366722
+      },
+      {
+        "executionId": "d63ce272-3596-4884-a264-716c57bce601",
+        "chatSessionId": "sess_e96396ae-3b9e-443a-9194-6377e7b9c39b",
+        "timestamp": 1785779159780
+      },
+      {
+        "executionId": "d63ce272-3596-4884-a264-716c57bce601",
+        "chatSessionId": "sess_e96396ae-3b9e-443a-9194-6377e7b9c39b",
+        "timestamp": 1785779740955
+      },
+      {
+        "executionId": "d63ce272-3596-4884-a264-716c57bce601",
+        "chatSessionId": "sess_e96396ae-3b9e-443a-9194-6377e7b9c39b",
+        "timestamp": 1785779851341
+      }
+    ],
+    "17.4 민감 사용자 콘텐츠 비저장·비전송 처리 구현": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767417281
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773097463
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775914543
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777277588
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778366789
+      },
+      {
+        "executionId": "d63ce272-3596-4884-a264-716c57bce601",
+        "chatSessionId": "sess_e96396ae-3b9e-443a-9194-6377e7b9c39b",
+        "timestamp": 1785779159848
+      },
+      {
+        "executionId": "d63ce272-3596-4884-a264-716c57bce601",
+        "chatSessionId": "sess_e96396ae-3b9e-443a-9194-6377e7b9c39b",
+        "timestamp": 1785779741304
+      },
+      {
+        "executionId": "d63ce272-3596-4884-a264-716c57bce601",
+        "chatSessionId": "sess_e96396ae-3b9e-443a-9194-6377e7b9c39b",
+        "timestamp": 1785779851678
+      }
+    ],
+    "17.5 서버 오류·결정성 통합 테스트": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767417343
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773097566
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775914617
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777277658
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778366849
+      },
+      {
+        "executionId": "d63ce272-3596-4884-a264-716c57bce601",
+        "chatSessionId": "sess_e96396ae-3b9e-443a-9194-6377e7b9c39b",
+        "timestamp": 1785779159914
+      },
+      {
+        "executionId": "b24cddc1-f576-4e70-a8b2-799426a1e7f3",
+        "chatSessionId": "sess_5803aca4-6ce2-41fa-8242-1f802aaef95b",
+        "timestamp": 1785779950652
+      },
+      {
+        "executionId": "b24cddc1-f576-4e70-a8b2-799426a1e7f3",
+        "chatSessionId": "sess_5803aca4-6ce2-41fa-8242-1f802aaef95b",
+        "timestamp": 1785780053443
+      }
+    ],
+    "18.1 AppShell·전역 내비게이션·고지·범위 표지·반응형 셸 구현": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767417389
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773097627
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775914685
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777277713
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778366911
+      },
+      {
+        "executionId": "d63ce272-3596-4884-a264-716c57bce601",
+        "chatSessionId": "sess_e96396ae-3b9e-443a-9194-6377e7b9c39b",
+        "timestamp": 1785779159998
+      },
+      {
+        "executionId": "b24cddc1-f576-4e70-a8b2-799426a1e7f3",
+        "chatSessionId": "sess_5803aca4-6ce2-41fa-8242-1f802aaef95b",
+        "timestamp": 1785779950745
+      },
+      {
+        "executionId": "b24cddc1-f576-4e70-a8b2-799426a1e7f3",
+        "chatSessionId": "sess_5803aca4-6ce2-41fa-8242-1f802aaef95b",
+        "timestamp": 1785780053679
+      }
+    ],
+    "18.2 상황 입력·용어 대응 표시·음성 시연 선택 구현": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767417443
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773097684
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775914747
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777277788
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778366973
+      },
+      {
+        "executionId": "d63ce272-3596-4884-a264-716c57bce601",
+        "chatSessionId": "sess_e96396ae-3b9e-443a-9194-6377e7b9c39b",
+        "timestamp": 1785779160058
+      },
+      {
+        "executionId": "b24cddc1-f576-4e70-a8b2-799426a1e7f3",
+        "chatSessionId": "sess_5803aca4-6ce2-41fa-8242-1f802aaef95b",
+        "timestamp": 1785780061733
+      },
+      {
+        "executionId": "b24cddc1-f576-4e70-a8b2-799426a1e7f3",
+        "chatSessionId": "sess_5803aca4-6ce2-41fa-8242-1f802aaef95b",
+        "timestamp": 1785780187421
+      }
+    ],
+    "19.1 직무 시나리오 탐색·3영역 비교 화면 구현": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767417493
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773097745
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775914836
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777277845
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778367033
+      },
+      {
+        "executionId": "d63ce272-3596-4884-a264-716c57bce601",
+        "chatSessionId": "sess_e96396ae-3b9e-443a-9194-6377e7b9c39b",
+        "timestamp": 1785779160123
+      },
+      {
+        "executionId": "b24cddc1-f576-4e70-a8b2-799426a1e7f3",
+        "chatSessionId": "sess_5803aca4-6ce2-41fa-8242-1f802aaef95b",
+        "timestamp": 1785780061989
+      },
+      {
+        "executionId": "b24cddc1-f576-4e70-a8b2-799426a1e7f3",
+        "chatSessionId": "sess_5803aca4-6ce2-41fa-8242-1f802aaef95b",
+        "timestamp": 1785780187836
+      }
+    ],
+    "19.2 결과 목록·판례/법조문 카드·빈 상태 구현": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767417540
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773097797
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775914906
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777277902
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778367088
+      },
+      {
+        "executionId": "d63ce272-3596-4884-a264-716c57bce601",
+        "chatSessionId": "sess_e96396ae-3b9e-443a-9194-6377e7b9c39b",
+        "timestamp": 1785779160192
+      },
+      {
+        "executionId": "b24cddc1-f576-4e70-a8b2-799426a1e7f3",
+        "chatSessionId": "sess_5803aca4-6ce2-41fa-8242-1f802aaef95b",
+        "timestamp": 1785780062259
+      },
+      {
+        "executionId": "b24cddc1-f576-4e70-a8b2-799426a1e7f3",
+        "chatSessionId": "sess_5803aca4-6ce2-41fa-8242-1f802aaef95b",
+        "timestamp": 1785780188012
+      }
+    ],
+    "19.3 판례 상세 섹션·전문 접이·출처 이동/강조/복귀 구현": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767417590
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773097855
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775914968
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777277958
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778367148
+      },
+      {
+        "executionId": "d63ce272-3596-4884-a264-716c57bce601",
+        "chatSessionId": "sess_e96396ae-3b9e-443a-9194-6377e7b9c39b",
+        "timestamp": 1785779160261
+      },
+      {
+        "executionId": "b24cddc1-f576-4e70-a8b2-799426a1e7f3",
+        "chatSessionId": "sess_5803aca4-6ce2-41fa-8242-1f802aaef95b",
+        "timestamp": 1785780198155
+      },
+      {
+        "executionId": "e4acd6db-44e6-4dca-8b9c-a44694279c72",
+        "chatSessionId": "sess_c11b074d-06ca-4b2d-a0af-71feca56b3e0",
+        "timestamp": 1785783222690
+      }
+    ],
+    "19.4 단계별 요약·책임 위험·유사도/사실 차이·법령·상급심 패널 구현": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767417652
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773097917
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775915051
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777278014
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778367210
+      },
+      {
+        "executionId": "d63ce272-3596-4884-a264-716c57bce601",
+        "chatSessionId": "sess_e96396ae-3b9e-443a-9194-6377e7b9c39b",
+        "timestamp": 1785779160332
+      },
+      {
+        "executionId": "b24cddc1-f576-4e70-a8b2-799426a1e7f3",
+        "chatSessionId": "sess_5803aca4-6ce2-41fa-8242-1f802aaef95b",
+        "timestamp": 1785780198335
+      },
+      {
+        "executionId": "e4acd6db-44e6-4dca-8b9c-a44694279c72",
+        "chatSessionId": "sess_c11b074d-06ca-4b2d-a0af-71feca56b3e0",
+        "timestamp": 1785783224332
+      }
+    ],
+    "20.1 선택 영역 재검토 UI 구현": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767417697
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773097977
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775915124
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777278103
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778367270
+      },
+      {
+        "executionId": "d63ce272-3596-4884-a264-716c57bce601",
+        "chatSessionId": "sess_e96396ae-3b9e-443a-9194-6377e7b9c39b",
+        "timestamp": 1785779160424
+      },
+      {
+        "executionId": "b24cddc1-f576-4e70-a8b2-799426a1e7f3",
+        "chatSessionId": "sess_5803aca4-6ce2-41fa-8242-1f802aaef95b",
+        "timestamp": 1785780198542
+      },
+      {
+        "executionId": "e4acd6db-44e6-4dca-8b9c-a44694279c72",
+        "chatSessionId": "sess_c11b074d-06ca-4b2d-a0af-71feca56b3e0",
+        "timestamp": 1785783225364
+      }
+    ],
+    "20.2 타임라인 편집·쟁점·출처 UI 구현": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767417748
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773098034
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775915187
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777278158
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778367365
+      },
+      {
+        "executionId": "d63ce272-3596-4884-a264-716c57bce601",
+        "chatSessionId": "sess_e96396ae-3b9e-443a-9194-6377e7b9c39b",
+        "timestamp": 1785779160484
+      },
+      {
+        "executionId": "b24cddc1-f576-4e70-a8b2-799426a1e7f3",
+        "chatSessionId": "sess_5803aca4-6ce2-41fa-8242-1f802aaef95b",
+        "timestamp": 1785780198899
+      }
+    ],
+    "20.3 보고서 미리보기·복사·다운로드(LocalExportPort) 구현": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767417798
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773098092
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775915244
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777278218
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778367421
+      },
+      {
+        "executionId": "d63ce272-3596-4884-a264-716c57bce601",
+        "chatSessionId": "sess_e96396ae-3b9e-443a-9194-6377e7b9c39b",
+        "timestamp": 1785779160551
+      },
+      {
+        "executionId": "e4acd6db-44e6-4dca-8b9c-a44694279c72",
+        "chatSessionId": "sess_c11b074d-06ca-4b2d-a0af-71feca56b3e0",
+        "timestamp": 1785781084541
+      },
+      {
+        "executionId": "e4acd6db-44e6-4dca-8b9c-a44694279c72",
+        "chatSessionId": "sess_c11b074d-06ca-4b2d-a0af-71feca56b3e0",
+        "timestamp": 1785781960675
+      }
+    ],
+    "21.1 안전 오류 표시·진입 이동·고지 유지 구현": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767417844
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773098150
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775915313
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777278276
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778367479
+      },
+      {
+        "executionId": "d63ce272-3596-4884-a264-716c57bce601",
+        "chatSessionId": "sess_e96396ae-3b9e-443a-9194-6377e7b9c39b",
+        "timestamp": 1785779160624
+      },
+      {
+        "executionId": "e4acd6db-44e6-4dca-8b9c-a44694279c72",
+        "chatSessionId": "sess_c11b074d-06ca-4b2d-a0af-71feca56b3e0",
+        "timestamp": 1785781085649
+      },
+      {
+        "executionId": "e4acd6db-44e6-4dca-8b9c-a44694279c72",
+        "chatSessionId": "sess_c11b074d-06ca-4b2d-a0af-71feca56b3e0",
+        "timestamp": 1785781959576
+      }
+    ],
+    "21.2 접근성·세션 범위 화면 복구 구현": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767417889
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773098202
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775915406
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777278347
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778367535
+      },
+      {
+        "executionId": "d63ce272-3596-4884-a264-716c57bce601",
+        "chatSessionId": "sess_e96396ae-3b9e-443a-9194-6377e7b9c39b",
+        "timestamp": 1785779160687
+      },
+      {
+        "executionId": "e4acd6db-44e6-4dca-8b9c-a44694279c72",
+        "chatSessionId": "sess_c11b074d-06ca-4b2d-a0af-71feca56b3e0",
+        "timestamp": 1785781086632
+      },
+      {
+        "executionId": "e4acd6db-44e6-4dca-8b9c-a44694279c72",
+        "chatSessionId": "sess_c11b074d-06ca-4b2d-a0af-71feca56b3e0",
+        "timestamp": 1785781961809
+      }
+    ],
+    "21.3 컴포넌트·접근성 예제 테스트": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767417944
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773098263
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775915472
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777278435
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778367594
+      },
+      {
+        "executionId": "d63ce272-3596-4884-a264-716c57bce601",
+        "chatSessionId": "sess_e96396ae-3b9e-443a-9194-6377e7b9c39b",
+        "timestamp": 1785779160773
+      },
+      {
+        "executionId": "e4acd6db-44e6-4dca-8b9c-a44694279c72",
+        "chatSessionId": "sess_c11b074d-06ca-4b2d-a0af-71feca56b3e0",
+        "timestamp": 1785781968483
+      },
+      {
+        "executionId": "e4acd6db-44e6-4dca-8b9c-a44694279c72",
+        "chatSessionId": "sess_c11b074d-06ca-4b2d-a0af-71feca56b3e0",
+        "timestamp": 1785782544119
+      }
+    ],
+    "22.1 로컬 정적 제공·외부 origin 차단 배선 구현": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767418023
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773098326
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775915606
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777278498
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778367663
+      },
+      {
+        "executionId": "d63ce272-3596-4884-a264-716c57bce601",
+        "chatSessionId": "sess_e96396ae-3b9e-443a-9194-6377e7b9c39b",
+        "timestamp": 1785779160839
+      },
+      {
+        "executionId": "e4acd6db-44e6-4dca-8b9c-a44694279c72",
+        "chatSessionId": "sess_c11b074d-06ca-4b2d-a0af-71feca56b3e0",
+        "timestamp": 1785781969399
+      },
+      {
+        "executionId": "e4acd6db-44e6-4dca-8b9c-a44694279c72",
+        "chatSessionId": "sess_c11b074d-06ca-4b2d-a0af-71feca56b3e0",
+        "timestamp": 1785782545124
+      }
+    ],
+    "22.2 외부 origin 호출 0건 통합/E2E 테스트": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767418069
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773098390
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775915685
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777278553
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778367724
+      },
+      {
+        "executionId": "d63ce272-3596-4884-a264-716c57bce601",
+        "chatSessionId": "sess_e96396ae-3b9e-443a-9194-6377e7b9c39b",
+        "timestamp": 1785779160900
+      },
+      {
+        "executionId": "e4acd6db-44e6-4dca-8b9c-a44694279c72",
+        "chatSessionId": "sess_c11b074d-06ca-4b2d-a0af-71feca56b3e0",
+        "timestamp": 1785782552350
+      },
+      {
+        "executionId": "e4acd6db-44e6-4dca-8b9c-a44694279c72",
+        "chatSessionId": "sess_c11b074d-06ca-4b2d-a0af-71feca56b3e0",
+        "timestamp": 1785782976707
+      }
+    ],
+    "23. 최종 체크포인트 - 전체 검증": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785767418116
+      },
+      {
+        "executionId": "fe4899ad-f88f-4604-a17a-30e877f53b7a",
+        "chatSessionId": "sess_26779b5b-d76e-4b97-a835-dd1a20aa1296",
+        "timestamp": 1785773098445
+      },
+      {
+        "executionId": "d9b34457-4622-41ec-9dda-2ba5d94a5a8e",
+        "chatSessionId": "sess_a0e547e9-6a9c-4ec4-b4df-190f23b0aafd",
+        "timestamp": 1785775915754
+      },
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777278612
+      },
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778367803
+      },
+      {
+        "executionId": "d63ce272-3596-4884-a264-716c57bce601",
+        "chatSessionId": "sess_e96396ae-3b9e-443a-9194-6377e7b9c39b",
+        "timestamp": 1785779160975
+      },
+      {
+        "executionId": "e4acd6db-44e6-4dca-8b9c-a44694279c72",
+        "chatSessionId": "sess_c11b074d-06ca-4b2d-a0af-71feca56b3e0",
+        "timestamp": 1785783054635
+      },
+      {
+        "executionId": "e4acd6db-44e6-4dca-8b9c-a44694279c72",
+        "chatSessionId": "sess_c11b074d-06ca-4b2d-a0af-71feca56b3e0",
+        "timestamp": 1785783062272
+      }
+    ],
+    "1. 프로젝트 구조와 목업 fixture 스키마 정의": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785769820494
+      }
+    ],
+    "2. 데이터셋 무결성 검증": [
+      {
+        "executionId": "6669086d-6d40-4fe7-bd24-6b723687637e",
+        "chatSessionId": "sess_e12ba40a-ea5a-4540-8132-a3a05e07e136",
+        "timestamp": 1785773021745
+      }
+    ],
+    "3. 결정적 질의 해석과 법률 용어 변환": [
+      {
+        "executionId": "63b5aa06-9c9d-43e7-be96-731acfc84694",
+        "chatSessionId": "sess_c970ce1f-1883-44a2-b1c5-bf2f0b1d7328",
+        "timestamp": 1785777503520
+      }
+    ],
+    "8. 단계별 판례 요약": [
+      {
+        "executionId": "f7803202-7f81-400b-bc16-981f4b575e6e",
+        "chatSessionId": "sess_7533c7e2-25db-4a9c-9239-bdf95f619c82",
+        "timestamp": 1785777966524
+      }
+    ],
+    "9. 개인 책임 위험과 행동 배지": [
+      {
+        "executionId": "f7803202-7f81-400b-bc16-981f4b575e6e",
+        "chatSessionId": "sess_7533c7e2-25db-4a9c-9239-bdf95f619c82",
+        "timestamp": 1785777967134
+      }
+    ],
+    "7. 직무 시나리오 분류와 적법·위법 비교": [
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778491467
+      }
+    ],
+    "10. 유사도 경고와 핵심 사실관계 차이": [
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778496120
+      }
+    ],
+    "11. 법령 기준 상태와 상급심·확정 정보": [
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778620016
+      }
+    ],
+    "12. 선택 영역 재검토와 상세 설명": [
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778638565
+      }
+    ],
+    "16. 법률 고지 노출 정책": [
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785778829630
+      }
+    ],
+    "5. 목업 검색과 결정적 정렬": [
+      {
+        "executionId": "2c16cee7-539a-4e01-af81-8300f9ece2f2",
+        "chatSessionId": "sess_f34cae13-9912-4bec-adef-5274a95c75d6",
+        "timestamp": 1785779097163
+      }
+    ],
+    "13. 사실관계 타임라인과 보고서 재사용": [
+      {
+        "executionId": "d63ce272-3596-4884-a264-716c57bce601",
+        "chatSessionId": "sess_e96396ae-3b9e-443a-9194-6377e7b9c39b",
+        "timestamp": 1785779294572
+      }
+    ],
+    "6. 응답 조립과 출처·인용 검증": [
+      {
+        "executionId": "d63ce272-3596-4884-a264-716c57bce601",
+        "chatSessionId": "sess_e96396ae-3b9e-443a-9194-6377e7b9c39b",
+        "timestamp": 1785779457435
+      }
+    ],
+    "15. 목업 RAG 오케스트레이터와 애플리케이션 상태": [
+      {
+        "executionId": "d63ce272-3596-4884-a264-716c57bce601",
+        "chatSessionId": "sess_e96396ae-3b9e-443a-9194-6377e7b9c39b",
+        "timestamp": 1785779636035
+      }
+    ],
+    "17. Python 웹 서버 계층": [
+      {
+        "executionId": "b24cddc1-f576-4e70-a8b2-799426a1e7f3",
+        "chatSessionId": "sess_5803aca4-6ce2-41fa-8242-1f802aaef95b",
+        "timestamp": 1785780053621
+      }
+    ],
+    "18. 클라이언트 웹 계층 - 공통 셸과 입력": [
+      {
+        "executionId": "b24cddc1-f576-4e70-a8b2-799426a1e7f3",
+        "chatSessionId": "sess_5803aca4-6ce2-41fa-8242-1f802aaef95b",
+        "timestamp": 1785780187655
+      }
+    ],
+    "21. 클라이언트 웹 계층 - 오류·접근성·세션 복구": [
+      {
+        "executionId": "e4acd6db-44e6-4dca-8b9c-a44694279c72",
+        "chatSessionId": "sess_c11b074d-06ca-4b2d-a0af-71feca56b3e0",
+        "timestamp": 1785782544224
+      }
+    ],
+    "22. 외부 origin 차단과 통합 배선": [
+      {
+        "executionId": "e4acd6db-44e6-4dca-8b9c-a44694279c72",
+        "chatSessionId": "sess_c11b074d-06ca-4b2d-a0af-71feca56b3e0",
+        "timestamp": 1785782976803
+      }
+    ],
+    "19. 클라이언트 웹 계층 - 결과와 판례 상세": [
+      {
+        "executionId": "e4acd6db-44e6-4dca-8b9c-a44694279c72",
+        "chatSessionId": "sess_c11b074d-06ca-4b2d-a0af-71feca56b3e0",
+        "timestamp": 1785783224425
+      }
+    ],
+    "20. 클라이언트 웹 계층 - 선택 재검토·타임라인·보고서": [
+      {
+        "executionId": "e4acd6db-44e6-4dca-8b9c-a44694279c72",
+        "chatSessionId": "sess_c11b074d-06ca-4b2d-a0af-71feca56b3e0",
+        "timestamp": 1785783225456
+      }
+    ]
+  }
+}
