@@ -235,26 +235,33 @@ class MockWebApplication:
                 for voice in self._dataset.voice_fixtures
             )
             content = f"""
-            <section class='page-intro situation-input' aria-labelledby='page-title'>
-              <p class='eyebrow'>시연용 웹 애플리케이션</p><h1 id='page-title'>경찰 판례·법령 AI 봇</h1>
-              <p>현장 상황을 입력해 사전에 정의된 목업 자료를 검토합니다.</p>
-              <form id='situation-form' novalidate>
-                <label for='situation-query'>상황 입력</label>
-                <textarea id='situation-query' name='query' rows='4' required aria-describedby='situation-help'></textarea>
-                <p id='situation-help'>사건번호나 죄명 대신 현장 상황을 입력하세요.</p>
-                <button type='submit'>목업 자료 확인</button>
-              </form>
-              <section class='voice-demo' aria-labelledby='voice-demo-title'>
-                <h2 id='voice-demo-title'>사전 정의 음성 시연</h2>
-                <label for='voice-fixture'>음성 시연 항목</label>
-                <select id='voice-fixture' name='voiceFixtureId'>
-                  <option value=''>선택하세요</option>{voice_options}
-                </select>
-                <button id='voice-select-button' type='button'>인식 텍스트 불러오기</button>
-                <p>실제 음성 인식이나 마이크 입력은 사용하지 않습니다.</p>
+            <div class='entry-layout'>
+              <section class='page-intro situation-input' aria-labelledby='page-title'>
+                <p class='eyebrow'>시연용 웹 애플리케이션</p><h1 id='page-title'>경찰 판례·법령 AI 봇</h1>
+                <p>현장 상황을 입력해 사전에 정의된 목업 자료를 검토합니다.</p>
+                <form id='situation-form' novalidate>
+                  <label for='situation-query'>상황 입력</label>
+                  <textarea id='situation-query' name='query' rows='4' required aria-describedby='situation-help'></textarea>
+                  <p id='situation-help'>사건번호나 죄명 대신 현장 상황을 입력하세요.</p>
+                  <button type='submit'>목업 자료 확인</button>
+                </form>
+                <section class='voice-demo' aria-labelledby='voice-demo-title'>
+                  <h2 id='voice-demo-title'>사전 정의 음성 시연</h2>
+                  <label for='voice-fixture'>음성 시연 항목</label>
+                  <select id='voice-fixture' name='voiceFixtureId'>
+                    <option value=''>선택하세요</option>{voice_options}
+                  </select>
+                  <button id='voice-select-button' type='button'>인식 텍스트 불러오기</button>
+                  <p>실제 음성 인식이나 마이크 입력은 사용하지 않습니다.</p>
+                </section>
+                <section id='query-feedback' class='query-feedback' aria-live='polite' aria-label='질의 해석 결과'></section>
               </section>
-              <section id='query-feedback' class='query-feedback' aria-live='polite' aria-label='질의 해석 결과'></section>
-            </section>
+              <aside class='query-history' aria-label='검색 기록'>
+                <h2>검색 기록</h2>
+                <p>같은 브라우저 세션 동안 실행한 상황 질의만 표시됩니다. 새 브라우저 세션에서는 저장되지 않습니다.</p>
+                <ul id='query-history-list' class='query-history__list'></ul>
+              </aside>
+            </div>
             """
             route = "QUERY"
         body = _app_shell(self._dataset, route, content)

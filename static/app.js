@@ -129,6 +129,40 @@ const PoliceBotErrorDisplay = (() => {
   return { SafeHttpError, requestJson, renderHttpError, renderStageError };
 })();
 
+/* Query history log (session-scoped, no persistent storage): every submitted
+ * situation query is appended to a capped in-session list rendered in the
+ * "검색 기록" sidebar. Unlike the previous behavior, the entry screen never
+ * auto-refills or auto-resubmits a past query on load — the screen always
+ * starts clean, and a past query is only re-run when the user explicitly
+ * clicks its history entry. */
+const PoliceBotQueryHistory = (() => {
+  "use strict";
+  const STORAGE_KEY = "policeBotQueryHistory_v1";
+  const MAX_ENTRIES = 20;
+
+  const read = () => {
+    try {
+      const raw = window.sessionStorage.getItem(STORAGE_KEY);
+      const parsed = raw ? JSON.parse(raw) : [];
+      return Array.isArray(parsed) ? parsed : [];
+    } catch (_) {
+      return [];
+    }
+  };
+  const append = (entry) => {
+    try {
+      const next = [entry, ...read()].slice(0, MAX_ENTRIES);
+      window.sessionStorage.setItem(STORAGE_KEY, JSON.stringify(next));
+      return next;
+    } catch (_) {
+      return read();
+    }
+  };
+  const clear = () => { try { window.sessionStorage.removeItem(STORAGE_KEY); } catch (_) { /* ignore */ } };
+
+  return { read, append, clear };
+})();
+
 /* Same-origin UI interaction only: the Python server determines all legal results. */
 (() => {
   "use strict";
@@ -137,27 +171,40 @@ const PoliceBotErrorDisplay = (() => {
   const voiceSelect = document.querySelector("#voice-fixture");
   const voiceButton = document.querySelector("#voice-select-button");
   const feedback = document.querySelector("#query-feedback");
+  const historyList = document.querySelector("#query-history-list");
   if (!form || !queryInput || !voiceSelect || !voiceButton || !feedback) return;
 
   let currentQueryId = null;
-  const announceRestoreNotice = (text, isAlert) => {
-    const notice = document.createElement("p");
-    notice.setAttribute("role", isAlert ? "alert" : "status");
-    notice.className = "session-restore-notice";
-    notice.textContent = text;
-    feedback.prepend(notice);
+  const historyStatusLabel = { SUPPORTED: "인식됨", BLANK: "입력 없음", UNSUPPORTED: "미지원", INTERPRETATION_CHECK_NEEDED: "확인 필요" };
+  const renderHistory = () => {
+    if (!historyList) return;
+    historyList.replaceChildren();
+    PoliceBotQueryHistory.read().forEach((entry) => {
+      const item = document.createElement("li"); item.className = "query-history__item";
+      const button = document.createElement("button"); button.type = "button"; button.textContent = entry.query;
+      const statusSpan = document.createElement("span");
+      statusSpan.className = `query-history__status ${entry.kind === "SUPPORTED" ? "query-history__status--supported" : "query-history__status--other"}`;
+      statusSpan.textContent = historyStatusLabel[entry.kind] || entry.kind;
+      const time = document.createElement("time"); time.textContent = new Date(entry.timestamp).toLocaleTimeString();
+      button.append(document.createElement("br"), statusSpan);
+      button.addEventListener("click", () => {
+        queryInput.value = entry.query;
+        form.requestSubmit ? form.requestSubmit() : form.dispatchEvent(new Event("submit", { cancelable: true }));
+        queryInput.focus();
+      });
+      item.append(button, time);
+      historyList.append(item);
+    });
   };
-  const restoreEntryState = () => {
-    const state = PoliceBotSessionState.readState();
-    if (!state || !state.entry || !state.entry.query) {
-      if (state && state.hadEntryState) announceRestoreNotice(PoliceBotSessionState.RESET_NOTICE_TEXT, false);
-      return;
-    }
-    queryInput.value = state.entry.query;
-    if (state.entry.voiceFixtureId) voiceSelect.value = state.entry.voiceFixtureId;
-    form.requestSubmit ? form.requestSubmit() : form.dispatchEvent(new Event("submit", { cancelable: true }));
-    announceRestoreNotice("이전 화면 상태를 복구했습니다.", false);
+  const recordHistory = (query, kind) => {
+    if (!query || !query.trim()) return;
+    PoliceBotQueryHistory.append({ query, kind, timestamp: new Date().toISOString() });
+    renderHistory();
   };
+  const clearHistoryButton = document.createElement("button");
+  clearHistoryButton.type = "button"; clearHistoryButton.className = "query-history__clear"; clearHistoryButton.textContent = "기록 지우기";
+  clearHistoryButton.addEventListener("click", () => { PoliceBotQueryHistory.clear(); renderHistory(); });
+  if (historyList) historyList.insertAdjacentElement("afterend", clearHistoryButton);
   const request = PoliceBotErrorDisplay.requestJson;
   const element = (tag, text) => { const node = document.createElement(tag); node.textContent = text; return node; };
   const resetFeedback = () => { feedback.replaceChildren(); };
@@ -242,10 +289,10 @@ const PoliceBotErrorDisplay = (() => {
 
   const renderResults = (search) => { const results = document.createElement("section"); results.className = "search-results"; results.setAttribute("aria-label", "목업 검색 결과"); results.append(element("h2", "목업 응답 · 검색 결과"), element("p", "유사도 점수와 검색 순서는 사전 정의된 목업 값이며, 현재 시연에서는 실제 운영 환경의 산식이나 판례 적합성·정확성을 보증하지 않습니다.")); const cases = document.createElement("section"); cases.append(element("h3", "판례")); if (!search.cases.length) cases.append(renderEmpty("판례")); search.cases.forEach((item) => { const card = document.createElement("article"); card.className = "result-card case-card"; card.append(element("h4", item.case_number)); const appeal = (search.appeals_by_case || {})[item.case_id]; const warning = item.similarity_warning || item.fact_difference_warning; if (warning) card.append(Object.assign(element("p", warning.text || warning), { className: "result-card__warning" })); addField(card, "법원", item.court_name); addField(card, "심급", item.instance); addField(card, "선고일", item.decision_date); addField(card, "경찰 직무 시나리오", item.scenario_ids.join(", ")); addField(card, "유사도", `${item.similarity_score}%`); addField(card, "적법성", item.legality_status); addField(card, "법령 기준", item.law_basis_status); addField(card, "해당 심급 인정 죄명", item.instance_recognized_charge); addField(card, "해당 심급 재판 결과", item.instance_outcome); addField(card, "상급심 정보 요약", !appeal || appeal.appellate.state === "정보_없음" ? "정보_없음" : appeal.appellate.decisions.map((decision) => `${decision.instance} ${decision.case_number} · ${decision.outcome}`).join(" / ")); if (appeal && appeal.finality_badge) { const badge = element("span", appeal.finality_badge.finality); badge.className = "finality-badge"; card.append(badge); } else addField(card, "확정 여부", "정보_없음"); const detail = (search.case_details_by_case || {})[item.case_id]; if (detail) { const detailToggle = element("button", "상세 보기"); detailToggle.type = "button"; detailToggle.className = "case-detail-toggle"; detailToggle.setAttribute("aria-expanded", "false"); const detailPanel = renderCaseDetail(detail, item.case_id); detailPanel.hidden = true; detailToggle.addEventListener("click", () => { detailPanel.hidden = !detailPanel.hidden; detailToggle.setAttribute("aria-expanded", String(!detailPanel.hidden)); detailToggle.textContent = detailPanel.hidden ? "상세 보기" : "상세 접기"; }); card.append(detailToggle, detailPanel); } cases.append(card); }); const statutes = document.createElement("section"); statutes.append(element("h3", "법조문")); if (!search.statutes.length) statutes.append(renderEmpty("법조문")); search.statutes.forEach((item) => { const card = document.createElement("article"); card.className = "result-card statute-card"; card.append(element("h4", item.law_name)); addField(card, "조·항·호", [item.article, item.paragraph, item.item].filter(Boolean).join(" ")); addField(card, "시행일", item.effective_date || "정보_없음"); statutes.append(card); }); results.append(cases, statutes); feedback.append(results); };
   const showInterpretation = (interpretation) => { resetFeedback(); currentQueryId = interpretation?.kind === "SUPPORTED" ? interpretation.query_id : null; if (!interpretation) return; if (interpretation.kind === "SUPPORTED") { feedback.append(element("h2", "표현과 법률 검색어 대응")); const list = document.createElement("ul"); interpretation.term_correspondences.forEach((item) => list.append(element("li", `${item.field_expression} ↔ ${item.legal_search_terms.join(", ")}`))); feedback.append(list, element("p", "관계 보존: 확인됨")); return; } if (interpretation.kind === "BLANK") feedback.append(element("p", "상황을 입력해 주세요.")); else if (interpretation.kind === "INTERPRETATION_CHECK_NEEDED") feedback.append(element("h2", "해석 확인 필요"), element("p", `원문 표현: ${interpretation.raw}`)); else if (interpretation.kind === "UNSUPPORTED") feedback.append(element("h2", "목업에서 지원하지 않는 질의"), element("p", `입력: ${interpretation.raw}`)); };
-  form.addEventListener("submit", async (event) => { event.preventDefault(); try { const payload = await request("/api/query", { query: queryInput.value }); if (payload.rag_error) { PoliceBotErrorDisplay.renderStageError(feedback, payload.rag_error); return; } showInterpretation(payload.interpretation); if (payload.search) renderResults(payload.search); if (payload.response) renderResponse(payload.response); if (payload.interpretation?.kind === "SUPPORTED") document.dispatchEvent(new CustomEvent("timeline:load", { detail: { queryId: payload.interpretation.query_id } })); PoliceBotSessionState.writeState({ entry: { query: queryInput.value, voiceFixtureId: voiceSelect.value || null }, hadEntryState: true }); } catch (error) { if (error instanceof PoliceBotErrorDisplay.SafeHttpError) { PoliceBotErrorDisplay.renderHttpError(feedback, error); return; } resetFeedback(); const message = element("p", "요청을 처리할 수 없습니다. 다시 시도해 주세요."); message.setAttribute("role", "alert"); feedback.append(message); } });
-  voiceButton.addEventListener("click", async () => { if (!voiceSelect.value) { resetFeedback(); const notice = element("p", "음성 시연 항목을 선택해 주세요."); notice.setAttribute("role", "status"); feedback.append(notice); return; } try { const payload = await request("/api/action", { type: "SELECT_VOICE_FIXTURE", fixtureId: voiceSelect.value }); if (payload.voice_error) { PoliceBotErrorDisplay.renderStageError(feedback, payload.voice_error); return; } if (payload.recognized_text !== undefined) { queryInput.value = payload.recognized_text; showInterpretation(payload.interpretation); const recognized = element("p", `인식 텍스트: ${payload.recognized_text}`); recognized.setAttribute("role", "status"); feedback.prepend(recognized); if (payload.interpretation?.kind === "SUPPORTED") document.dispatchEvent(new CustomEvent("timeline:load", { detail: { queryId: payload.interpretation.query_id, recognizedText: payload.recognized_text } })); PoliceBotSessionState.writeState({ entry: { query: payload.recognized_text, voiceFixtureId: voiceSelect.value }, hadEntryState: true }); } else { const error = element("p", "음성 인식 불가. 수동 텍스트 입력을 이용해 주세요."); error.setAttribute("role", "alert"); feedback.append(error); } } catch (error) { if (error instanceof PoliceBotErrorDisplay.SafeHttpError) { PoliceBotErrorDisplay.renderHttpError(feedback, error); return; } resetFeedback(); const message = element("p", "요청을 처리할 수 없습니다. 수동 텍스트 입력을 이용해 주세요."); message.setAttribute("role", "alert"); feedback.append(message); } });
+  form.addEventListener("submit", async (event) => { event.preventDefault(); try { const payload = await request("/api/query", { query: queryInput.value }); if (payload.rag_error) { PoliceBotErrorDisplay.renderStageError(feedback, payload.rag_error); return; } showInterpretation(payload.interpretation); if (payload.search) renderResults(payload.search); if (payload.response) renderResponse(payload.response); if (payload.interpretation?.kind === "SUPPORTED") document.dispatchEvent(new CustomEvent("timeline:load", { detail: { queryId: payload.interpretation.query_id } })); recordHistory(queryInput.value, payload.interpretation?.kind); } catch (error) { if (error instanceof PoliceBotErrorDisplay.SafeHttpError) { PoliceBotErrorDisplay.renderHttpError(feedback, error); return; } resetFeedback(); const message = element("p", "요청을 처리할 수 없습니다. 다시 시도해 주세요."); message.setAttribute("role", "alert"); feedback.append(message); } });
+  voiceButton.addEventListener("click", async () => { if (!voiceSelect.value) { resetFeedback(); const notice = element("p", "음성 시연 항목을 선택해 주세요."); notice.setAttribute("role", "status"); feedback.append(notice); return; } try { const payload = await request("/api/action", { type: "SELECT_VOICE_FIXTURE", fixtureId: voiceSelect.value }); if (payload.voice_error) { PoliceBotErrorDisplay.renderStageError(feedback, payload.voice_error); return; } if (payload.recognized_text !== undefined) { queryInput.value = payload.recognized_text; showInterpretation(payload.interpretation); const recognized = element("p", `인식 텍스트: ${payload.recognized_text}`); recognized.setAttribute("role", "status"); feedback.prepend(recognized); if (payload.interpretation?.kind === "SUPPORTED") document.dispatchEvent(new CustomEvent("timeline:load", { detail: { queryId: payload.interpretation.query_id, recognizedText: payload.recognized_text } })); recordHistory(payload.recognized_text, payload.interpretation?.kind); } else { const error = element("p", "음성 인식 불가. 수동 텍스트 입력을 이용해 주세요."); error.setAttribute("role", "alert"); feedback.append(error); } } catch (error) { if (error instanceof PoliceBotErrorDisplay.SafeHttpError) { PoliceBotErrorDisplay.renderHttpError(feedback, error); return; } resetFeedback(); const message = element("p", "요청을 처리할 수 없습니다. 수동 텍스트 입력을 이용해 주세요."); message.setAttribute("role", "alert"); feedback.append(message); } });
 
-  restoreEntryState();
+  renderHistory();
 })();
 
 /* Results screen (/results): scenario comparison controller (tasks 19.1/19.4).

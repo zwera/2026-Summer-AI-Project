@@ -228,7 +228,7 @@ def test_voice_recognition_failure_offers_manual_text_input_alternative() -> Non
     app_js = _read_static_source("app.js")
     assert "음성 인식 불가. 수동 텍스트 입력을 이용해 주세요." in app_js
     voice_button_start = app_js.index('voiceButton.addEventListener("click"')
-    voice_button_end = app_js.index("restoreEntryState();", voice_button_start)
+    voice_button_end = app_js.index("renderHistory();", voice_button_start)
     body = app_js[voice_button_start:voice_button_end]
     assert "음성 인식 불가. 수동 텍스트 입력을 이용해 주세요." in body
     assert 'error.setAttribute("role", "alert")' in body
