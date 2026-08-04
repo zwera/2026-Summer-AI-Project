@@ -126,7 +126,6 @@ def _app_shell(dataset: ValidatedDataset, route: str, content: str) -> str:
         <nav class='global-nav' aria-label='전역 탐색'>
           <a href='/'{query_current}>상황 검색</a>
           <a href='/results'{results_current}>직무 시나리오</a>
-          <a href='/results#timeline'>타임라인</a>
         </nav>
         <section class='scope-summary' aria-label='데이터 범위와 기준'>
           <span><strong>데이터 기준일</strong> {escape(str(metadata.as_of_date))}</span>

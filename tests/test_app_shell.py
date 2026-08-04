@@ -36,7 +36,7 @@ def test_entry_and_results_show_shared_notices_scope_and_navigation(
             "현재 구현 데이터 범위", "사전에 정의된 목업 전체 심급 판례 샘플",
             "상급심 판단과 확정 여부를 함께 확인해야 합니다.",
             "공개 배포 고지", "법률 안전 고지", "개인정보 처리 고지",
-            "상황 검색", "직무 시나리오", "타임라인",
+            "상황 검색", "직무 시나리오",
         ):
             assert required in page
         assert "<details open>" in page
