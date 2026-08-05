@@ -53,7 +53,7 @@ export const QUICK_SITUATIONS = [
     key: 'protective',
     icon: '/icons/drunk.jpg',
     label: '주취자 보호',
-    category: 'field_control',
+    category: 'protective',
   },
 ]
 
@@ -97,6 +97,15 @@ export const FIELD_MANUALS = {
       '구체적 행위와 목격자를 우선 확인',
       '경고 → 제지 → 체포 등 단계적 조치 원칙 준수',
       '보호조치가 필요한 경우 대상자의 안전 확보 우선',
+    ],
+  },
+  protective: {
+    title: '주취자 보호 기초 매뉴얼',
+    steps: [
+      '의식 및 호흡 확인',
+      '위험환경 제거 (도로·하천 등)',
+      '보호자 연락 또는 응급의료기관 이송 검토',
+      '보호조치 사유와 경과 기록',
     ],
   },
   admin_sanction: {
