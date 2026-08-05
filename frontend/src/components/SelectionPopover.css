@@ -19,7 +19,7 @@
   background: none;
   border: none;
   color: #fff;
-  font-size: 12px;
+  font-size: 14px;
   padding: 6px 10px;
   border-radius: 6px;
 }
@@ -58,12 +58,12 @@
 .selection-result__close {
   background: none;
   border: none;
-  font-size: 14px;
+  font-size: 16px;
   color: var(--text-muted);
 }
 
 .selection-result__quote {
-  font-size: 13px;
+  font-size: 15px;
   color: var(--text-muted);
   border-left: 3px solid var(--border);
   padding-left: 10px;
@@ -72,11 +72,11 @@
 
 .selection-result__loading {
   color: var(--text-muted);
-  font-size: 13px;
+  font-size: 15px;
 }
 
 .selection-result__answer {
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.6;
   color: var(--text);
   white-space: pre-wrap;

@@ -30,7 +30,7 @@
 }
 
 .conclusion-card__verdict {
-  font-size: 22px;
+  font-size: 26px;
   font-weight: 800;
   color: var(--text-h);
 }
@@ -46,12 +46,12 @@
 }
 
 .conclusion-card__disclaimer {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--text-muted);
 }
 
 .conclusion-card__three-line {
-  font-size: 15px;
+  font-size: 17px;
   line-height: 1.6;
   white-space: pre-wrap;
   color: var(--text-h);
@@ -63,7 +63,7 @@
   border: none;
   color: var(--blue);
   font-weight: 700;
-  font-size: 13px;
+  font-size: 15px;
   padding: 0;
 }
 
@@ -74,7 +74,7 @@
 }
 
 .conclusion-card__detail h3 {
-  font-size: 13px;
+  font-size: 15px;
   color: var(--text-muted);
   margin: 14px 0 6px;
 }
@@ -84,7 +84,7 @@
 }
 
 .conclusion-card__detail p {
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.6;
   color: var(--text);
 }

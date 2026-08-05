@@ -31,12 +31,12 @@
 
 .risk-badge__type {
   font-weight: 700;
-  font-size: 13px;
+  font-size: 15px;
   color: var(--text-h);
 }
 
 .risk-badge__desc {
-  font-size: 13px;
+  font-size: 15px;
   color: var(--text-muted);
   line-height: 1.5;
 }

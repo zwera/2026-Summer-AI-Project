@@ -30,7 +30,7 @@ function FieldManualCard({ quickSituations, activeKey, onSelectQuick }) {
             onClick={() => onSelectQuick(q)}
           >
             <span className="quick-chip__icon" aria-hidden="true">
-              {q.icon}
+              {q.icon.startsWith('/') ? <img src={q.icon} alt="" /> : q.icon}
             </span>
             {q.label}
           </button>
@@ -39,7 +39,7 @@ function FieldManualCard({ quickSituations, activeKey, onSelectQuick }) {
 
       <div className="field-manual-card__body">
         <div className="field-manual-card__badge" aria-hidden="true">
-          🛡️
+          <img src="/icons/manual_icon.jpg" alt="" />
           <span>우선 조치</span>
         </div>
 

@@ -13,7 +13,7 @@ function Header() {
     <header className="app-header">
       <div className="app-header__brand">
         <span className="app-header__badge" aria-hidden="true">
-          🛡️
+          <img src="/icons/main_icon.jpg" alt="" />
         </span>
         <h1 className="app-header__title">현장 법률 판단 지원</h1>
       </div>

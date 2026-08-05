@@ -25,32 +25,33 @@ export const RISK_LEVEL_LABELS = {
 }
 
 /**
- * 상황 입력 화면의 "빠른 상황 선택" 칩. icon은 이모지로 간단히 표현.
+ * 상황 입력 화면의 "빠른 상황 선택" 칩.
+ * icon은 이미지 경로(/icons/*.jpg) 또는 이모지 문자열이다.
  * 클릭 시 텍스트 입력에는 영향을 주지 않고, 하단 "상황 대응 간의 매뉴얼"
  * 카드가 해당 category의 매뉴얼로 전환된다.
  */
 export const QUICK_SITUATIONS = [
   {
     key: 'arrest',
-    icon: '🚨',
+    icon: '/icons/arrest.jpg',
     label: '현행범 체포',
     category: 'arrest',
   },
   {
     key: 'voluntary_accompany',
-    icon: '🚶',
+    icon: '/icons/voluntary.jpg',
     label: '임의동행',
     category: 'voluntary_accompany',
   },
   {
     key: 'domestic_violence',
-    icon: '🏠',
+    icon: '/icons/family.jpg',
     label: '가정폭력',
     category: 'field_control',
   },
   {
     key: 'protective',
-    icon: '💚',
+    icon: '/icons/drunk.jpg',
     label: '주취자 보호',
     category: 'field_control',
   },

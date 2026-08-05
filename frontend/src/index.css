@@ -30,7 +30,7 @@
   --sans:
     'Pretendard', system-ui, 'Segoe UI', Roboto, 'Noto Sans KR', sans-serif;
 
-  font: 15px/1.55 var(--sans);
+  font: 17px/1.6 var(--sans);
   color-scheme: light;
   color: var(--text);
   background: var(--bg);

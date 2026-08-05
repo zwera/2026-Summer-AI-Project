@@ -9,7 +9,7 @@
   border: 1px solid var(--border);
   border-radius: 10px;
   padding: 14px;
-  font-size: 15px;
+  font-size: 17px;
   line-height: 1.5;
   color: var(--text-h);
   background: var(--surface);
@@ -24,7 +24,7 @@
   position: absolute;
   right: 10px;
   bottom: 8px;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--text-muted);
   background: var(--surface);
   padding: 0 4px;
@@ -34,7 +34,7 @@
   position: absolute;
   right: 10px;
   top: 8px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
   color: var(--red);
   background: var(--red-bg);
@@ -55,7 +55,7 @@
 }
 
 .situation-step__section-label {
-  font-size: 13px;
+  font-size: 15px;
   color: var(--text-muted);
   font-weight: 600;
   margin-bottom: 10px;
@@ -76,7 +76,7 @@
   border: 1px solid var(--border);
   border-radius: 8px;
   background: var(--surface);
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
   color: var(--text);
 }
@@ -95,6 +95,19 @@
 
 .quick-chip__icon {
   font-size: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.quick-chip__icon img {
+  width: 22px;
+  height: 22px;
+  object-fit: cover;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 0 1px var(--border);
 }
 
 .situation-step__actions {
@@ -105,11 +118,11 @@
 
 .situation-step__error {
   color: var(--red);
-  font-size: 13px;
+  font-size: 15px;
   margin-bottom: 10px;
 }
 
 .situation-step__privacy {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--text-muted);
 }

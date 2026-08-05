@@ -15,7 +15,7 @@
 }
 
 .comparison-view__empty {
-  font-size: 13px;
+  font-size: 15px;
   color: var(--text-muted);
 }
 
@@ -35,25 +35,25 @@
 }
 
 .precedent-card__case-no {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--text-muted);
 }
 
 .precedent-card__title {
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 700;
   color: var(--text-h);
   margin-bottom: 2px;
 }
 
 .precedent-card__meta {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--text-muted);
   margin-bottom: 6px;
 }
 
 .precedent-card__snippet {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--text);
   line-height: 1.5;
   display: -webkit-box;
@@ -65,7 +65,7 @@
 .precedent-card__link {
   display: inline-block;
   margin-top: 8px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
   color: var(--blue);
   text-decoration: none;
