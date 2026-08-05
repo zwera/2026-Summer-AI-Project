@@ -24,9 +24,11 @@ function SituationInputStep({
     },
   })
 
-  function applyQuickTemplate(quick) {
-    setText((prev) => (prev ? `${prev} ${quick.template}` : quick.template))
-    setActiveQuickKey(quick.key)
+  function selectQuickSituation(quick) {
+    // 텍스트 입력은 건드리지 않고, 하단 "상황 대응 간의 매뉴얼" 카드만 해당
+    // 상황에 맞게 전환한다. 이미 선택된 칩을 다시 누르면 선택을 해제해
+    // 기본 매뉴얼로 돌아간다.
+    setActiveQuickKey((prev) => (prev === quick.key ? null : quick.key))
   }
 
   async function handleSubmit() {
@@ -88,23 +90,6 @@ function SituationInputStep({
           )}
         </div>
 
-        <p className="situation-step__section-label">빠른 상황 선택</p>
-        <div className="situation-step__quick-grid">
-          {QUICK_SITUATIONS.map((q) => (
-            <button
-              key={q.key}
-              type="button"
-              className={`quick-chip ${activeQuickKey === q.key ? 'quick-chip--active' : ''}`}
-              onClick={() => applyQuickTemplate(q)}
-            >
-              <span className="quick-chip__icon" aria-hidden="true">
-                {q.icon}
-              </span>
-              {q.label}
-            </button>
-          ))}
-        </div>
-
         <div className="situation-step__actions">
           <button
             type="button"
@@ -140,9 +125,9 @@ function SituationInputStep({
       </div>
 
       <FieldManualCard
-        activeKey={
-          QUICK_SITUATIONS.find((q) => q.key === activeQuickKey)?.category
-        }
+        quickSituations={QUICK_SITUATIONS}
+        activeKey={activeQuickKey}
+        onSelectQuick={selectQuickSituation}
       />
     </section>
   )
