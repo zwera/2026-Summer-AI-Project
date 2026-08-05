@@ -157,10 +157,10 @@ copy .env.example .env
 아래 명령으로 파싱 결과 JSON을 만들고 벡터 인덱스를 구축합니다.
 
 ```powershell
-# backend 폴더, 가상환경 활성화된 상태에서
-python -m data_pipeline.parse_precedents
-python -m data_pipeline.parse_statutes
-python -m data_pipeline.build_index --reset
+# backend 폴더에서 (가상환경 활성화했다면 python, 아니면 .venv\Scripts\python.exe 사용)
+.venv\Scripts\python.exe -m data_pipeline.parse_precedents
+.venv\Scripts\python.exe -m data_pipeline.parse_statutes
+.venv\Scripts\python.exe -m data_pipeline.build_index --reset
 ```
 > `BAAI/bge-m3` 모델(약 4.5GB)을 최초 1회 자동 다운로드하므로 네트워크
 > 상황에 따라 수 분~십수 분 걸릴 수 있습니다. 이후 실행부터는 캐시되어
@@ -168,11 +168,19 @@ python -m data_pipeline.build_index --reset
 
 ### 5-4. 백엔드 서버 실행
 
+가상환경이 활성화되어 있지 않으면(프롬프트 앞에 `(.venv)`가 안 보이면)
+시스템 Python이 실행되어 `ModuleNotFoundError: No module named 'uvicorn'`
+같은 오류가 납니다. 아래 둘 중 하나로 실행하세요.
+
 ```powershell
-# backend 폴더에서, 가상환경 활성화된 상태로
-python run.py
-# http://127.0.0.1:8000 (uvicorn --reload)
+# 방법 A: 가상환경을 활성화한 뒤 실행
+.venv\Scripts\Activate.ps1
+python .\run.py
+
+# 방법 B: 활성화 없이 .venv의 python을 직접 지정
+.venv\Scripts\python.exe .\run.py
 ```
+둘 다 `http://127.0.0.1:8000` 에서 서버가 뜹니다(uvicorn --reload).
 `http://127.0.0.1:8000/api/health` 접속해 `{"status": "ok"}`가 나오면 정상입니다.
 
 ### 5-5. 프론트엔드 실행 (새 터미널)
@@ -187,6 +195,34 @@ npm run dev
 브라우저에서 `http://localhost:5173` 접속 후 상황을 입력하면 됩니다.
 백엔드 주소를 바꾸고 싶다면 `frontend/.env`에 `VITE_API_BASE_URL=http://주소:포트`를
 추가하면 됩니다(기본값은 `http://127.0.0.1:8000`).
+
+### 5-6. 두 번째 실행부터 (재실행 시)
+
+`.venv`, `node_modules`, 인덱스(`chroma_data`)가 이미 만들어져 있다면
+5-1~5-3(설치, 인덱싱)은 다시 할 필요가 없습니다. 매번 아래 2단계만
+반복하면 됩니다.
+
+```powershell
+# 터미널 1: 백엔드
+cd backend
+.venv\Scripts\Activate.ps1
+python .\run.py
+# http://127.0.0.1:8000
+
+# 터미널 2: 프론트엔드
+cd frontend
+npm run dev
+# http://localhost:5173
+```
+
+다음 경우에만 이전 단계를 다시 실행하면 됩니다.
+
+| 상황 | 다시 해야 할 것 |
+|---|---|
+| `requirements.txt`가 바뀜 | 5-1의 `pip install -r requirements.txt` |
+| `package.json`이 바뀜 | 5-5의 `npm install` |
+| `precedent/`, `statute/` 원본 데이터가 바뀌거나 추가됨 | 5-3 전체 (파싱 + `build_index --reset`) |
+| `.venv`를 활성화하지 않고 `python run.py`를 실행해 `ModuleNotFoundError: No module named 'uvicorn'`이 뜸 | 5-4의 방법 A 또는 B로 다시 실행 (가상환경 미활성화 문제) |
 
 ## 6. 판례 데이터 현황
 
