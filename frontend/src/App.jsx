@@ -14,6 +14,9 @@ const STEPS = [
 
 function App() {
   const [stepIndex, setStepIndex] = useState(0)
+  // 지금까지 도달한 가장 앞선 단계. 이 값 이하 범위에서는 분석 결과를
+  // 유지한 채 자유롭게 앞뒤로 이동할 수 있다 (초기화되지 않음).
+  const [maxStepIndex, setMaxStepIndex] = useState(0)
   // history: [{role: 'user'|'assistant', content: string}]
   const [history, setHistory] = useState([])
   const [category, setCategory] = useState(null)
@@ -22,11 +25,17 @@ function App() {
 
   function goToStep(key) {
     const idx = STEPS.findIndex((s) => s.key === key)
-    if (idx >= 0) setStepIndex(idx)
+    if (idx >= 0) {
+      setStepIndex(idx)
+      setMaxStepIndex((prev) => Math.max(prev, idx))
+    }
   }
 
+  // 상황을 완전히 새로 시작할 때만 호출한다: "상황 다시 입력" 버튼을
+  // 누르거나 상황 입력 단계 탭으로 돌아갔을 때.
   function handleReset() {
     setStepIndex(0)
+    setMaxStepIndex(0)
     setHistory([])
     setCategory(null)
     setSituation('')
@@ -39,9 +48,15 @@ function App() {
       <StepIndicator
         steps={STEPS}
         activeIndex={stepIndex}
+        maxIndex={maxStepIndex}
         onStepClick={(idx) => {
-          // 완료된 단계로만 뒤로가기 허용 (앞으로 건너뛰기는 막음)
-          if (idx <= stepIndex) setStepIndex(idx)
+          // 상황 입력 단계로 돌아가는 경우에만 전체 초기화
+          if (idx === 0) {
+            handleReset()
+            return
+          }
+          // 이미 도달했던 단계라면 기존 데이터(분석 결과 등)를 유지한 채 이동
+          if (idx <= maxStepIndex) setStepIndex(idx)
         }}
       />
       <main className="app-main">
@@ -66,7 +81,7 @@ function App() {
           <ClarifyStep
             history={history}
             setHistory={setHistory}
-            onBack={() => goToStep('input')}
+            onBack={handleReset}
             onSufficient={({ situationSummary, category: cat }) => {
               setAnalysis(null)
               setSituation(situationSummary)

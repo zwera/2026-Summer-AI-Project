@@ -1,6 +1,6 @@
 import './StepIndicator.css'
 
-function StepIndicator({ steps, activeIndex, onStepClick }) {
+function StepIndicator({ steps, activeIndex, maxIndex = activeIndex, onStepClick }) {
   return (
     <nav className="step-indicator" aria-label="진행 단계">
       {steps.map((step, idx) => {
@@ -16,7 +16,7 @@ function StepIndicator({ steps, activeIndex, onStepClick }) {
               type="button"
               className={`step-indicator__item step-indicator__item--${state}`}
               onClick={() => onStepClick(idx)}
-              disabled={idx > activeIndex}
+              disabled={idx > maxIndex}
             >
               <span className="step-indicator__circle">{idx + 1}</span>
               <span className="step-indicator__label">{step.label}</span>
