@@ -84,6 +84,12 @@
   font-size: 13px;
 }
 
+.btn--fixed {
+  flex: none;
+  padding: 10px 16px;
+  font-size: 14px;
+}
+
 /* 공통 배지 */
 .badge {
   display: inline-flex;

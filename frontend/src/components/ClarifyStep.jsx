@@ -1,11 +1,18 @@
 import { useState } from 'react'
 import { postChat } from '../api/client.js'
+import { useSpeechRecognition } from '../hooks/useSpeechRecognition.js'
 import './ClarifyStep.css'
 
 function ClarifyStep({ history, setHistory, onBack, onSufficient }) {
   const [answer, setAnswer] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
+
+  const speech = useSpeechRecognition({
+    onResult: (transcript) => {
+      setAnswer((prev) => (prev ? `${prev} ${transcript}` : transcript))
+    },
+  })
 
   const lastAssistant = [...history]
     .reverse()
@@ -77,19 +84,42 @@ function ClarifyStep({ history, setHistory, onBack, onSufficient }) {
           </div>
         )}
 
-        <textarea
-          className="clarify-step__answer"
-          value={answer}
-          onChange={(e) => setAnswer(e.target.value)}
-          placeholder="추가 정보를 입력하세요"
-          rows={3}
-        />
+        <div className="clarify-step__answer-wrap">
+          <textarea
+            className="clarify-step__answer"
+            value={speech.isListening ? `${answer}${speech.interimText}` : answer}
+            onChange={(e) => setAnswer(e.target.value)}
+            placeholder="추가 정보를 입력하세요"
+            rows={3}
+          />
+          {speech.isListening && (
+            <span className="situation-step__listening-badge">
+              🔴 듣는 중…
+            </span>
+          )}
+        </div>
 
         {error && <p className="situation-step__error">{error}</p>}
+        {speech.error && (
+          <p className="situation-step__error">{speech.error}</p>
+        )}
 
         <div className="clarify-step__actions">
           <button type="button" className="btn btn--ghost" onClick={onBack}>
             ← 상황 다시 입력
+          </button>
+          <button
+            type="button"
+            className={`btn btn--fixed ${speech.isListening ? 'btn--primary' : 'btn--outline'}`}
+            onClick={speech.toggle}
+            disabled={!speech.isSupported}
+            title={
+              speech.isSupported
+                ? '음성으로 답변을 입력합니다'
+                : '이 브라우저는 음성 입력을 지원하지 않습니다 (Chrome/Edge 권장)'
+            }
+          >
+            {speech.isListening ? '⏹ 종료' : '🎤 음성 입력'}
           </button>
           <button
             type="button"

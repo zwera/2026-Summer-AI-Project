@@ -59,13 +59,17 @@
   color: var(--text-h);
 }
 
+.clarify-step__answer-wrap {
+  position: relative;
+  margin-bottom: 14px;
+}
+
 .clarify-step__answer {
   width: 100%;
   border: 1px solid var(--border);
   border-radius: 10px;
   padding: 12px;
   font-size: 15px;
-  margin-bottom: 14px;
   resize: vertical;
 }
 
@@ -77,5 +81,7 @@
 .clarify-step__actions {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   gap: 12px;
+  flex-wrap: wrap;
 }

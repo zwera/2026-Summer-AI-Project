@@ -30,6 +30,30 @@
   padding: 0 4px;
 }
 
+.situation-step__listening-badge {
+  position: absolute;
+  right: 10px;
+  top: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--red);
+  background: var(--red-bg);
+  border: 1px solid var(--red-border);
+  border-radius: 999px;
+  padding: 2px 10px;
+  animation: situation-step-pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes situation-step-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
 .situation-step__section-label {
   font-size: 13px;
   color: var(--text-muted);

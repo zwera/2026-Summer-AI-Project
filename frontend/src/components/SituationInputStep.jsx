@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { postChat } from '../api/client.js'
 import { QUICK_SITUATIONS } from '../constants/taxonomy.js'
+import { useSpeechRecognition } from '../hooks/useSpeechRecognition.js'
 import './SituationInputStep.css'
 
 const MAX_LEN = 500
@@ -14,6 +15,12 @@ function SituationInputStep({
   const [text, setText] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
+
+  const speech = useSpeechRecognition({
+    onResult: (transcript) => {
+      setText((prev) => (prev ? `${prev} ${transcript}` : transcript).slice(0, MAX_LEN))
+    },
+  })
 
   function applyQuickTemplate(template) {
     setText((prev) => (prev ? `${prev} ${template}` : template))
@@ -62,7 +69,7 @@ function SituationInputStep({
         <div className="situation-step__textarea-wrap">
           <textarea
             className="situation-step__textarea"
-            value={text}
+            value={speech.isListening ? `${text}${speech.interimText}` : text}
             maxLength={MAX_LEN}
             placeholder="예) 주취자가 편의점 앞에서 행인을 밀치고 욕설하며 귀가를 거부합니다."
             onChange={(e) => setText(e.target.value)}
@@ -71,6 +78,11 @@ function SituationInputStep({
           <span className="situation-step__counter">
             {text.length} / {MAX_LEN}
           </span>
+          {speech.isListening && (
+            <span className="situation-step__listening-badge">
+              🔴 듣는 중…
+            </span>
+          )}
         </div>
 
         <p className="situation-step__section-label">빠른 상황 선택</p>
@@ -101,15 +113,23 @@ function SituationInputStep({
           </button>
           <button
             type="button"
-            className="btn btn--outline btn--lg"
-            disabled
-            title="음성 입력은 준비 중입니다"
+            className={`btn btn--lg ${speech.isListening ? 'btn--primary' : 'btn--outline'}`}
+            onClick={speech.toggle}
+            disabled={!speech.isSupported}
+            title={
+              speech.isSupported
+                ? '음성으로 상황을 입력합니다'
+                : '이 브라우저는 음성 입력을 지원하지 않습니다 (Chrome/Edge 권장)'
+            }
           >
-            🎤 음성으로 입력
+            {speech.isListening ? '⏹ 듣는 중… (누르면 종료)' : '🎤 음성으로 입력'}
           </button>
         </div>
 
         {error && <p className="situation-step__error">{error}</p>}
+        {speech.error && (
+          <p className="situation-step__error">{speech.error}</p>
+        )}
 
         <p className="situation-step__privacy">
           🔒 개인정보(이름·주민번호·연락처·주소 등) 입력 금지
