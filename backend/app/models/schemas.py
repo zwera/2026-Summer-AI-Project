@@ -59,6 +59,7 @@ class PrecedentHit(BaseModel):
     similarity: float = Field(..., description="사용자 상황과의 유사도 (0~100 %)")
     summary_snippet: str = Field("", description="판시사항/판결요지 일부 미리보기")
     source_path: str = ""
+    source_link: str = Field("", description="국가법령정보센터 판례 원문 링크")
 
 
 class SearchRequest(BaseModel):

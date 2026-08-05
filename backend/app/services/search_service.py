@@ -90,6 +90,7 @@ def search_precedents(
             similarity=similarity,
             summary_snippet=_snippet(doc, meta),
             source_path=meta.get("source_file", ""),
+            source_link=meta.get("source_link", ""),
         )
 
     hits = sorted(
