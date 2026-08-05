@@ -114,31 +114,69 @@ ChromaDB (statutes, precedents 컬렉션)
    - `Timeline`: 사건 진행 타임라인 (시점별 1클릭 복사)
    - `SelectionPopover`: 요약문 텍스트 드래그 시 "재검토"/"자세히 설명" → `/api/analysis/fact-check`
 
-## 5. 실행 방법
+## 5. 실행 방법 (git clone 직후 기준)
 
-### 사전 준비
-- Python 3.11 (`backend/.venv`), Node.js, CUDA 지원 GPU (bge-m3용, RTX 3070 8GB 기준 검증)
-- `backend/.env`에 `GEMINI_API_KEY`, `LAW_OC`(국가법령정보센터 Open API 인증키, 선택) 설정
+`backend/.env`, `backend/.venv/`, `backend/chroma_data/`, `backend/data_processed/`,
+`frontend/node_modules/`는 모두 `.gitignore`에 포함되어 있어 **클론 직후에는
+존재하지 않습니다.** 아래 순서대로 처음부터 준비합니다.
 
-### 최초 1회: 데이터 인덱싱
+### 사전 준비물
+- Python 3.11
+- Node.js 18+
+- (권장) NVIDIA GPU + CUDA — bge-m3 임베딩 속도용. 없어도 CPU로 동작은 합니다.
+- Google Gemini API 키 — https://aistudio.google.com/apikey 에서 무료 발급
+
+### 5-1. 백엔드 환경 구성
+
 ```powershell
 cd backend
-.venv\Scripts\python.exe -m data_pipeline.parse_precedents
-.venv\Scripts\python.exe -m data_pipeline.parse_statutes
-.venv\Scripts\python.exe -m data_pipeline.build_index --reset
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+
+# GPU(CUDA)를 쓴다면 torch를 먼저 CUDA 빌드로 설치
+pip install torch --index-url https://download.pytorch.org/whl/cu121
+# GPU가 없다면 이 줄은 건너뛰어도 됩니다 (requirements.txt 설치 시 CPU용 torch가 함께 설치됨)
+
+pip install -r requirements.txt
 ```
-> bge-m3 모델(약 4.5GB)을 처음 다운로드하므로 시간이 걸릴 수 있습니다.
-> `CHROMA_PERSIST_DIR`은 **한글이 포함되지 않은 경로**로 지정해야 합니다
-> (hnswlib이 비-ASCII 경로에서 인덱스 파일을 못 여는 이슈가 있음).
 
-### 백엔드 실행
+### 5-2. 환경변수 설정
+
 ```powershell
-cd backend
-.venv\Scripts\python.exe run.py
+copy .env.example .env
+```
+`.env` 파일을 열어 최소한 `GEMINI_API_KEY`를 채웁니다. 나머지 값은 기본값으로
+대부분 동작하지만, **프로젝트를 클론한 경로에 한글이 포함되어 있다면**
+`CHROMA_PERSIST_DIR`을 영문 경로로 바꿔야 합니다(자세한 이유는 `.env.example`
+주석 참고). `LAW_OC`는 판례를 추가 수집할 때만 필요하며 평소 실행에는 필수가
+아닙니다.
+
+### 5-3. 데이터 준비 및 인덱싱 (최초 1회)
+
+이미 수집된 판례 원문은 `precedent/` 폴더에 포함되어 git으로 함께 배포됩니다.
+아래 명령으로 파싱 결과 JSON을 만들고 벡터 인덱스를 구축합니다.
+
+```powershell
+# backend 폴더, 가상환경 활성화된 상태에서
+python -m data_pipeline.parse_precedents
+python -m data_pipeline.parse_statutes
+python -m data_pipeline.build_index --reset
+```
+> `BAAI/bge-m3` 모델(약 4.5GB)을 최초 1회 자동 다운로드하므로 네트워크
+> 상황에 따라 수 분~십수 분 걸릴 수 있습니다. 이후 실행부터는 캐시되어
+> 빠릅니다.
+
+### 5-4. 백엔드 서버 실행
+
+```powershell
+# backend 폴더에서, 가상환경 활성화된 상태로
+python run.py
 # http://127.0.0.1:8000 (uvicorn --reload)
 ```
+`http://127.0.0.1:8000/api/health` 접속해 `{"status": "ok"}`가 나오면 정상입니다.
 
-### 프론트엔드 실행
+### 5-5. 프론트엔드 실행 (새 터미널)
+
 ```powershell
 cd frontend
 npm install
@@ -147,6 +185,8 @@ npm run dev
 ```
 
 브라우저에서 `http://localhost:5173` 접속 후 상황을 입력하면 됩니다.
+백엔드 주소를 바꾸고 싶다면 `frontend/.env`에 `VITE_API_BASE_URL=http://주소:포트`를
+추가하면 됩니다(기본값은 `http://127.0.0.1:8000`).
 
 ## 6. 판례 데이터 현황
 
