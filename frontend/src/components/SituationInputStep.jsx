@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { postChat } from '../api/client.js'
 import { QUICK_SITUATIONS } from '../constants/taxonomy.js'
 import { useSpeechRecognition } from '../hooks/useSpeechRecognition.js'
+import FieldManualCard from './FieldManualCard.jsx'
 import './SituationInputStep.css'
 
 const MAX_LEN = 500
@@ -15,6 +16,7 @@ function SituationInputStep({
   const [text, setText] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
+  const [activeQuickKey, setActiveQuickKey] = useState(null)
 
   const speech = useSpeechRecognition({
     onResult: (transcript) => {
@@ -22,8 +24,9 @@ function SituationInputStep({
     },
   })
 
-  function applyQuickTemplate(template) {
-    setText((prev) => (prev ? `${prev} ${template}` : template))
+  function applyQuickTemplate(quick) {
+    setText((prev) => (prev ? `${prev} ${quick.template}` : quick.template))
+    setActiveQuickKey(quick.key)
   }
 
   async function handleSubmit() {
@@ -91,8 +94,8 @@ function SituationInputStep({
             <button
               key={q.key}
               type="button"
-              className="quick-chip"
-              onClick={() => applyQuickTemplate(q.template)}
+              className={`quick-chip ${activeQuickKey === q.key ? 'quick-chip--active' : ''}`}
+              onClick={() => applyQuickTemplate(q)}
             >
               <span className="quick-chip__icon" aria-hidden="true">
                 {q.icon}
@@ -135,6 +138,12 @@ function SituationInputStep({
           🔒 개인정보(이름·주민번호·연락처·주소 등) 입력 금지
         </p>
       </div>
+
+      <FieldManualCard
+        activeKey={
+          QUICK_SITUATIONS.find((q) => q.key === activeQuickKey)?.category
+        }
+      />
     </section>
   )
 }

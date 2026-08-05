@@ -103,7 +103,7 @@ ChromaDB (statutes, precedents 컬렉션)
 
 3단계 스테퍼 구조 (`src/App.jsx`):
 
-1. **상황 입력** (`SituationInputStep`) — 자연어 서술 + 빠른 상황 선택 칩 + 🎤 음성 입력 → `/api/chat` 호출
+1. **상황 입력** (`SituationInputStep`) — 자연어 서술 + 빠른 상황 선택 칩 + 🎤 음성 입력 → `/api/chat` 호출. 하단에 `FieldManualCard`(현장 판단 요약) 표시 — 선택한 빠른 상황 칩에 맞는 기초 매뉴얼(우선 조치 체크리스트)을 AI 분석 전에 즉시 보여줌 (`constants/taxonomy.js`의 `FIELD_MANUALS`)
 2. **핵심 확인** (`ClarifyStep`) — 정보가 부족하면 LLM이 생성한 후속 질문에 답변(텍스트/음성) 반복 → 충분해지면 3단계로
 3. **근거·보고서** (`ResultStep`) — `/api/analysis` 호출 결과를 아래 컴포넌트들로 렌더링
    - `ConclusionCard`: 결론 우선 노출 + 상세 근거 접기/펼치기

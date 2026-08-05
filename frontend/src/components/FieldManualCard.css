@@ -1,0 +1,87 @@
+.field-manual-card {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+  padding: 16px 18px;
+  margin-top: 18px;
+}
+
+.field-manual-card__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.field-manual-card__title {
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.field-manual-card__body {
+  display: flex;
+  align-items: stretch;
+  gap: 16px;
+}
+
+.field-manual-card__badge {
+  flex-shrink: 0;
+  width: 90px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: var(--orange-bg);
+  border: 1px solid var(--orange-border);
+  border-radius: 10px;
+  font-size: 28px;
+  padding: 12px 8px;
+}
+
+.field-manual-card__badge span {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--orange);
+}
+
+.field-manual-card__steps {
+  flex: 1;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
+
+.field-manual-card__steps li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--text-h);
+  line-height: 1.4;
+}
+
+.field-manual-card__num {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--orange);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+  margin-top: 1px;
+}
+
+.field-manual-card__disclaimer {
+  margin-top: 12px;
+  font-size: 11px;
+  color: var(--text-muted);
+}
