@@ -120,17 +120,8 @@ def _app_shell(dataset: ValidatedDataset, route: str, content: str) -> str:
     <header class='app-shell__header'>
       <div class='shell-container'>
         <div class='brand-row'>
-          <a class='brand' href='/'>
-            <span class='brand__badge' aria-hidden='true'>&#128737;</span>
-            <span class='brand__text'>
-              <span class='brand__title'>현장 법률 판단 지원</span>
-              <span class='brand__subtitle'>경찰 판례·법령 AI 봇</span>
-            </span>
-          </a>
-          <div class='brand-row__meta'>
-            <span class='as-of-date-badge'>데이터 기준 {escape(str(metadata.as_of_date))}</span>
-            <span class='mock-badge' aria-label='목업 응답'>목업 데이터</span>
-          </div>
+          <a class='brand' href='/'>경찰 판례·법령 AI 봇</a>
+          <span class='mock-badge' aria-label='목업 응답'>목업 응답</span>
         </div>
         <nav class='global-nav' aria-label='전역 탐색'>
           <a href='/'{query_current}>상황 검색</a>
@@ -243,76 +234,70 @@ class MockWebApplication:
                 f"<option value='{escape(str(voice.id))}'>{escape(voice.label)}</option>"
                 for voice in self._dataset.voice_fixtures
             )
-            quick_pick_defs = (
-                ("현행범체포", "&#128680;"),
-                ("임의동행", "&#128100;"),
-                ("가정폭력 초동조치", "&#127968;"),
-                ("음주단속", "&#128663;"),
-            )
+            # 빠른 상황 선택 칩은 반드시 fixture에 실제로 등록된 지원 문구
+            # (QueryVariant.raw_example)를 그대로 사용한다. 지어낸 문구를 넣으면
+            # 클릭할 때마다 "목업에서 지원하지 않는 질의"로 실패하므로 여기서
+            # 새 문구를 만들어 내지 않는다(요구사항: 목업에 없는 값 지어내지 않기).
+            chip_scenarios = ("현행범체포", "임의동행", "가정폭력 초동조치", "음주단속")
             raw_example_by_scenario: Dict[str, str] = {}
             for query in self._dataset.queries:
                 if not query.scenario_ids or not query.variants:
                     continue
                 raw_example_by_scenario[str(query.scenario_ids[0].value)] = query.variants[0].raw_example
-            quick_picks = "".join(
-                f"<button type='button' class='quick-pick' data-query='{escape(raw_example_by_scenario[label])}'>"
-                f"<span class='quick-pick__icon' aria-hidden='true'>{icon}</span>"
-                f"<span class='quick-pick__label'>{escape(label)}</span></button>"
-                for label, icon in quick_pick_defs
+            situation_chips = "".join(
+                f"<button type='button' class='situation-chip' data-prompt='{escape(raw_example_by_scenario[label])}'>{escape(label)}</button>"
+                for label in chip_scenarios
                 if label in raw_example_by_scenario
             )
             content = f"""
-            <div class='entry-layout'>
+            <section class='workflow' aria-label='업무 진행 단계'>
+              <ol><li class='is-current'><span>1</span> 상황 입력</li><li><span>2</span> 핵심 확인</li><li><span>3</span> 근거·보고서</li></ol>
+            </section>
+            <div class='entry-layout entry-layout--redesigned'>
               <section class='page-intro situation-input' aria-labelledby='page-title'>
-                <p class='eyebrow'>시연용 웹 애플리케이션</p><h1 id='page-title'>현재 상황을 입력하세요</h1>
+                <p class='eyebrow'>현장 판단 지원</p><h1 id='page-title'>현재 상황을 입력하세요</h1>
+                <p class='intro-copy'>사건번호나 죄명 대신 보고 들은 사실과 대상자의 행동을 구체적으로 입력하세요.</p>
                 <form id='situation-form' novalidate>
-                  <label for='situation-query' class='sr-only'>상황 입력</label>
-                  <textarea id='situation-query' name='query' rows='4' maxlength='500' required
-                    aria-describedby='situation-help situation-length'
-                    placeholder='예: 범행 직후 바로 잡기'></textarea>
-                  <p id='situation-length' class='situation-length' aria-live='polite'>0 / 500</p>
-                  <p id='situation-help'>사건번호나 죄명 대신 현장 상황을 입력하세요.</p>
-                  <div class='quick-picks' role='group' aria-label='빠른 상황 선택'>
-                    <p class='quick-picks__label'>빠른 상황 선택</p>
-                    <div class='quick-picks__grid'>{quick_picks}</div>
+                  <label for='situation-query'>현장 상황</label>
+                  <div class='textarea-wrap'>
+                    <textarea id='situation-query' name='query' rows='6' maxlength='500' required aria-describedby='situation-help privacy-help' placeholder='예: 범행 직후 바로 잡기'></textarea>
+                    <output id='query-count' for='situation-query' aria-live='polite'>0 / 500</output>
                   </div>
-                  <div class='situation-actions'>
-                    <button type='submit' class='situation-actions__primary'>
-                      <span aria-hidden='true'>&#128269;</span> 판단 근거 확인
-                    </button>
-                    <button id='voice-select-button' type='button' class='situation-actions__secondary'>
-                      <span aria-hidden='true'>&#127908;</span> 음성으로 입력
-                    </button>
+                  <p id='situation-help' class='field-help'>사건번호나 죄명 대신 현장 상황을 입력하세요.</p>
+                  <fieldset class='quick-situations'><legend>빠른 상황 선택</legend>
+                    {situation_chips}
+                  </fieldset>
+                  <div class='primary-actions'>
+                    <button type='submit' class='primary-cta'>판단 근거 확인</button>
+                    <button id='voice-panel-toggle' type='button' class='secondary-cta' aria-expanded='false' aria-controls='voice-demo'>음성으로 입력</button>
                   </div>
-                  <p class='privacy-inline-notice'>
-                    <span aria-hidden='true'>&#128274;</span>
-                    개인정보(이름·주민번호·연락처·주소 등) 입력 금지
-                  </p>
+                  <p id='privacy-help' class='privacy-help'>🔒 개인정보(이름·주민번호·연락처·주소 등)는 입력하지 마세요.</p>
                 </form>
-                <section class='voice-demo' aria-labelledby='voice-demo-title'>
+                <section id='voice-demo' class='voice-demo' aria-labelledby='voice-demo-title' hidden>
                   <h2 id='voice-demo-title'>사전 정의 음성 시연</h2>
                   <label for='voice-fixture'>음성 시연 항목</label>
-                  <select id='voice-fixture' name='voiceFixtureId'>
-                    <option value=''>선택하세요</option>{voice_options}
-                  </select>
-                  <p>실제 음성 인식이나 마이크 입력은 사용하지 않습니다. 위 &#39;음성으로 입력&#39; 버튼이
-                    선택된 시연 항목의 인식 텍스트를 불러옵니다.</p>
+                  <select id='voice-fixture' name='voiceFixtureId'><option value=''>선택하세요</option>{voice_options}</select>
+                  <button id='voice-select-button' type='button'>인식 텍스트 불러오기</button>
+                  <p>실제 음성 인식이나 마이크 입력은 사용하지 않습니다.</p>
+                </section>
+                <section class='safety-status' aria-labelledby='safety-title'>
+                  <div><span class='safety-icon' aria-hidden='true'>✓</span><strong id='safety-title'>현장 안전 확인</strong><span>위험요소 미확인 · 당사자 분리 미확인</span></div>
+                  <button id='safety-toggle' type='button' aria-expanded='false' aria-controls='safety-details'>확인하기</button>
+                </section>
+                <section id='safety-details' class='safety-details' hidden aria-label='현장 안전 세부 확인'>
+                  <p>아래 항목은 법률 결론이 아닌 판단 누락 방지용 확인사항입니다.</p>
+                  <label><input type='checkbox'> 즉시 위험·흉기 여부 확인</label>
+                  <label><input type='checkbox'> 당사자 분리 및 추가 위해 방지</label>
+                  <label><input type='checkbox'> 행위·시간·장소 확인</label>
+                  <label><input type='checkbox'> 고지·동의·거부 기록</label>
                 </section>
                 <section id='query-feedback' class='query-feedback' aria-live='polite' aria-label='질의 해석 결과'></section>
-                <div class='footer-actions'>
-                  <button id='footer-view-source' type='button' class='footer-actions__secondary'>
-                    <span aria-hidden='true'>&#128214;</span> 판례 원문 보기
-                  </button>
-                  <button id='footer-build-report' type='button' class='footer-actions__primary'>
-                    <span aria-hidden='true'>&#128203;</span> 사건보고서 초안 만들기
-                  </button>
-                </div>
               </section>
-              <aside class='query-history' aria-label='검색 기록'>
-                <h2>검색 기록</h2>
-                <p>같은 브라우저 세션 동안 실행한 상황 질의만 표시됩니다. 새 브라우저 세션에서는 저장되지 않습니다.</p>
+              <details class='query-history'>
+                <summary>최근 검색 기록</summary>
+                <p>현재 브라우저 세션의 기록만 표시되며 탭을 닫으면 삭제됩니다.</p>
                 <ul id='query-history-list' class='query-history__list'></ul>
-              </aside>
+              </details>
             </div>
             """
             route = "QUERY"

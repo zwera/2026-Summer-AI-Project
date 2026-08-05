@@ -172,24 +172,7 @@ const PoliceBotQueryHistory = (() => {
   const voiceButton = document.querySelector("#voice-select-button");
   const feedback = document.querySelector("#query-feedback");
   const historyList = document.querySelector("#query-history-list");
-  const lengthCounter = document.querySelector("#situation-length");
-  const quickPickButtons = document.querySelectorAll(".quick-pick");
   if (!form || !queryInput || !voiceSelect || !voiceButton || !feedback) return;
-
-  /* Character counter and quick-pick fill-in: purely presentational, no legal
-   * interpretation happens on the client. Quick-pick buttons insert the exact
-   * server-provided supported example phrase (fixtures/mock_dataset.py raw_example)
-   * for the given scenario; they do not invent new wording. */
-  const updateLengthCounter = () => { if (lengthCounter) lengthCounter.textContent = `${queryInput.value.length} / 500`; };
-  queryInput.addEventListener("input", updateLengthCounter);
-  updateLengthCounter();
-  quickPickButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      queryInput.value = button.dataset.query || "";
-      updateLengthCounter();
-      queryInput.focus();
-    });
-  });
 
   let currentQueryId = null;
   const historyStatusLabel = { SUPPORTED: "인식됨", BLANK: "입력 없음", UNSUPPORTED: "미지원", INTERPRETATION_CHECK_NEEDED: "확인 필요" };
@@ -307,39 +290,7 @@ const PoliceBotQueryHistory = (() => {
   const renderResults = (search) => { const results = document.createElement("section"); results.className = "search-results"; results.setAttribute("aria-label", "목업 검색 결과"); results.append(element("h2", "목업 응답 · 검색 결과"), element("p", "유사도 점수와 검색 순서는 사전 정의된 목업 값이며, 현재 시연에서는 실제 운영 환경의 산식이나 판례 적합성·정확성을 보증하지 않습니다.")); const cases = document.createElement("section"); cases.append(element("h3", "판례")); if (!search.cases.length) cases.append(renderEmpty("판례")); search.cases.forEach((item) => { const card = document.createElement("article"); card.className = "result-card case-card"; card.append(element("h4", item.case_number)); const appeal = (search.appeals_by_case || {})[item.case_id]; const warning = item.similarity_warning || item.fact_difference_warning; if (warning) card.append(Object.assign(element("p", warning.text || warning), { className: "result-card__warning" })); addField(card, "법원", item.court_name); addField(card, "심급", item.instance); addField(card, "선고일", item.decision_date); addField(card, "경찰 직무 시나리오", item.scenario_ids.join(", ")); addField(card, "유사도", `${item.similarity_score}%`); addField(card, "적법성", item.legality_status); addField(card, "법령 기준", item.law_basis_status); addField(card, "해당 심급 인정 죄명", item.instance_recognized_charge); addField(card, "해당 심급 재판 결과", item.instance_outcome); addField(card, "상급심 정보 요약", !appeal || appeal.appellate.state === "정보_없음" ? "정보_없음" : appeal.appellate.decisions.map((decision) => `${decision.instance} ${decision.case_number} · ${decision.outcome}`).join(" / ")); if (appeal && appeal.finality_badge) { const badge = element("span", appeal.finality_badge.finality); badge.className = "finality-badge"; card.append(badge); } else addField(card, "확정 여부", "정보_없음"); const detail = (search.case_details_by_case || {})[item.case_id]; if (detail) { const detailToggle = element("button", "상세 보기"); detailToggle.type = "button"; detailToggle.className = "case-detail-toggle"; detailToggle.setAttribute("aria-expanded", "false"); const detailPanel = renderCaseDetail(detail, item.case_id); detailPanel.hidden = true; detailToggle.addEventListener("click", () => { detailPanel.hidden = !detailPanel.hidden; detailToggle.setAttribute("aria-expanded", String(!detailPanel.hidden)); detailToggle.textContent = detailPanel.hidden ? "상세 보기" : "상세 접기"; }); card.append(detailToggle, detailPanel); } cases.append(card); }); const statutes = document.createElement("section"); statutes.append(element("h3", "법조문")); if (!search.statutes.length) statutes.append(renderEmpty("법조문")); search.statutes.forEach((item) => { const card = document.createElement("article"); card.className = "result-card statute-card"; card.append(element("h4", item.law_name)); addField(card, "조·항·호", [item.article, item.paragraph, item.item].filter(Boolean).join(" ")); addField(card, "시행일", item.effective_date || "정보_없음"); statutes.append(card); }); results.append(cases, statutes); feedback.append(results); };
   const showInterpretation = (interpretation) => { resetFeedback(); currentQueryId = interpretation?.kind === "SUPPORTED" ? interpretation.query_id : null; if (!interpretation) return; if (interpretation.kind === "SUPPORTED") { feedback.append(element("h2", "표현과 법률 검색어 대응")); const list = document.createElement("ul"); interpretation.term_correspondences.forEach((item) => list.append(element("li", `${item.field_expression} ↔ ${item.legal_search_terms.join(", ")}`))); feedback.append(list, element("p", "관계 보존: 확인됨")); return; } if (interpretation.kind === "BLANK") feedback.append(element("p", "상황을 입력해 주세요.")); else if (interpretation.kind === "INTERPRETATION_CHECK_NEEDED") feedback.append(element("h2", "해석 확인 필요"), element("p", `원문 표현: ${interpretation.raw}`)); else if (interpretation.kind === "UNSUPPORTED") feedback.append(element("h2", "목업에서 지원하지 않는 질의"), element("p", `입력: ${interpretation.raw}`)); };
   form.addEventListener("submit", async (event) => { event.preventDefault(); try { const payload = await request("/api/query", { query: queryInput.value }); if (payload.rag_error) { PoliceBotErrorDisplay.renderStageError(feedback, payload.rag_error); return; } showInterpretation(payload.interpretation); if (payload.search) renderResults(payload.search); if (payload.response) renderResponse(payload.response); if (payload.interpretation?.kind === "SUPPORTED") document.dispatchEvent(new CustomEvent("timeline:load", { detail: { queryId: payload.interpretation.query_id } })); recordHistory(queryInput.value, payload.interpretation?.kind); } catch (error) { if (error instanceof PoliceBotErrorDisplay.SafeHttpError) { PoliceBotErrorDisplay.renderHttpError(feedback, error); return; } resetFeedback(); const message = element("p", "요청을 처리할 수 없습니다. 다시 시도해 주세요."); message.setAttribute("role", "alert"); feedback.append(message); } });
-  voiceButton.addEventListener("click", async () => { if (!voiceSelect.value) { resetFeedback(); const notice = element("p", "음성 시연 항목을 선택해 주세요."); notice.setAttribute("role", "status"); feedback.append(notice); return; } try { const payload = await request("/api/action", { type: "SELECT_VOICE_FIXTURE", fixtureId: voiceSelect.value }); if (payload.voice_error) { PoliceBotErrorDisplay.renderStageError(feedback, payload.voice_error); return; } if (payload.recognized_text !== undefined) { queryInput.value = payload.recognized_text; updateLengthCounter(); showInterpretation(payload.interpretation); const recognized = element("p", `인식 텍스트: ${payload.recognized_text}`); recognized.setAttribute("role", "status"); feedback.prepend(recognized); if (payload.interpretation?.kind === "SUPPORTED") document.dispatchEvent(new CustomEvent("timeline:load", { detail: { queryId: payload.interpretation.query_id, recognizedText: payload.recognized_text } })); recordHistory(payload.recognized_text, payload.interpretation?.kind); } else { const error = element("p", "음성 인식 불가. 수동 텍스트 입력을 이용해 주세요."); error.setAttribute("role", "alert"); feedback.append(error); } } catch (error) { if (error instanceof PoliceBotErrorDisplay.SafeHttpError) { PoliceBotErrorDisplay.renderHttpError(feedback, error); return; } resetFeedback(); const message = element("p", "요청을 처리할 수 없습니다. 수동 텍스트 입력을 이용해 주세요."); message.setAttribute("role", "alert"); feedback.append(message); } });
-
-  /* Footer shortcut buttons: no new logic, just navigate to/trigger existing
-   * on-screen affordances (first case's source viewer, the report generator
-   * inside the timeline section). If no results/timeline exist yet, tell the
-   * user to run a query first instead of fabricating a target. */
-  const footerViewSource = document.querySelector("#footer-view-source");
-  const footerBuildReport = document.querySelector("#footer-build-report");
-  const footerNotice = (text) => {
-    const existing = feedback.querySelector(".footer-shortcut-notice");
-    if (existing) existing.remove();
-    const notice = element("p", text);
-    notice.className = "footer-shortcut-notice"; notice.setAttribute("role", "status");
-    feedback.prepend(notice);
-  };
-  if (footerViewSource) {
-    footerViewSource.addEventListener("click", () => {
-      const toggle = document.querySelector(".case-detail-toggle");
-      if (!toggle) { footerNotice("먼저 상황을 입력해 판례 검색 결과를 확인해 주세요."); return; }
-      if (toggle.getAttribute("aria-expanded") === "false") toggle.click();
-      toggle.scrollIntoView({ block: "center" });
-      toggle.focus();
-    });
-  }
-  if (footerBuildReport) {
-    footerBuildReport.addEventListener("click", () => {
-      const generateButton = document.querySelector(".report-preview button[type='button']:first-of-type");
-      if (!generateButton) { footerNotice("먼저 지원되는 상황을 입력해 사실관계 타임라인을 불러와 주세요."); return; }
-      generateButton.scrollIntoView({ block: "center" });
-      generateButton.click();
-      generateButton.focus();
-    });
-  }
+  voiceButton.addEventListener("click", async () => { if (!voiceSelect.value) { resetFeedback(); const notice = element("p", "음성 시연 항목을 선택해 주세요."); notice.setAttribute("role", "status"); feedback.append(notice); return; } try { const payload = await request("/api/action", { type: "SELECT_VOICE_FIXTURE", fixtureId: voiceSelect.value }); if (payload.voice_error) { PoliceBotErrorDisplay.renderStageError(feedback, payload.voice_error); return; } if (payload.recognized_text !== undefined) { queryInput.value = payload.recognized_text; showInterpretation(payload.interpretation); const recognized = element("p", `인식 텍스트: ${payload.recognized_text}`); recognized.setAttribute("role", "status"); feedback.prepend(recognized); if (payload.interpretation?.kind === "SUPPORTED") document.dispatchEvent(new CustomEvent("timeline:load", { detail: { queryId: payload.interpretation.query_id, recognizedText: payload.recognized_text } })); recordHistory(payload.recognized_text, payload.interpretation?.kind); } else { const error = element("p", "음성 인식 불가. 수동 텍스트 입력을 이용해 주세요."); error.setAttribute("role", "alert"); feedback.append(error); } } catch (error) { if (error instanceof PoliceBotErrorDisplay.SafeHttpError) { PoliceBotErrorDisplay.renderHttpError(feedback, error); return; } resetFeedback(); const message = element("p", "요청을 처리할 수 없습니다. 수동 텍스트 입력을 이용해 주세요."); message.setAttribute("role", "alert"); feedback.append(message); } });
 
   renderHistory();
 })();
@@ -584,4 +535,28 @@ const PoliceBotQueryHistory = (() => {
     section.append(generateButton, status, preview, actions, manualFallback);
     return section;
   };
+})();
+
+/* Field-first entry enhancements: progressive disclosure and accessible controls. */
+(() => {
+  "use strict";
+  const query = document.querySelector("#situation-query");
+  if (!query) return;
+  const count = document.querySelector("#query-count");
+  const updateCount = () => { if (count) count.textContent = `${query.value.length} / 500`; };
+  query.addEventListener("input", updateCount); updateCount();
+  document.querySelectorAll(".situation-chip").forEach((chip) => chip.addEventListener("click", () => {
+    query.value = chip.dataset.prompt || ""; updateCount(); query.focus();
+  }));
+  const bindDisclosure = (buttonId, panelId) => {
+    const button = document.querySelector(`#${buttonId}`); const panel = document.querySelector(`#${panelId}`);
+    if (!button || !panel) return;
+    button.addEventListener("click", () => {
+      const open = button.getAttribute("aria-expanded") === "true";
+      button.setAttribute("aria-expanded", String(!open)); panel.hidden = open;
+      if (!open) panel.querySelector("select,input,button")?.focus();
+    });
+  };
+  bindDisclosure("voice-panel-toggle", "voice-demo");
+  bindDisclosure("safety-toggle", "safety-details");
 })();
