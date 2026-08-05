@@ -50,6 +50,10 @@ function App() {
             history={history}
             setHistory={setHistory}
             onSufficient={({ situationSummary, category: cat }) => {
+              // 이전 분석 결과를 반드시 초기화해야 ResultStep이 새 상황으로
+              // 재분석을 수행한다 (그대로 두면 이전 결과가 캐시처럼 남아
+              // 재요청이 스킵된다).
+              setAnalysis(null)
               setSituation(situationSummary)
               setCategory(cat)
               goToStep('result')
@@ -64,6 +68,7 @@ function App() {
             setHistory={setHistory}
             onBack={() => goToStep('input')}
             onSufficient={({ situationSummary, category: cat }) => {
+              setAnalysis(null)
               setSituation(situationSummary)
               setCategory(cat)
               goToStep('result')
