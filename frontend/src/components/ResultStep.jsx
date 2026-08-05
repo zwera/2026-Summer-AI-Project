@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { postAnalysis } from '../api/client.js'
 import { categoryLabel } from '../constants/taxonomy.js'
+import { buildReportMarkdown, downloadMarkdown } from '../utils/report.js'
 import ConclusionCard from './ConclusionCard.jsx'
 import SummaryGrid from './SummaryGrid.jsx'
 import RiskBadges from './RiskBadges.jsx'
@@ -35,15 +36,11 @@ function ResultStep({ situation, category, analysis, setAnalysis, onRestart }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [situation])
 
-  function handleCopyReport() {
+  function handleDownloadReport() {
     if (!analysis) return
-    const text = [
-      `[사건 개요]\n${analysis.situation}`,
-      `[적법성 판단] ${analysis.verdict.verdict}\n${analysis.verdict.reasoning}`,
-      `[10줄 요약]\n${analysis.summary.ten_line}`,
-    ].join('\n\n')
-    navigator.clipboard?.writeText(text)
-    alert('보고서 초안이 클립보드에 복사되었습니다.')
+    const markdown = buildReportMarkdown(analysis)
+    const dateStr = new Date().toISOString().slice(0, 10)
+    downloadMarkdown(`사건보고서_초안_${dateStr}.md`, markdown)
   }
 
   function handleViewPrecedentSource() {
@@ -123,9 +120,9 @@ function ResultStep({ situation, category, analysis, setAnalysis, onRestart }) {
           <button
             type="button"
             className="btn btn--primary"
-            onClick={handleCopyReport}
+            onClick={handleDownloadReport}
           >
-            📄 사건보고서 초안 만들기
+            📄 사건보고서 초안 다운로드 (.md)
           </button>
         </div>
       </section>
