@@ -92,7 +92,11 @@ def _html(title: str, body: str) -> bytes:
         "<!doctype html><html lang='ko'><head><meta charset='utf-8'>"
         "<meta name='viewport' content='width=device-width, initial-scale=1'>"
         f"<title>{escape(title)}</title><link rel='stylesheet' href='/static/app.css'>"
-        "<script defer src='/static/app.js'></script></head>"
+        "<script defer src='/static/app.js'></script>"
+        # real_rag.js는 목업 계층과 분리된 선택적(opt-in) 실제 RAG 연동 스크립트다.
+        # 별도 origin(FastAPI RAG 서버)을 호출하는 코드는 이 파일에만 두고 app.js에는
+        # 절대 추가하지 않는다(목업 계층의 외부 origin 호출 0건 요구사항 유지).
+        "<script defer src='/static/real_rag.js'></script></head>"
         f"<body>{body}</body></html>"
     ).encode("utf-8")
 
@@ -291,6 +295,10 @@ class MockWebApplication:
                     <button id='voice-panel-toggle' type='button' class='secondary-cta' aria-expanded='false' aria-controls='voice-demo'>음성으로 입력</button>
                   </div>
                   <p id='privacy-help' class='privacy-help'>🔒 개인정보(이름·주민번호·연락처·주소 등)는 입력하지 마세요.</p>
+                  <label class='real-rag-toggle' for='real-rag-toggle'>
+                    <input type='checkbox' id='real-rag-toggle'>
+                    실제 AI(Gemini) 분석도 함께 요청 (별도 실행 중인 RAG 서버가 필요하며, 응답까지 시간이 걸릴 수 있습니다)
+                  </label>
                 </form>
                 <section id='voice-demo' class='voice-demo' aria-labelledby='voice-demo-title' hidden>
                   <h2 id='voice-demo-title'>음성 입력</h2>
@@ -318,6 +326,7 @@ class MockWebApplication:
                 <p class='intro-copy'>서버가 해석한 표현 대응, 목업 응답·검색 결과, 판례와 법조문을 확인하세요.</p>
                 <button id='step-core-check-back' type='button' class='step-nav-button step-nav-button--secondary'>상황 다시 입력</button>
                 <section id='query-feedback' class='query-feedback' aria-live='polite' aria-label='질의 해석 결과'></section>
+                <section id='real-rag-panel' class='real-rag-panel' aria-live='polite' aria-label='실제 AI 분석 결과' hidden></section>
                 <button id='step-core-check-next' type='button' class='step-nav-button step-nav-button--primary' hidden>근거·보고서 확인</button>
               </section>
               <section id='step-evidence-report' class='step-panel page-intro' aria-labelledby='evidence-report-title' hidden>

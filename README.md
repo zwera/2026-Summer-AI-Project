@@ -7,7 +7,13 @@
 > 응답은 서버 배포물에 사전 번들된 목업 데이터셋에서만 결정적으로 산출되며, 실시간으로
 > 갱신되지 않습니다.
 
-## 핵심 특징
+> 이 저장소에는 위 목업 시연 애플리케이션과 완전히 분리된 **실제 RAG 파이프라인**(`rag/`
+> 패키지, Gemini 3.6 Flash + Chroma + FastAPI)도 포함되어 있습니다. 목업 계층은 이
+> 파이프라인을 임포트하지 않으며, 목업의 "외부 origin 호출 0건" 요구사항에도 영향을 주지
+> 않습니다. 실제 RAG 사용법은 하단의 [실제 RAG 파이프라인](#실제-rag-파이프라인-gemini--chroma--fastapi)
+> 섹션을 참고하세요.
+
+## 핵심 특징 (목업 시연 애플리케이션)
 
 - **완전 목업 기반**: 검색 엔진, 임베딩, 벡터 데이터베이스, 외부 판례·법령 API, 원격 음성
   인식, 실제 생성형 모델(LLM)을 전혀 사용하지 않습니다. 모든 결과는 `fixtures/` 에 정의된
@@ -54,8 +60,12 @@ pip install -e ".[dev]"
 
 macOS/Linux 셸을 사용한다면 `source .venv/bin/activate`로 대체합니다.
 
-이 프로젝트는 런타임 의존성이 없는(`dependencies = []`) 순수 표준 라이브러리 구현입니다.
-`dev` 추가 의존성(`pytest`, `hypothesis`, `mypy`)만 개발 시 필요합니다.
+위 목업 시연 애플리케이션(`domain/`, `data/`, `app/`, `web/server.py`, `fixtures/`)은 여전히
+표준 라이브러리만 사용하는 순수 구현입니다. `pyproject.toml`의 `dependencies`에 등록된
+`chromadb`/`google-genai`/`fastapi`/`uvicorn`/`pydantic`/`pypdf`/`python-multipart`/
+`python-dotenv`는 아래 [실제 RAG 파이프라인](#실제-rag-파이프라인-gemini--chroma--fastapi)
+(`rag/` 패키지) 전용이며, 목업 계층의 임포트 경로에서는 사용하지 않습니다. `dev` 추가
+의존성(`pytest`, `hypothesis`, `mypy`)은 개발 시 필요합니다.
 
 ### 2. 웹 서버 실행
 
@@ -121,10 +131,14 @@ mypy
 ├── data/         # fixture 데이터 모델과 데이터셋 검증기
 ├── domain/       # 질의 해석·분류·정렬·위험 판정 등 순수 도메인 로직
 ├── fixtures/     # 서버에 번들되는 목업 데이터셋 (판례·법조문·응답 템플릿 등)
-├── static/       # 클라이언트 HTML/CSS/JS (app.js, app.css)
+├── static/       # 클라이언트 HTML/CSS/JS (app.js/app.css: 목업 전용, real_rag.js: 실제 RAG 연동)
 ├── web/          # WSGI 웹 서버, 라우팅, 배포 설정(config.py)
 ├── tests/        # pytest 단위/속성/통합/접근성 테스트
+├── rag/          # 실제 RAG 파이프라인(Gemini + Chroma + FastAPI, 목업과 완전 분리)
+├── precedent/    # crawl_precedents.py로 수집한 판례 마크다운(실제 RAG 인제스트 대상)
+├── status/세부법령/ # 법령 PDF(실제 RAG 인제스트 대상)
 ├── .kiro/specs/  # 요구사항(requirements.md)·설계(design.md)·작업 목록(tasks.md)
+├── .env.example  # 실제 RAG용 환경변수 예시(GEMINI_API_KEY 등)
 ├── pyproject.toml
 └── README.md
 ```
@@ -144,6 +158,82 @@ mypy
   직접 수정할 수 있습니다. 수정 내용은 보고서 생성에도 즉시 반영됩니다.
 
 지원 범위, 데이터 구조, 지원 질의 목록 등 더 자세한 내용은 `.kiro/specs/police-case-law-ai-bot/requirements.md`와 `design.md`를 참고하세요.
+
+## 실제 RAG 파이프라인 (Gemini + Chroma + FastAPI)
+
+`rag/` 패키지는 위 목업 시연 애플리케이션과는 별개의, 실제 판례·법령 데이터를 사용하는
+검색·생성 파이프라인입니다. `crawl_precedents.py`로 수집한 판례 마크다운(`precedent/`)과
+법령 PDF(`status/세부법령/`)를 인제스트해 Chroma 로컬 벡터 인덱스에 저장하고, Gemini로
+검색·리포트 생성을 수행합니다.
+
+> ⚠️ 이 파이프라인이 생성하는 결과는 실제 Gemini 모델과 판례·법령 원문 데이터를 사용하지만,
+> 여전히 시연/보조 도구입니다. 최종 법률 판단은 관계 법령과 담당자 검토가 필요합니다.
+> 또한 아래 FastAPI 서버는 **인증·접근 제어를 구현하지 않은 상태**이므로, 로컬 개발 환경
+> 밖(사내망 공유, 공개 배포 등)에 노출하려면 반드시 인증을 추가해야 합니다.
+
+### 1. API 키 설정
+
+```powershell
+Copy-Item .env.example .env
+notepad .env   # GEMINI_API_KEY=발급받은키 로 채운 뒤 저장
+```
+
+`.env`는 `.gitignore`에 포함되어 있어 git에 커밋되지 않습니다. PowerShell 세션에만
+임시로 설정하려면 `$env:GEMINI_API_KEY="발급받은키"` 를 사용해도 됩니다.
+
+### 2. 의존성 설치
+
+이미 `pip install -e ".[dev]"`로 설치했다면 `chromadb`, `google-genai`, `fastapi`,
+`uvicorn`, `pydantic`, `pypdf`, `python-multipart`, `python-dotenv`가 함께 설치됩니다
+(모두 정확한 버전으로 고정되어 있습니다). Python 3.10 이상이 필요합니다.
+
+### 3. RAG 서버 실행
+
+```powershell
+uvicorn rag.api:app --port 8001
+```
+
+서버 시작 시 `precedent/`, `status/세부법령/`의 원문을 청크로 나눠 Gemini로 임베딩하고
+`.chroma_index/`(git에 커밋되지 않음)에 저장합니다. 이미 인덱싱된 경우에는 재사용하며,
+강제로 재인덱싱하려면 `POST /api/rag/reindex?force=true`를 호출하세요(Gemini API 비용이
+다시 발생합니다).
+
+| 엔드포인트 | 메서드 | 설명 |
+|---|---|---|
+| `/api/rag/health` | GET | 초기화 상태와 인덱싱된 청크 수 확인 |
+| `/api/rag/query` | POST | 질의 검색 + (옵션) Gemini 적법성 리포트·타임라인 생성 |
+| `/api/rag/reindex` | POST | 인덱스 재사용 또는(`force=true`) 강제 재구축 |
+
+`/api/rag/query` 요청 예시:
+
+```json
+{ "query": "새벽에 확성기로 소음을 낸 집회 신고가 들어왔다", "top_k": 8, "instance": "1심" }
+```
+
+`instance`(1심/항소심/상고심)와 `category`(경범죄/식품/청소년 등) 필터는 선택 사항이며,
+지정하지 않으면 전체 판례를 대상으로 검색합니다(인덱싱은 항상 전체 판례를 대상으로 하고,
+필터링은 검색 시점에 유연하게 적용하는 방식을 사용합니다).
+
+### 4. 목업 웹 화면에서 함께 사용하기
+
+목업 서버(`python -m web.server`)의 상황 입력 화면에는 "실제 AI(Gemini) 분석도 함께
+요청" 체크박스가 있습니다. 이 체크박스를 켜고 RAG 서버(위 3번, 기본 포트 8001)가 실행
+중이면 목업 결과와 별도로 실제 Gemini 분석 결과가 같은 화면 하단에 표시됩니다. 체크를
+끄거나 RAG 서버가 꺼져 있으면 목업 흐름에는 전혀 영향이 없습니다. 이 연동 코드는
+`static/real_rag.js`에만 있으며 `static/app.js`(목업 전용, 외부 origin 호출 0건)에는
+포함되지 않습니다.
+
+### 5. 환경변수 전체 목록
+
+`.env.example` 파일에 전체 목록과 기본값이 정리되어 있습니다. 주요 항목:
+
+| 환경변수 | 기본값 | 설명 |
+|---|---|---|
+| `GEMINI_API_KEY` | (필수) | Google AI Studio에서 발급받은 API 키 |
+| `RAG_GENERATION_MODEL` | `gemini-3.6-flash` | 리포트 생성에 사용할 모델 |
+| `RAG_EMBEDDING_MODEL` | `gemini-embedding-001` | 임베딩 모델 |
+| `RAG_CHROMA_PATH` | `.chroma_index` | Chroma 로컬 인덱스 저장 경로(저장소 루트 기준) |
+| `RAG_TOP_K` | `8` | 기본 검색 결과 개수 |
 
 ## 보안·개인정보 관련 참고사항
 

@@ -156,3 +156,23 @@ summary:focus-visible, [tabindex]:focus-visible { outline: 3px solid #d29219; ou
 .voice-demo{margin-top:1rem}#voice-record-button.is-recording{background:#a73d35!important;animation:voice-record-pulse 1.2s ease-in-out infinite}@keyframes voice-record-pulse{0%,100%{opacity:1}50%{opacity:.65}}@media(prefers-reduced-motion:reduce){#voice-record-button.is-recording{animation:none}}.safety-status{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-top:1rem;padding:.75rem 1rem;border:1px solid #bdd0df;border-radius:.55rem;background:#f5f9fc}.safety-status>div{display:flex;align-items:center;gap:.65rem;flex-wrap:wrap}.safety-status div span:last-child{color:#596a76}.safety-icon{display:grid;place-items:center;width:1.6rem;height:1.6rem;border-radius:50%;color:#fff;background:#176f55;font-weight:900}.safety-status button{margin:0!important;padding:.45rem .75rem!important;border:1px solid #547b98!important;color:#174866!important;background:#fff!important;white-space:nowrap}.safety-details{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.65rem;margin-top:.6rem;padding:1rem;border:1px solid #cbd8e2;border-radius:.55rem;background:#fff}.safety-details p{grid-column:1/-1;margin:0;color:#53636e}.safety-details label{padding:.55rem;border-radius:.35rem;background:#f4f7f9}
 .entry-layout--redesigned .query-feedback:empty{display:none}.entry-layout--redesigned .query-feedback:not(:empty){margin-top:1rem}
 @media(max-width:700px){.workflow{padding:.65rem .4rem}.workflow li{font-size:.8rem;gap:.25rem}.workflow li:not(:last-child)::after{margin-left:.25rem}.workflow li span{width:1.4rem;height:1.4rem}.primary-actions{grid-template-columns:1fr}.quick-situations legend{width:100%;margin-bottom:.35rem}.safety-status{align-items:flex-start;flex-direction:column}.safety-status button{width:100%}.safety-details{grid-template-columns:1fr}}
+
+/* 실제 RAG(Gemini + Chroma) 연동 UI. 목업 흐름과 시각적으로 구분되도록 별도 색상(청록/보라 계열
+   대신 목업의 남색과 대비되는 초록 계열)을 사용하되 기존 카드/버튼 스타일 언어는 그대로 따른다. */
+.real-rag-toggle{display:flex;align-items:flex-start;gap:.5rem;margin:.85rem 0 0;padding:.65rem .75rem;border:1px solid #bdd0df;border-radius:.5rem;background:#f5f9fc;font-size:.92rem;color:#33454f;cursor:pointer}
+.real-rag-toggle input{margin-top:.2rem;flex-shrink:0}
+.real-rag-panel{margin-top:1rem;padding:1rem;border:2px solid #176f55;border-radius:.5rem;background:#f2fbf6}
+.real-rag-panel__disclaimer{margin:0 0 .85rem;padding:.6rem;border-left:.3rem solid #176f55;background:#e3f5eb;font-weight:650;overflow-wrap:anywhere}
+.real-rag-panel h4{margin:0 0 .5rem;color:#0b4428}
+.real-rag-panel h5{margin:.75rem 0 .35rem}
+.real-rag-panel__hits{display:grid;gap:.6rem}
+.real-rag-hit{padding:.7rem;border:1px solid #bcd8c9;border-radius:.35rem;background:#fff}
+.real-rag-hit h5{margin:0 0 .4rem;font-size:.95rem}
+.real-rag-hit__excerpt{margin:0;white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.55;color:#33454f}
+.real-rag-panel__report{margin-top:1rem;padding-top:1rem;border-top:1px dashed #bcd8c9}
+.real-rag-assessment{display:inline-block;padding:.3rem .65rem;border-radius:999px;font-weight:750}
+.real-rag-assessment--적법{color:#0b4428;background:#e7f6ed;border:1px solid #165a35}
+.real-rag-assessment--주의_요망{color:#4a3a00;background:#fff4d6;border:1px solid #8a6c00}
+.real-rag-assessment--위법_위험_높음{color:#7a1c18;background:#ffe6e3;border:1px solid #a73d35}
+.real-rag-panel__error{padding:.75rem;border-left:.35rem solid #a73d35;background:#fff2f0}
+.real-rag-panel__error h3{margin:0 0 .4rem;color:#7a1c18}

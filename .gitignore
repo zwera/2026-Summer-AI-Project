@@ -27,3 +27,6 @@ Thumbs.db
 # Environment / secrets
 .env
 .env.*
+
+# 실제 RAG 파이프라인 - Chroma 로컬 벡터 인덱스(임베딩 결과, 재생성 가능하므로 커밋하지 않음)
+.chroma_index/
