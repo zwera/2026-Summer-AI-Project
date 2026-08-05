@@ -9,7 +9,7 @@
 | 항목 | 내용 |
 |---|---|
 | 목적 | 현장 조치의 위법 가능성(직권남용, 절차위반 등)을 사전에 점검 |
-| 입력 방식 | 자연어 상황 서술 + 대화형 추가 질문(정보 부족 시) |
+| 입력 방식 | 자연어 상황 서술(텍스트/음성) + 대화형 추가 질문(정보 부족 시) |
 | 검색 대상 | 경찰 직무 시나리오별로 재분류된 1심 판례 DB + 법령 조문 DB |
 | 출력 | 적법성 결론(우선 노출) → 3단계 요약 → 리스크/비교/타임라인 → 원문·보고서 |
 | LLM | Google Gemini (`gemini-flash-lite-latest`, 구조화 출력 사용) |
@@ -103,16 +103,25 @@ ChromaDB (statutes, precedents 컬렉션)
 
 3단계 스테퍼 구조 (`src/App.jsx`):
 
-1. **상황 입력** (`SituationInputStep`) — 자연어 서술 + 빠른 상황 선택 칩 → `/api/chat` 호출
-2. **핵심 확인** (`ClarifyStep`) — 정보가 부족하면 LLM이 생성한 후속 질문에 답변 반복 → 충분해지면 3단계로
+1. **상황 입력** (`SituationInputStep`) — 자연어 서술 + 빠른 상황 선택 칩 + 🎤 음성 입력 → `/api/chat` 호출
+2. **핵심 확인** (`ClarifyStep`) — 정보가 부족하면 LLM이 생성한 후속 질문에 답변(텍스트/음성) 반복 → 충분해지면 3단계로
 3. **근거·보고서** (`ResultStep`) — `/api/analysis` 호출 결과를 아래 컴포넌트들로 렌더링
    - `ConclusionCard`: 결론 우선 노출 + 상세 근거 접기/펼치기
    - `SummaryGrid`: 판단 기준 / 부족한 사실 / 관련 근거 3열 카드
    - `RiskBadges`: 국가배상·직권남용 등 리스크 배지
-   - `ComparisonView`: 적법 사례 vs 위법 사례 Side-by-Side
+   - `ComparisonView`: 적법 사례 vs 위법 사례 Side-by-Side (각 판례 카드에 원문 링크 포함)
    - `FactDiffList`: 현재 상황과 판례 간 사실관계 Diff 표
    - `Timeline`: 사건 진행 타임라인 (시점별 1클릭 복사)
    - `SelectionPopover`: 요약문 텍스트 드래그 시 "재검토"/"자세히 설명" → `/api/analysis/fact-check`
+   - 하단 액션바: "📖 판례 원문 보기"(유사도 최상위 판례를 새 탭으로 열기), "📄 사건보고서 초안 다운로드 (.md)"(`buildReportMarkdown`으로 전체 분석 결과를 마크다운 파일로 다운로드)
+
+### 음성 입력
+
+`src/hooks/useSpeechRecognition.js`가 브라우저 내장 Web Speech API를 감싸
+별도 서버/API 키 없이 음성 인식을 제공합니다. 1단계·2단계의 텍스트 입력창
+옆에 있는 🎤 버튼으로 사용할 수 있습니다. Chrome/Edge 등 Chromium 계열
+브라우저에서만 지원되며(Firefox 미지원), 지원하지 않는 브라우저에서는
+버튼이 자동으로 비활성화됩니다.
 
 ## 5. 실행 방법 (git clone 직후 기준)
 
@@ -252,6 +261,11 @@ npm run dev
 추가 수집은 `crawl_precedents.py` 실행 후 원하는 법률명/키워드를 입력하면 되며,
 1심 여부는 사건번호 접미사(고단/고정/고합/구합 등)로 자동 필터링됩니다.
 
+각 판례의 원문 링크는 `https://www.law.go.kr/precInfoP.do?precSeq={ID}` 형식의
+일반 웹 뷰어 URL을 사용합니다(인증 없이 열림). Open API 상세조회 엔드포인트
+(`/DRF/lawService.do`)는 `OC` 인증키가 필요해 브라우저에서 바로 열면
+"사용자인증에 실패하였습니다" 오류가 나므로 사용하지 않습니다.
+
 ## 7. 알아두면 좋은 제약사항
 
 - **Gemini 무료 티어 할당량**: 모델별로 일일 호출 한도가 있습니다(`gemini-flash-lite-latest` 기준). 한도 초과 시 500 에러가 나며, 이때 브라우저 콘솔에는 CORS 에러로 잘못 표시될 수 있습니다(FastAPI가 처리되지 않은 예외에서는 CORS 헤더를 붙이지 않기 때문). 실제 원인은 서버 로그에서 확인해야 합니다.
@@ -259,3 +273,4 @@ npm run dev
 - **판례 규모**: 104건은 데모/개발 단계 수준입니다. 실서비스 전에는 시나리오별로 더 많은 1심 판례 확보가 필요합니다.
 - **`/api/analysis` 응답 시간**: 검색 + 대규모 구조화 출력 생성을 한 번에 수행하므로 10~20초 정도 걸릴 수 있습니다.
 - **비ASCII(한글) 경로 문제**: 클론 위치나 `CHROMA_PERSIST_DIR`에 한글이 섞이면 ChromaDB가 쓰는 hnswlib이 벡터 인덱스 파일을 못 여는 문제가 있습니다. 이제는 서버/스크립트 실행 시점에 `RuntimeError`로 즉시 알려주도록 되어 있으므로(`app/services/chroma_service.py`), 에러 메시지에 안내된 대로 `CHROMA_PERSIST_DIR`을 영문 경로로 바꾸면 됩니다.
+- **음성 입력 브라우저 호환성**: Web Speech API 기반이라 Chrome/Edge 등 Chromium 계열 브라우저에서만 동작합니다. Firefox 등 미지원 브라우저에서는 🎤 버튼이 자동으로 비활성화됩니다.
