@@ -1,0 +1,78 @@
+.timeline__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+.timeline__item {
+  display: flex;
+  gap: 12px;
+  position: relative;
+  padding-bottom: 18px;
+}
+
+.timeline__item:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 16px;
+  bottom: 0;
+  width: 2px;
+  background: var(--border);
+}
+
+.timeline__marker {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--blue);
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+.timeline__body {
+  flex: 1;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+
+.timeline__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.timeline__label {
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--text-h);
+}
+
+.timeline__copy {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 11px;
+  padding: 2px 8px;
+  color: var(--text-muted);
+}
+
+.timeline__copy:hover {
+  border-color: var(--blue);
+  color: var(--blue);
+}
+
+.timeline__desc {
+  font-size: 13px;
+  color: var(--text);
+  line-height: 1.5;
+  margin-bottom: 6px;
+}
+
+.timeline__issue {
+  font-size: 11px;
+}

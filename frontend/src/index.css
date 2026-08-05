@@ -1,0 +1,78 @@
+:root {
+  /* 경찰 업무 현장용 팔레트: 네이비 헤더 + 블루 주요 액션 + 시맨틱 컬러 */
+  --navy: #0f2a52;
+  --navy-dark: #0a1d3a;
+  --blue: #2f5fdc;
+  --blue-dark: #1f46b0;
+  --blue-bg: #eaf0fe;
+
+  --text: #33384a;
+  --text-h: #10141f;
+  --text-muted: #6b7280;
+  --bg: #f4f6fb;
+  --surface: #ffffff;
+  --border: #e2e5ec;
+
+  --green: #1f9d55;
+  --green-bg: #e7f8ee;
+  --green-border: #bfe8cf;
+
+  --orange: #e08a1f;
+  --orange-bg: #fdf1de;
+  --orange-border: #f3d9ac;
+
+  --red: #d64545;
+  --red-bg: #fbe9e9;
+  --red-border: #f2c6c6;
+
+  --shadow: 0 1px 2px rgba(16, 20, 31, 0.04), 0 4px 12px rgba(16, 20, 31, 0.06);
+
+  --sans:
+    'Pretendard', system-ui, 'Segoe UI', Roboto, 'Noto Sans KR', sans-serif;
+
+  font: 15px/1.55 var(--sans);
+  color-scheme: light;
+  color: var(--text);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3 {
+  color: var(--text-h);
+  font-weight: 700;
+  margin: 0;
+}
+
+body {
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+#root {
+  width: 100%;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+
+p {
+  margin: 0;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+textarea,
+input {
+  font-family: inherit;
+}

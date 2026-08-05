@@ -9,8 +9,9 @@
     1) 국가법령정보센터 API 인증키(OC) 입력
     2) 탐색하고 싶은 법률명 입력
     3) 검색할 판례 개수 입력
-    4) 이 스크립트가 있는 위치에 법률명으로 된 폴더를 생성
-    5) 검색된 판례를 마크다운 파일로 해당 폴더에 저장
+    4) 1심 판례만 수집할지 여부 입력 (y/n)
+    5) 이 스크립트가 있는 위치에 법률명으로 된 폴더를 생성
+    6) 검색된 판례를 마크다운 파일로 해당 폴더에 저장
 
 인증키(OC)는 환경변수 LAW_OC를 미리 설정해두면 입력 단계에서 그대로 Enter만 눌러 재사용할 수 있습니다.
     (PowerShell) $env:LAW_OC="발급받은키"
@@ -235,6 +236,63 @@ def format_date(date_str: str) -> str:
     return date_str or ""
 
 
+# 사건번호의 한글 부호는 "사건별 부호문자의 부여에 관한 예규"에 따라 심급을 나타냅니다.
+# 예) 2025다202901 -> "다"(민사 상고심), 2022노549 -> "노"(형사 항소심)
+# 법원명만으로는 심급을 구분할 수 없어(지방법원이 항소심을 담당하는 경우도 있음)
+# 사건번호 부호를 기준으로 1심 여부를 판별합니다.
+FIRST_INSTANCE_CODES = {
+    "가소", "가단", "가합",           # 민사 1심 (소액/단독/합의)
+    "고약", "고정", "고단", "고합",   # 형사 1심 (약식/즉결/단독/합의)
+    "구단", "구합",                   # 행정 1심
+    "드단", "드합",                   # 가사 1심
+    "느단", "느합",                   # 가사(비송) 1심
+}
+NON_FIRST_INSTANCE_CODES = {
+    "나", "다",        # 민사 항소심(2심) / 상고심(3심)
+    "노", "도",        # 형사 항소심(2심) / 상고심(3심)
+    "누", "두",        # 행정 항소심(2심) / 상고심(3심)
+    "르", "므",        # 가사 항소심(2심) / 상고심(3심)
+    "모", "로",        # 형사·민사 (재)항고심
+    "허",              # 특허법원
+    "전", "오",        # 전원합의체, 재심 등 상급심 성격
+}
+
+
+def extract_case_code(case_no: str) -> Optional[str]:
+    """사건번호에서 연도 뒤에 붙는 한글 부호를 추출합니다. 예: '2025다202901' -> '다'"""
+    if not case_no:
+        return None
+    match = re.match(r"^\d{2,4}([가-힣]+)\d+", case_no.strip())
+    if not match:
+        return None
+    return match.group(1)
+
+
+def is_first_instance(case_no: str) -> bool:
+    """사건번호 부호를 기준으로 1심 판례인지 판별합니다."""
+    code = extract_case_code(case_no)
+    if not code:
+        return False
+    if code in FIRST_INSTANCE_CODES:
+        return True
+    if code in NON_FIRST_INSTANCE_CODES:
+        return False
+    # 2글자 부호이면서 단독/합의/소액/약식/즉결 계열 어미면 1심으로 간주 (알려지지 않은 신규 부호 대비)
+    if len(code) == 2 and code[1] in ("단", "합", "소", "정", "약"):
+        return True
+    return False
+
+
+def describe_instance(case_no: str) -> str:
+    """사건번호 부호를 바탕으로 심급 설명을 반환합니다 (마크다운 표기용)."""
+    if is_first_instance(case_no):
+        return "1심"
+    code = extract_case_code(case_no)
+    if code in NON_FIRST_INSTANCE_CODES:
+        return "1심 아님(항소심/상고심 등)"
+    return "확인 불가"
+
+
 def sanitize_filename(name: str) -> str:
     name = re.sub(r'[\\/:*?"<>|]', "_", name)
     name = name.strip().strip(".")
@@ -251,6 +309,7 @@ def detail_to_markdown(law_name: str, detail: PrecedentDetail) -> str:
         f"- **법원명**: {detail.court}",
         f"- **사건종류**: {detail.case_type}",
         f"- **판결유형**: {detail.judgment_type}",
+        f"- **심급**: {describe_instance(detail.case_no)}",
         f"- **검색 기준 법률**: {law_name}",
         f"- **판례일련번호(ID)**: {detail.id}",
         f"- **원문 링크**: https://www.law.go.kr/DRF/lawService.do?target=prec&ID={detail.id}&type=HTML",
@@ -296,15 +355,23 @@ def build_index_markdown(law_name: str, summaries: list[PrecedentSummary]) -> st
     ]
     for s in summaries:
         date_fmt = format_date(s.date)
-        filename = f"{date_fmt}_{sanitize_filename(s.case_no)}.md"
-        lines.append(f"| {s.case_no} | {s.title} | {date_fmt} | {s.court} | [{filename}]({filename}) |")
+        case_part = sanitize_filename(s.case_no) if s.case_no else f"ID{s.id}"
+        filename = f"{date_fmt}_{case_part}.md"
+        lines.append(f"| {s.case_no or '(없음)'} | {s.title} | {date_fmt} | {s.court} | [{filename}]({filename}) |")
     return "\n".join(lines)
 
 
-def crawl(oc: str, law_name: str, max_items: int, output_dir: str, page_size: int = 20) -> None:
+def crawl(
+    oc: str,
+    law_name: str,
+    max_items: int,
+    output_dir: str,
+    page_size: int = 20,
+    first_instance_only: bool = False,
+) -> None:
     page_size = min(page_size, MAX_DISPLAY_PER_PAGE)
 
-    print(f"5. '{law_name}'을 참조한 판례를 검색합니다 (JO 검색)...")
+    print(f"6. '{law_name}'을 참조한 판례를 검색합니다 (JO 검색)...")
     total_cnt, first_page = search_precedents_by_law(oc, law_name, page=1, display=page_size)
 
     search_mode = "jo"
@@ -317,12 +384,18 @@ def crawl(oc: str, law_name: str, max_items: int, output_dir: str, page_size: in
         print("검색 결과가 없습니다. 법률명을 확인해 주세요.")
         return
 
-    target_cnt = min(total_cnt, max_items) if max_items > 0 else total_cnt
-    print(f"   전체 {total_cnt}건 중 {target_cnt}건을 수집합니다. (모드: {search_mode})")
+    limit_desc = f"최대 {max_items}건" if max_items > 0 else "조건에 맞는 모든 판례"
+    if first_instance_only:
+        print(f"   전체 {total_cnt}건 중 1심 판례에 해당하는 {limit_desc}을 수집합니다. (모드: {search_mode})")
+    else:
+        print(f"   전체 {total_cnt}건 중 {limit_desc}을 수집합니다. (모드: {search_mode})")
 
     summaries: list[PrecedentSummary] = []
+    seen_keys: set[str] = set()
+    skipped_by_instance = 0
     page = 1
-    while len(summaries) < target_cnt:
+    max_pages = -(-total_cnt // page_size) if page_size else 1  # 안전 상한
+    while page <= max(max_pages, 1):
         if page == 1:
             batch = first_page
         else:
@@ -333,17 +406,44 @@ def crawl(oc: str, law_name: str, max_items: int, output_dir: str, page_size: in
                 _, batch = search_precedents_by_keyword(oc, law_name, page=page, display=page_size)
         if not batch:
             break
-        summaries.extend(batch)
+
+        for item in batch:
+            # 사건번호가 있는 경우에만 중복 검사(법제처 API가 동일 사건을 서로 다른
+            # 판례일련번호로 중복 등록하는 경우가 있음). 사건번호가 비어 있는 항목
+            # (예: 근로복지공단 산재판례 등)은 서로 다른 판례일 수 있으므로 판례일련
+            # 번호(id) 기준으로 중복을 판단한다.
+            dedup_key = item.case_no if item.case_no else f"__id__{item.id}"
+            if dedup_key in seen_keys:
+                continue
+            if first_instance_only and not is_first_instance(item.case_no):
+                skipped_by_instance += 1
+                continue
+            seen_keys.add(dedup_key)
+            summaries.append(item)
+            if max_items > 0 and len(summaries) >= max_items:
+                break
+
+        if max_items > 0 and len(summaries) >= max_items:
+            break
         page += 1
 
-    summaries = summaries[:target_cnt]
+    if not first_instance_only and max_items > 0:
+        summaries = summaries[:max_items]
 
-    print(f"6. 판례를 마크다운으로 변환하여 저장합니다...")
+    if first_instance_only:
+        print(f"   1심 판례 {len(summaries)}건 확인 (1심이 아니어서 제외한 건수: {skipped_by_instance}건)")
+
+    if not summaries:
+        print("조건에 맞는 판례가 없습니다. (1심 판례만 필터링한 결과 0건일 수 있습니다)")
+        return
+
+    print(f"7. 판례를 마크다운으로 변환하여 저장합니다...")
     saved = 0
     skipped = 0
     for idx, s in enumerate(summaries, start=1):
         date_fmt = format_date(s.date)
-        filename = f"{date_fmt}_{sanitize_filename(s.case_no)}.md"
+        case_part = sanitize_filename(s.case_no) if s.case_no else f"ID{s.id}"
+        filename = f"{date_fmt}_{case_part}.md"
         filepath = os.path.join(output_dir, filename)
 
         if os.path.exists(filepath):
@@ -396,7 +496,7 @@ def prompt_law_name() -> str:
 
 def prompt_max_items() -> int:
     while True:
-        raw = input("3. 검색할 판례 개수를 입력하세요 (전체 수집은 0): ").strip()
+        raw = input("3. 검색할 판례 개수를 입력하세요 (조건에 맞는 모든 판례 저장은 0): ").strip()
         if not raw:
             print("   숫자를 입력해 주세요.")
             continue
@@ -411,12 +511,22 @@ def prompt_max_items() -> int:
         return value
 
 
+def prompt_first_instance_only() -> bool:
+    while True:
+        raw = input("4. 1심 판례만 수집할까요? (y/n): ").strip().lower()
+        if raw in ("y", "yes", "예", "ㅇ"):
+            return True
+        if raw in ("n", "no", "아니오", "ㄴ", ""):
+            return False
+        print("   y 또는 n으로 입력해 주세요.")
+
+
 def prepare_output_dir(law_name: str) -> str:
     """스크립트가 위치한 폴더 아래에 법률명으로 된 폴더를 생성합니다."""
     script_dir = os.path.dirname(os.path.abspath(__file__))
     output_dir = os.path.join(script_dir, sanitize_filename(law_name))
     os.makedirs(output_dir, exist_ok=True)
-    print(f"4. 저장 폴더를 준비했습니다: {output_dir}")
+    print(f"5. 저장 폴더를 준비했습니다: {output_dir}")
     return output_dir
 
 
@@ -425,6 +535,7 @@ def main() -> int:
     oc = prompt_oc()
     law_name = prompt_law_name()
     max_items = prompt_max_items()
+    first_instance_only = prompt_first_instance_only()
     output_dir = prepare_output_dir(law_name)
     print()
 
@@ -434,6 +545,7 @@ def main() -> int:
             law_name=law_name,
             max_items=max_items,
             output_dir=output_dir,
+            first_instance_only=first_instance_only,
         )
     except LawApiError as exc:
         print(f"API 오류: {exc}", file=sys.stderr)

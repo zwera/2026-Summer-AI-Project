@@ -1,0 +1,51 @@
+.app-header {
+  background: linear-gradient(180deg, var(--navy) 0%, var(--navy-dark) 100%);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 24px;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.app-header__brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.app-header__badge {
+  font-size: 22px;
+  display: inline-flex;
+  width: 36px;
+  height: 36px;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+}
+
+.app-header__title {
+  font-size: 20px;
+  color: #fff;
+  letter-spacing: -0.2px;
+}
+
+.app-header__meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.app-header__data-tag {
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+  padding: 4px 12px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 12px;
+}

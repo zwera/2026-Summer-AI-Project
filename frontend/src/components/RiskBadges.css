@@ -1,0 +1,42 @@
+.risk-badges__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 10px;
+}
+
+.risk-badge {
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--text-muted);
+  border-radius: 8px;
+  padding: 10px 12px;
+  background: var(--bg);
+}
+
+.risk-badge--gray {
+  border-left-color: var(--text-muted);
+}
+.risk-badge--orange {
+  border-left-color: var(--orange);
+}
+.risk-badge--red {
+  border-left-color: var(--red);
+}
+
+.risk-badge__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.risk-badge__type {
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--text-h);
+}
+
+.risk-badge__desc {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
