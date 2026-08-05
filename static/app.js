@@ -129,38 +129,66 @@ const PoliceBotErrorDisplay = (() => {
   return { SafeHttpError, requestJson, renderHttpError, renderStageError };
 })();
 
-/* Query history log (session-scoped, no persistent storage): every submitted
- * situation query is appended to a capped in-session list rendered in the
- * "검색 기록" sidebar. Unlike the previous behavior, the entry screen never
- * auto-refills or auto-resubmits a past query on load — the screen always
- * starts clean, and a past query is only re-run when the user explicitly
- * clicks its history entry. */
-const PoliceBotQueryHistory = (() => {
+/* Three-step workflow controller (상황 입력 → 핵심 확인 → 근거·보고서). Pure client-side
+ * panel visibility/step-indicator state; the server still determines every legal
+ * result. Step 2 becomes reachable once a query has been submitted; step 3 becomes
+ * reachable once the server has returned a SUPPORTED interpretation (evidence ready). */
+const PoliceBotWorkflow = (() => {
   "use strict";
-  const STORAGE_KEY = "policeBotQueryHistory_v1";
-  const MAX_ENTRIES = 20;
+  const steps = [
+    { indicator: "#workflow-step-1", panel: "#step-input" },
+    { indicator: "#workflow-step-2", panel: "#step-core-check" },
+    { indicator: "#workflow-step-3", panel: "#step-evidence-report" },
+  ];
+  const indicators = steps.map((step) => document.querySelector(step.indicator));
+  const panels = steps.map((step) => document.querySelector(step.panel));
+  if (!panels.every(Boolean)) return null;
 
-  const read = () => {
-    try {
-      const raw = window.sessionStorage.getItem(STORAGE_KEY);
-      const parsed = raw ? JSON.parse(raw) : [];
-      return Array.isArray(parsed) ? parsed : [];
-    } catch (_) {
-      return [];
-    }
-  };
-  const append = (entry) => {
-    try {
-      const next = [entry, ...read()].slice(0, MAX_ENTRIES);
-      window.sessionStorage.setItem(STORAGE_KEY, JSON.stringify(next));
-      return next;
-    } catch (_) {
-      return read();
-    }
-  };
-  const clear = () => { try { window.sessionStorage.removeItem(STORAGE_KEY); } catch (_) { /* ignore */ } };
+  let current = 1;
+  let reached = 1; // highest step number the user has unlocked so far
 
-  return { read, append, clear };
+  const goTo = (stepNumber) => {
+    if (stepNumber > reached) return; // never skip ahead of what the flow has unlocked
+    current = stepNumber;
+    panels.forEach((panel, index) => { panel.hidden = index !== stepNumber - 1; });
+    indicators.forEach((indicator, index) => {
+      if (!indicator) return;
+      const isCurrent = index === stepNumber - 1;
+      indicator.classList.toggle("is-current", isCurrent);
+      const button = indicator.querySelector("button");
+      if (button) {
+        if (isCurrent) button.setAttribute("aria-current", "step"); else button.removeAttribute("aria-current");
+        // A step becomes clickable once it has been reached at least once.
+        button.disabled = index + 1 > reached;
+      }
+    });
+    const focusTarget = panels[stepNumber - 1].querySelector("h1");
+    if (focusTarget) { focusTarget.setAttribute("tabindex", "-1"); focusTarget.focus(); }
+  };
+
+  const unlock = (stepNumber) => {
+    reached = Math.max(reached, stepNumber);
+    indicators.forEach((indicator, index) => {
+      const button = indicator?.querySelector("button");
+      if (button) button.disabled = index + 1 > reached;
+    });
+  };
+
+  indicators.forEach((indicator, index) => {
+    indicator?.querySelector("button")?.addEventListener("click", () => goTo(index + 1));
+  });
+
+  document.addEventListener("workflow:query-submitted", () => { unlock(2); goTo(2); });
+  document.addEventListener("workflow:evidence-ready", () => {
+    unlock(3);
+    const nextButton = document.querySelector("#step-core-check-next");
+    if (nextButton) nextButton.hidden = false;
+  });
+  document.querySelector("#step-core-check-back")?.addEventListener("click", () => goTo(1));
+  document.querySelector("#step-core-check-next")?.addEventListener("click", () => goTo(3));
+  document.querySelector("#step-evidence-report-back")?.addEventListener("click", () => goTo(2));
+
+  return { goTo, unlock };
 })();
 
 /* Same-origin UI interaction only: the Python server determines all legal results. */
@@ -168,43 +196,10 @@ const PoliceBotQueryHistory = (() => {
   "use strict";
   const form = document.querySelector("#situation-form");
   const queryInput = document.querySelector("#situation-query");
-  const voiceSelect = document.querySelector("#voice-fixture");
-  const voiceButton = document.querySelector("#voice-select-button");
   const feedback = document.querySelector("#query-feedback");
-  const historyList = document.querySelector("#query-history-list");
-  if (!form || !queryInput || !voiceSelect || !voiceButton || !feedback) return;
+  if (!form || !queryInput || !feedback) return;
 
   let currentQueryId = null;
-  const historyStatusLabel = { SUPPORTED: "인식됨", BLANK: "입력 없음", UNSUPPORTED: "미지원", INTERPRETATION_CHECK_NEEDED: "확인 필요" };
-  const renderHistory = () => {
-    if (!historyList) return;
-    historyList.replaceChildren();
-    PoliceBotQueryHistory.read().forEach((entry) => {
-      const item = document.createElement("li"); item.className = "query-history__item";
-      const button = document.createElement("button"); button.type = "button"; button.textContent = entry.query;
-      const statusSpan = document.createElement("span");
-      statusSpan.className = `query-history__status ${entry.kind === "SUPPORTED" ? "query-history__status--supported" : "query-history__status--other"}`;
-      statusSpan.textContent = historyStatusLabel[entry.kind] || entry.kind;
-      const time = document.createElement("time"); time.textContent = new Date(entry.timestamp).toLocaleTimeString();
-      button.append(document.createElement("br"), statusSpan);
-      button.addEventListener("click", () => {
-        queryInput.value = entry.query;
-        form.requestSubmit ? form.requestSubmit() : form.dispatchEvent(new Event("submit", { cancelable: true }));
-        queryInput.focus();
-      });
-      item.append(button, time);
-      historyList.append(item);
-    });
-  };
-  const recordHistory = (query, kind) => {
-    if (!query || !query.trim()) return;
-    PoliceBotQueryHistory.append({ query, kind, timestamp: new Date().toISOString() });
-    renderHistory();
-  };
-  const clearHistoryButton = document.createElement("button");
-  clearHistoryButton.type = "button"; clearHistoryButton.className = "query-history__clear"; clearHistoryButton.textContent = "기록 지우기";
-  clearHistoryButton.addEventListener("click", () => { PoliceBotQueryHistory.clear(); renderHistory(); });
-  if (historyList) historyList.insertAdjacentElement("afterend", clearHistoryButton);
   const request = PoliceBotErrorDisplay.requestJson;
   const element = (tag, text) => { const node = document.createElement(tag); node.textContent = text; return node; };
   const resetFeedback = () => { feedback.replaceChildren(); };
@@ -289,10 +284,7 @@ const PoliceBotQueryHistory = (() => {
 
   const renderResults = (search) => { const results = document.createElement("section"); results.className = "search-results"; results.setAttribute("aria-label", "목업 검색 결과"); results.append(element("h2", "목업 응답 · 검색 결과"), element("p", "유사도 점수와 검색 순서는 사전 정의된 목업 값이며, 현재 시연에서는 실제 운영 환경의 산식이나 판례 적합성·정확성을 보증하지 않습니다.")); const cases = document.createElement("section"); cases.append(element("h3", "판례")); if (!search.cases.length) cases.append(renderEmpty("판례")); search.cases.forEach((item) => { const card = document.createElement("article"); card.className = "result-card case-card"; card.append(element("h4", item.case_number)); const appeal = (search.appeals_by_case || {})[item.case_id]; const warning = item.similarity_warning || item.fact_difference_warning; if (warning) card.append(Object.assign(element("p", warning.text || warning), { className: "result-card__warning" })); addField(card, "법원", item.court_name); addField(card, "심급", item.instance); addField(card, "선고일", item.decision_date); addField(card, "경찰 직무 시나리오", item.scenario_ids.join(", ")); addField(card, "유사도", `${item.similarity_score}%`); addField(card, "적법성", item.legality_status); addField(card, "법령 기준", item.law_basis_status); addField(card, "해당 심급 인정 죄명", item.instance_recognized_charge); addField(card, "해당 심급 재판 결과", item.instance_outcome); addField(card, "상급심 정보 요약", !appeal || appeal.appellate.state === "정보_없음" ? "정보_없음" : appeal.appellate.decisions.map((decision) => `${decision.instance} ${decision.case_number} · ${decision.outcome}`).join(" / ")); if (appeal && appeal.finality_badge) { const badge = element("span", appeal.finality_badge.finality); badge.className = "finality-badge"; card.append(badge); } else addField(card, "확정 여부", "정보_없음"); const detail = (search.case_details_by_case || {})[item.case_id]; if (detail) { const detailToggle = element("button", "상세 보기"); detailToggle.type = "button"; detailToggle.className = "case-detail-toggle"; detailToggle.setAttribute("aria-expanded", "false"); const detailPanel = renderCaseDetail(detail, item.case_id); detailPanel.hidden = true; detailToggle.addEventListener("click", () => { detailPanel.hidden = !detailPanel.hidden; detailToggle.setAttribute("aria-expanded", String(!detailPanel.hidden)); detailToggle.textContent = detailPanel.hidden ? "상세 보기" : "상세 접기"; }); card.append(detailToggle, detailPanel); } cases.append(card); }); const statutes = document.createElement("section"); statutes.append(element("h3", "법조문")); if (!search.statutes.length) statutes.append(renderEmpty("법조문")); search.statutes.forEach((item) => { const card = document.createElement("article"); card.className = "result-card statute-card"; card.append(element("h4", item.law_name)); addField(card, "조·항·호", [item.article, item.paragraph, item.item].filter(Boolean).join(" ")); addField(card, "시행일", item.effective_date || "정보_없음"); statutes.append(card); }); results.append(cases, statutes); feedback.append(results); };
   const showInterpretation = (interpretation) => { resetFeedback(); currentQueryId = interpretation?.kind === "SUPPORTED" ? interpretation.query_id : null; if (!interpretation) return; if (interpretation.kind === "SUPPORTED") { feedback.append(element("h2", "표현과 법률 검색어 대응")); const list = document.createElement("ul"); interpretation.term_correspondences.forEach((item) => list.append(element("li", `${item.field_expression} ↔ ${item.legal_search_terms.join(", ")}`))); feedback.append(list, element("p", "관계 보존: 확인됨")); return; } if (interpretation.kind === "BLANK") feedback.append(element("p", "상황을 입력해 주세요.")); else if (interpretation.kind === "INTERPRETATION_CHECK_NEEDED") feedback.append(element("h2", "해석 확인 필요"), element("p", `원문 표현: ${interpretation.raw}`)); else if (interpretation.kind === "UNSUPPORTED") feedback.append(element("h2", "목업에서 지원하지 않는 질의"), element("p", `입력: ${interpretation.raw}`)); };
-  form.addEventListener("submit", async (event) => { event.preventDefault(); try { const payload = await request("/api/query", { query: queryInput.value }); if (payload.rag_error) { PoliceBotErrorDisplay.renderStageError(feedback, payload.rag_error); return; } showInterpretation(payload.interpretation); if (payload.search) renderResults(payload.search); if (payload.response) renderResponse(payload.response); if (payload.interpretation?.kind === "SUPPORTED") document.dispatchEvent(new CustomEvent("timeline:load", { detail: { queryId: payload.interpretation.query_id } })); recordHistory(queryInput.value, payload.interpretation?.kind); } catch (error) { if (error instanceof PoliceBotErrorDisplay.SafeHttpError) { PoliceBotErrorDisplay.renderHttpError(feedback, error); return; } resetFeedback(); const message = element("p", "요청을 처리할 수 없습니다. 다시 시도해 주세요."); message.setAttribute("role", "alert"); feedback.append(message); } });
-  voiceButton.addEventListener("click", async () => { if (!voiceSelect.value) { resetFeedback(); const notice = element("p", "음성 시연 항목을 선택해 주세요."); notice.setAttribute("role", "status"); feedback.append(notice); return; } try { const payload = await request("/api/action", { type: "SELECT_VOICE_FIXTURE", fixtureId: voiceSelect.value }); if (payload.voice_error) { PoliceBotErrorDisplay.renderStageError(feedback, payload.voice_error); return; } if (payload.recognized_text !== undefined) { queryInput.value = payload.recognized_text; showInterpretation(payload.interpretation); const recognized = element("p", `인식 텍스트: ${payload.recognized_text}`); recognized.setAttribute("role", "status"); feedback.prepend(recognized); if (payload.interpretation?.kind === "SUPPORTED") document.dispatchEvent(new CustomEvent("timeline:load", { detail: { queryId: payload.interpretation.query_id, recognizedText: payload.recognized_text } })); recordHistory(payload.recognized_text, payload.interpretation?.kind); } else { const error = element("p", "음성 인식 불가. 수동 텍스트 입력을 이용해 주세요."); error.setAttribute("role", "alert"); feedback.append(error); } } catch (error) { if (error instanceof PoliceBotErrorDisplay.SafeHttpError) { PoliceBotErrorDisplay.renderHttpError(feedback, error); return; } resetFeedback(); const message = element("p", "요청을 처리할 수 없습니다. 수동 텍스트 입력을 이용해 주세요."); message.setAttribute("role", "alert"); feedback.append(message); } });
-
-  renderHistory();
+  form.addEventListener("submit", async (event) => { event.preventDefault(); document.dispatchEvent(new CustomEvent("workflow:query-submitted")); try { const payload = await request("/api/query", { query: queryInput.value }); if (payload.rag_error) { PoliceBotErrorDisplay.renderStageError(feedback, payload.rag_error); return; } showInterpretation(payload.interpretation); if (payload.search) renderResults(payload.search); if (payload.response) renderResponse(payload.response); if (payload.interpretation?.kind === "SUPPORTED") { document.dispatchEvent(new CustomEvent("timeline:load", { detail: { queryId: payload.interpretation.query_id } })); document.dispatchEvent(new CustomEvent("workflow:evidence-ready", { detail: { queryId: payload.interpretation.query_id } })); } } catch (error) { if (error instanceof PoliceBotErrorDisplay.SafeHttpError) { PoliceBotErrorDisplay.renderHttpError(feedback, error); return; } resetFeedback(); const message = element("p", "요청을 처리할 수 없습니다. 다시 시도해 주세요."); message.setAttribute("role", "alert"); feedback.append(message); } });
 })();
 
 /* Results screen (/results): scenario comparison controller (tasks 19.1/19.4).
@@ -429,7 +421,7 @@ const PoliceBotQueryHistory = (() => {
 /* Timeline editor: renders server-projected events and sends edits back to Python. */
 (() => {
   "use strict";
-  const feedback = document.querySelector("#query-feedback");
+  const feedback = document.querySelector("#evidence-report-body");
   if (!feedback) return;
   const request = async (payload) => (await fetch("/api/action", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) })).json();
   const node = (tag, text) => { const value = document.createElement(tag); value.textContent = text; return value; };
@@ -559,4 +551,68 @@ const PoliceBotQueryHistory = (() => {
   };
   bindDisclosure("voice-panel-toggle", "voice-demo");
   bindDisclosure("safety-toggle", "safety-details");
+})();
+
+/* Real microphone speech-to-text input using the browser's built-in Web Speech
+ * API (SpeechRecognition). No audio is sent to this app's server; recognition
+ * is performed by the browser itself (which, depending on the browser vendor,
+ * may use its own remote recognition service - see the privacy notice on this
+ * screen). Recognized text is only ever inserted into the situation textarea;
+ * it does not bypass the normal SUPPORTED/UNSUPPORTED interpretation flow. */
+(() => {
+  "use strict";
+  const query = document.querySelector("#situation-query");
+  const button = document.querySelector("#voice-record-button");
+  const status = document.querySelector("#voice-record-status");
+  if (!query || !button || !status) return;
+
+  const SpeechRecognitionCtor = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognitionCtor) {
+    button.disabled = true;
+    status.textContent = "이 브라우저는 음성 인식을 지원하지 않습니다. 상황을 직접 입력해 주세요.";
+    return;
+  }
+
+  const recognition = new SpeechRecognitionCtor();
+  recognition.lang = "ko-KR";
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 1;
+
+  let listening = false;
+
+  const setListening = (next) => {
+    listening = next;
+    button.setAttribute("aria-pressed", String(next));
+    button.classList.toggle("is-recording", next);
+  };
+
+  button.addEventListener("click", () => {
+    if (listening) { recognition.stop(); return; }
+    try {
+      recognition.start();
+      setListening(true);
+      status.textContent = "듣고 있습니다. 말씀해 주세요.";
+    } catch (_) {
+      status.textContent = "음성 인식을 시작할 수 없습니다. 다시 시도해 주세요.";
+    }
+  });
+
+  recognition.addEventListener("result", (event) => {
+    const transcript = event.results[event.results.length - 1][0].transcript.trim();
+    if (!transcript) return;
+    query.value = transcript;
+    query.dispatchEvent(new Event("input", { bubbles: true }));
+    query.focus();
+    status.textContent = `인식된 내용을 입력란에 채웠습니다: ${transcript}`;
+  });
+
+  recognition.addEventListener("error", (event) => {
+    setListening(false);
+    const reason = event.error === "not-allowed" || event.error === "service-not-allowed"
+      ? "마이크 사용 권한이 필요합니다."
+      : "음성을 인식하지 못했습니다.";
+    status.textContent = `${reason} 상황을 직접 입력해 주세요.`;
+  });
+
+  recognition.addEventListener("end", () => { setListening(false); });
 })();

@@ -64,9 +64,7 @@ def test_entry_has_situation_input_voice_demo_and_local_client_script(
     app = MockWebApplication(validated_mock_dataset)  # type: ignore[arg-type]
     _, _, page = _page(app, "/")
     for required in (
-        "id='situation-form'", "id='situation-query'", "사전 정의 음성 시연",
-        "id='voice-fixture'", "음성으로 입력", "id='query-feedback'",
+        "id='situation-form'", "id='situation-query'", "음성 입력",
+        "id='voice-record-button'", "음성으로 입력", "id='query-feedback'",
     ):
         assert required in page
-    assert "현행범체포 상황 설명(성공)" in page
-    assert "인식 실패 시연" in page

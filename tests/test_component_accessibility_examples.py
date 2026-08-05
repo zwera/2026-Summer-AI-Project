@@ -222,16 +222,15 @@ def test_report_copy_and_download_failures_keep_manual_fallback_visible() -> Non
 
 
 def test_voice_recognition_failure_offers_manual_text_input_alternative() -> None:
-    """Requirement 11.20: when the local voice-fixture lookup returns no
-    recognized text, the client must surface a fixed manual-text-input fallback
-    message instead of a fabricated recognition result."""
+    """When the browser's SpeechRecognition either is unsupported or reports an
+    error, the client must surface a status message and direct the user to type
+    the situation manually instead of fabricating a recognition result."""
     app_js = _read_static_source("app.js")
-    assert "음성 인식 불가. 수동 텍스트 입력을 이용해 주세요." in app_js
-    voice_button_start = app_js.index('voiceButton.addEventListener("click"')
-    voice_button_end = app_js.index("renderHistory();", voice_button_start)
-    body = app_js[voice_button_start:voice_button_end]
-    assert "음성 인식 불가. 수동 텍스트 입력을 이용해 주세요." in body
-    assert 'error.setAttribute("role", "alert")' in body
+    assert "이 브라우저는 음성 인식을 지원하지 않습니다. 상황을 직접 입력해 주세요." in app_js
+    recognition_start = app_js.index('recognition.addEventListener("error"')
+    recognition_end = app_js.index('recognition.addEventListener("end"', recognition_start)
+    body = app_js[recognition_start:recognition_end]
+    assert "상황을 직접 입력해 주세요." in body
 
 
 def _read_static_source(filename: str) -> str:

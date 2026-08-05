@@ -105,7 +105,10 @@ _PUBLIC_DEPLOYMENT_NOTICE = (
 )
 _PRIVACY_NOTICE = (
     "입력한 상황 질의, 선택 문구 및 보고서 본문은 영구 저장하거나 외부 분석·제3자 공유·"
-    "애플리케이션 로그에 기록하지 않습니다."
+    "애플리케이션 로그에 기록하지 않습니다. 다만 음성 입력 기능을 사용하면 브라우저가 "
+    "제공하는 음성 인식 기능이 동작하며, 이 과정에서 마이크 음성이 브라우저(운영체제·"
+    "브라우저 제조사)의 음성 인식 서비스로 전송될 수 있습니다. 이 전송은 브라우저가 "
+    "수행하며 이 웹 애플리케이션의 서버는 관여하지 않습니다."
 )
 
 
@@ -230,31 +233,47 @@ class MockWebApplication:
             """
             route = "RESULTS"
         else:
-            voice_options = "".join(
-                f"<option value='{escape(str(voice.id))}'>{escape(voice.label)}</option>"
-                for voice in self._dataset.voice_fixtures
-            )
             # 빠른 상황 선택 칩은 반드시 fixture에 실제로 등록된 지원 문구
             # (QueryVariant.raw_example)를 그대로 사용한다. 지어낸 문구를 넣으면
             # 클릭할 때마다 "목업에서 지원하지 않는 질의"로 실패하므로 여기서
             # 새 문구를 만들어 내지 않는다(요구사항: 목업에 없는 값 지어내지 않기).
             chip_scenarios = ("현행범체포", "임의동행", "가정폭력 초동조치", "음주단속")
+            # 각 시나리오를 시각적으로 구분하기 위한 장식용 아이콘일 뿐이며, 법률적 의미나
+            # 값을 나타내지 않는다(aria-hidden으로 보조기술에는 노출하지 않음).
+            chip_icons = {
+                "현행범체포": "🚨",
+                "임의동행": "🚶",
+                "가정폭력 초동조치": "🏠",
+                "음주단속": "🚗",
+            }
             raw_example_by_scenario: Dict[str, str] = {}
             for query in self._dataset.queries:
                 if not query.scenario_ids or not query.variants:
                     continue
                 raw_example_by_scenario[str(query.scenario_ids[0].value)] = query.variants[0].raw_example
             situation_chips = "".join(
-                f"<button type='button' class='situation-chip' data-prompt='{escape(raw_example_by_scenario[label])}'>{escape(label)}</button>"
+                f"<button type='button' class='situation-chip' data-prompt='{escape(raw_example_by_scenario[label])}'>"
+                f"<span aria-hidden='true'>{chip_icons.get(label, '📌')}</span> {escape(label)}</button>"
                 for label in chip_scenarios
                 if label in raw_example_by_scenario
             )
             content = f"""
             <section class='workflow' aria-label='업무 진행 단계'>
-              <ol><li class='is-current'><span>1</span> 상황 입력</li><li><span>2</span> 핵심 확인</li><li><span>3</span> 근거·보고서</li></ol>
+              <ol>
+                <li id='workflow-step-1' class='is-current' data-step='1'>
+                  <button type='button' aria-current='step'><span>1</span> 상황 입력</button>
+                </li>
+                <li id='workflow-step-2' data-step='2'>
+                  <button type='button' disabled><span>2</span> 핵심 확인</button>
+                </li>
+                <li id='workflow-step-3' data-step='3'>
+                  <button type='button' disabled><span>3</span> 근거·보고서</button>
+                </li>
+              </ol>
             </section>
             <div class='entry-layout entry-layout--redesigned'>
-              <section class='page-intro situation-input' aria-labelledby='page-title'>
+              <div class='step-panels'>
+              <section id='step-input' class='step-panel page-intro situation-input' aria-labelledby='page-title'>
                 <p class='eyebrow'>현장 판단 지원</p><h1 id='page-title'>현재 상황을 입력하세요</h1>
                 <p class='intro-copy'>사건번호나 죄명 대신 보고 들은 사실과 대상자의 행동을 구체적으로 입력하세요.</p>
                 <form id='situation-form' novalidate>
@@ -274,11 +293,13 @@ class MockWebApplication:
                   <p id='privacy-help' class='privacy-help'>🔒 개인정보(이름·주민번호·연락처·주소 등)는 입력하지 마세요.</p>
                 </form>
                 <section id='voice-demo' class='voice-demo' aria-labelledby='voice-demo-title' hidden>
-                  <h2 id='voice-demo-title'>사전 정의 음성 시연</h2>
-                  <label for='voice-fixture'>음성 시연 항목</label>
-                  <select id='voice-fixture' name='voiceFixtureId'><option value=''>선택하세요</option>{voice_options}</select>
-                  <button id='voice-select-button' type='button'>인식 텍스트 불러오기</button>
-                  <p>실제 음성 인식이나 마이크 입력은 사용하지 않습니다.</p>
+                  <h2 id='voice-demo-title'>음성 입력</h2>
+                  <button id='voice-record-button' type='button' aria-pressed='false'>
+                    <span aria-hidden='true'>&#127908;</span> 마이크로 말하기
+                  </button>
+                  <p id='voice-record-status' role='status'>마이크 버튼을 눌러 말하면 인식된 내용이 위 입력란에 채워집니다.</p>
+                  <p class='field-help'>브라우저의 음성 인식 기능을 사용합니다. 마이크 접근을 허용해야 하며,
+                    지원하지 않는 브라우저에서는 수동으로 입력해 주세요.</p>
                 </section>
                 <section class='safety-status' aria-labelledby='safety-title'>
                   <div><span class='safety-icon' aria-hidden='true'>✓</span><strong id='safety-title'>현장 안전 확인</strong><span>위험요소 미확인 · 당사자 분리 미확인</span></div>
@@ -291,13 +312,21 @@ class MockWebApplication:
                   <label><input type='checkbox'> 행위·시간·장소 확인</label>
                   <label><input type='checkbox'> 고지·동의·거부 기록</label>
                 </section>
-                <section id='query-feedback' class='query-feedback' aria-live='polite' aria-label='질의 해석 결과'></section>
               </section>
-              <details class='query-history'>
-                <summary>최근 검색 기록</summary>
-                <p>현재 브라우저 세션의 기록만 표시되며 탭을 닫으면 삭제됩니다.</p>
-                <ul id='query-history-list' class='query-history__list'></ul>
-              </details>
+              <section id='step-core-check' class='step-panel page-intro' aria-labelledby='core-check-title' hidden>
+                <p class='eyebrow'>핵심 확인</p><h1 id='core-check-title'>표현·법률 검색어 대응과 목업 응답</h1>
+                <p class='intro-copy'>서버가 해석한 표현 대응, 목업 응답·검색 결과, 판례와 법조문을 확인하세요.</p>
+                <button id='step-core-check-back' type='button' class='step-nav-button step-nav-button--secondary'>상황 다시 입력</button>
+                <section id='query-feedback' class='query-feedback' aria-live='polite' aria-label='질의 해석 결과'></section>
+                <button id='step-core-check-next' type='button' class='step-nav-button step-nav-button--primary' hidden>근거·보고서 확인</button>
+              </section>
+              <section id='step-evidence-report' class='step-panel page-intro' aria-labelledby='evidence-report-title' hidden>
+                <p class='eyebrow'>근거·보고서</p><h1 id='evidence-report-title'>사실관계 타임라인과 보고서</h1>
+                <p class='intro-copy'>인식된 사건을 시간 순으로 확인·수정하고 보고서용 사실관계를 생성하세요.</p>
+                <button id='step-evidence-report-back' type='button' class='step-nav-button step-nav-button--secondary'>핵심 확인으로 돌아가기</button>
+                <div id='evidence-report-body'></div>
+              </section>
+              </div>
             </div>
             """
             route = "QUERY"
@@ -310,7 +339,13 @@ class MockWebApplication:
         if _STATIC_ROOT not in candidate.parents or not candidate.is_file():
             return self._safe_error(start_response, "404 Not Found", "NOT_FOUND", retryable=False)
         content_type = "application/javascript; charset=utf-8" if candidate.suffix == ".js" else "text/css; charset=utf-8"
-        return self._bytes(start_response, "200 OK", content_type, candidate.read_bytes())
+        # Never let the browser reuse a stale cached copy of app.js/app.css across
+        # deployments of this same-origin demo (workflow panel markup/logic must
+        # always match the currently served HTML).
+        return self._bytes(
+            start_response, "200 OK", content_type, candidate.read_bytes(),
+            extra_headers=[("Cache-Control", "no-cache, must-revalidate")],
+        )
 
     def _query(self, environ: Mapping[str, Any], start_response: StartResponse) -> Iterable[bytes]:
         payload, error_status = self._request_json(environ)
@@ -661,12 +696,18 @@ class MockWebApplication:
         return self._json(start_response, status, payload)
 
     @staticmethod
-    def _bytes(start_response: StartResponse, status: str, content_type: str, body: bytes) -> Iterable[bytes]:
-        start_response(status, [
+    def _bytes(
+        start_response: StartResponse, status: str, content_type: str, body: bytes,
+        extra_headers: Optional[List[Tuple[str, str]]] = None,
+    ) -> Iterable[bytes]:
+        headers = [
             ("Content-Type", content_type),
             ("Content-Length", str(len(body))),
             ("Content-Security-Policy", _CONTENT_SECURITY_POLICY),
-        ])
+        ]
+        if extra_headers:
+            headers.extend(extra_headers)
+        start_response(status, headers)
         return [body]
 
     def _json(self, start_response: StartResponse, status: str, payload: Dict[str, Any]) -> Iterable[bytes]:

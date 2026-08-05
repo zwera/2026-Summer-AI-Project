@@ -45,13 +45,13 @@ def test_client_script_displays_server_http_status_message_and_retry_flag_unalte
     assert "errorInfo.message" in script
     assert "errorInfo.retryable" in script
 
-    # In-flow mock-RAG stage errors (rag_error/voice_error embedded in a 200 OK
-    # response body) are routed to the same safe display instead of being treated
-    # as ordinary results, and no substitute legal conclusion is ever rendered from
-    # them: the panel only shows fixed status/stage/retry text, never search or
-    # response fields.
+    # In-flow mock-RAG stage errors (rag_error embedded in a 200 OK response body)
+    # are routed to the same safe display instead of being treated as ordinary
+    # results, and no substitute legal conclusion is ever rendered from them: the
+    # panel only shows fixed status/stage/retry text, never search or response
+    # fields. Voice input is now handled entirely client-side via the browser's
+    # SpeechRecognition API and no longer produces a server-side voice_error.
     assert "payload.rag_error" in script
-    assert "payload.voice_error" in script
 
     # Incomplete stages downstream of the failure are labeled with the fixed
     # `미완료` text required by 13.13/13.15, and no case/statute results are drawn
