@@ -61,3 +61,16 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+.precedent-card__link {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--blue);
+  text-decoration: none;
+}
+
+.precedent-card__link:hover {
+  text-decoration: underline;
+}

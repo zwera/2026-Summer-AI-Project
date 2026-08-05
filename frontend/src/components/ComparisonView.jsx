@@ -12,6 +12,16 @@ function PrecedentCard({ p }) {
         {p.court} · {p.date}
       </p>
       <p className="precedent-card__snippet">{p.summary_snippet}</p>
+      {p.source_link && (
+        <a
+          className="precedent-card__link"
+          href={p.source_link}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          📖 판례 원문 보기 ↗
+        </a>
+      )}
     </div>
   )
 }

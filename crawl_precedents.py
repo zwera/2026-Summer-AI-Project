@@ -312,7 +312,7 @@ def detail_to_markdown(law_name: str, detail: PrecedentDetail) -> str:
         f"- **심급**: {describe_instance(detail.case_no)}",
         f"- **검색 기준 법률**: {law_name}",
         f"- **판례일련번호(ID)**: {detail.id}",
-        f"- **원문 링크**: https://www.law.go.kr/DRF/lawService.do?target=prec&ID={detail.id}&type=HTML",
+        f"- **원문 링크**: https://www.law.go.kr/precInfoP.do?precSeq={detail.id}",
         "",
     ]
 

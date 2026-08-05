@@ -46,6 +46,15 @@ function ResultStep({ situation, category, analysis, setAnalysis, onRestart }) {
     alert('보고서 초안이 클립보드에 복사되었습니다.')
   }
 
+  function handleViewPrecedentSource() {
+    const topPrecedent = analysis?.similar_precedents?.find((p) => p.source_link)
+    if (!topPrecedent) {
+      alert('열어볼 판례 원문 링크가 없습니다.')
+      return
+    }
+    window.open(topPrecedent.source_link, '_blank', 'noopener,noreferrer')
+  }
+
   if (loading) {
     return (
       <section className="result-step">
@@ -104,11 +113,12 @@ function ResultStep({ situation, category, analysis, setAnalysis, onRestart }) {
         <Timeline events={analysis.timeline} />
 
         <div className="result-step__action-bar">
-          <button type="button" className="btn btn--outline">
+          <button
+            type="button"
+            className="btn btn--outline"
+            onClick={handleViewPrecedentSource}
+          >
             📖 판례 원문 보기
-          </button>
-          <button type="button" className="btn btn--outline">
-            👥 상급자 공유
           </button>
           <button
             type="button"
