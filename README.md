@@ -266,7 +266,85 @@ npm run dev
 (`/DRF/lawService.do`)는 `OC` 인증키가 필요해 브라우저에서 바로 열면
 "사용자인증에 실패하였습니다" 오류가 나므로 사용하지 않습니다.
 
-## 7. 알아두면 좋은 제약사항
+## 7. 판례 데이터 추가/업데이트 절차
+
+판례는 정적 파일(`precedent/*.md` → `precedents.json` → ChromaDB) 기반이므로,
+새 판례를 추가하거나 기존 데이터를 갱신하려면 아래 순서를 거쳐야 합니다.
+서버를 재시작하지 않아도 ChromaDB는 파일 기반이라 재인덱싱 후 바로 검색에 반영됩니다.
+
+### 7-1. 판례 원문 수집
+
+`crawl_precedents.py`는 국가법령정보센터 Open API로 법률명/키워드를 검색해
+마크다운 파일로 저장하는 대화형 스크립트입니다. **`requests` 등 의존성은
+`backend/.venv`에만 설치되어 있으므로, 시스템 Python이 아니라 반드시
+가상환경의 Python으로 실행하세요.**
+
+```powershell
+# 프로젝트 루트에서
+backend\.venv\Scripts\python.exe crawl_precedents.py
+```
+
+실행하면 순서대로 입력을 받습니다: 인증키(OC) → 법률명 → 최대 수집 건수 →
+1심 판례만 수집할지 여부. `LAW_OC` 환경변수를 미리 설정해두면 인증키
+입력 단계에서 Enter만 눌러 재사용할 수 있습니다.
+
+```powershell
+$env:LAW_OC="발급받은키"
+```
+
+저장 위치는 스크립트 옆(`part3/{법률명}/`)에 새로 생성되므로, 이후
+`precedent/{카테고리}/1심 판례/` 구조에 맞게 파일을 옮겨줍니다.
+
+여러 카테고리를 한 번에 갱신하려면 `collect_more_precedents.py`를 사용합니다.
+이 스크립트는 내부 `JOBS` 리스트(검색어, 폴더명, 최대 건수)에 정의된 항목들을
+`precedent/{폴더}/1심 판례/`에 바로 저장해 폴더를 옮기는 수고가 없습니다.
+새 카테고리를 추가하고 싶으면 이 파일의 `JOBS` 리스트에 항목을 추가하면 됩니다.
+
+```powershell
+backend\.venv\Scripts\python.exe collect_more_precedents.py
+```
+
+두 스크립트 모두 이미 존재하는 파일(동일 파일명)은 건너뛰므로 재실행해도
+중복 저장되지 않습니다.
+
+### 7-2. 마크다운 → JSON 파싱
+
+```powershell
+cd backend
+.venv\Scripts\python.exe -m data_pipeline.parse_precedents
+```
+
+`precedent/{카테고리}/1심 판례/*.md`를 전부 읽어 `backend/data_processed/precedents.json`을
+다시 생성합니다.
+
+### 7-3. ChromaDB 재인덱싱
+
+```powershell
+.venv\Scripts\python.exe -m data_pipeline.build_index --reset
+```
+
+`--reset`을 붙이면 기존 컬렉션을 삭제하고 새 `precedents.json` 기준으로
+전부 다시 임베딩합니다. 판례를 삭제했거나 대량으로 갱신한 경우에는 `--reset`을
+쓰는 것이 안전합니다(붙이지 않으면 upsert만 되어 삭제된 판례가 컬렉션에
+남아있을 수 있습니다). bge-m3로 digest + 전문 청크를 임베딩하므로 판례 수가
+많으면 시간이 걸릴 수 있습니다.
+
+### 7-4. (새 카테고리를 추가한 경우) 직무 시나리오 매핑 추가
+
+`precedent/` 아래 새 폴더명(법률 영역)을 추가했다면, `backend/app/taxonomy.py`의
+`LAW_AREA_DEFAULT_CATEGORY`에 해당 폴더명 → `job_category` 매핑을 추가해야
+검색 시 직무 시나리오 필터링이 정상 동작합니다.
+
+```python
+LAW_AREA_DEFAULT_CATEGORY: dict[str, str] = {
+    "경범죄": "field_control",
+    "식품": "admin_sanction",
+    # ...
+    "새폴더명": "적절한_job_category_key",  # JOB_CATEGORIES 중 하나
+}
+```
+
+## 8. 알아두면 좋은 제약사항
 
 - **Gemini 무료 티어 할당량**: 모델별로 일일 호출 한도가 있습니다(`gemini-flash-lite-latest` 기준). 한도 초과 시 500 에러가 나며, 이때 브라우저 콘솔에는 CORS 에러로 잘못 표시될 수 있습니다(FastAPI가 처리되지 않은 예외에서는 CORS 헤더를 붙이지 않기 때문). 실제 원인은 서버 로그에서 확인해야 합니다.
 - **리랭커 미사용**: 검색 정렬은 bge-m3 벡터 유사도(코사인 거리 → 0~100% 환산)만 사용합니다. 정확도를 더 높이려면 `BAAI/bge-reranker-large` 등을 추가할 수 있습니다.
