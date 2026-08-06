@@ -4,6 +4,7 @@ import StepIndicator from './components/StepIndicator.jsx'
 import SituationInputStep from './components/SituationInputStep.jsx'
 import ClarifyStep from './components/ClarifyStep.jsx'
 import ResultStep from './components/ResultStep.jsx'
+import { useFaviconStatus } from './hooks/useFaviconStatus.js'
 import './App.css'
 
 const STEPS = [
@@ -13,6 +14,9 @@ const STEPS = [
 ]
 
 function App() {
+  // 탭 파비콘: 백엔드 서버가 응답하지 않으면 회색조 아이콘으로 전환
+  useFaviconStatus()
+
   const [stepIndex, setStepIndex] = useState(0)
   // 지금까지 도달한 가장 앞선 단계. 이 값 이하 범위에서는 분석 결과를
   // 유지한 채 자유롭게 앞뒤로 이동할 수 있다 (초기화되지 않음).
